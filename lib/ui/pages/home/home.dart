@@ -27,23 +27,27 @@ class Home extends StatelessWidget {
               height: 750,
               child: Container(
                 padding: const EdgeInsets.only(
-                    left: 40, top: 30, right: 20, bottom: 10),
+                    left: 30, top: 30, right: 30, bottom: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
                   color: Colors.white,
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 30),
-                      child: Text(
-                        'Bienvenido',
-                        style: GoogleFonts.kodchasan(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
+                    Container(
+                        child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 0, bottom: 30),
+                              child: Text(
+                                'Bienvenido',
+                                style: GoogleFonts.kodchasan(
+                                    color: Colors.black,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ))),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 40),
                       child: Text(
@@ -68,7 +72,7 @@ class Home extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            minimumSize: const Size(100, 50),
+                            minimumSize: const Size(140, 50),
                           ),
                         ),
                         ElevatedButton(
@@ -81,9 +85,10 @@ class Home extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              minimumSize: const Size(80, 50)),
+                                  borderRadius: BorderRadius.circular(50),
+                                  side: BorderSide(
+                                      color: Colors.black, width: 1.5)),
+                              minimumSize: const Size(140, 50)),
                         )
                       ],
                     )
