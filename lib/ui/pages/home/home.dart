@@ -21,6 +21,16 @@ class Home extends StatelessWidget {
                         fit: BoxFit.cover)),
               )),
           Positioned(
+              top: 200,
+              left: 120,
+              child: Text(
+                'Pegi',
+                style: GoogleFonts.kodchasan(
+                    color: Colors.white,
+                    fontSize: 50,
+                    fontWeight: FontWeight.w500),
+              )),
+          Positioned(
               left: 0,
               right: 0,
               top: 400,

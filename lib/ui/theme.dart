@@ -18,9 +18,9 @@ class CustomTheme with ChangeNotifier {
       scaffoldBackgroundColor: Colors.white,
       textTheme: const TextTheme(
         headline1: TextStyle(color: Colors.black),
-        headline2: TextStyle(color: Colors.black),
+        headline2: TextStyle(color: Colors.white),
         bodyText1: TextStyle(color: Colors.black),
-        bodyText2: TextStyle(color: Colors.black),
+        bodyText2: TextStyle(color: Colors.white),
       ),
     );
   }
@@ -32,9 +32,9 @@ class CustomTheme with ChangeNotifier {
       scaffoldBackgroundColor: Colors.black,
       textTheme: const TextTheme(
         headline1: TextStyle(color: Colors.white),
-        headline2: TextStyle(color: Colors.white),
+        headline2: TextStyle(color: Colors.black),
         bodyText1: TextStyle(color: Colors.white),
-        bodyText2: TextStyle(color: Colors.white),
+        bodyText2: TextStyle(color: Colors.black),
       ),
     );
   }
