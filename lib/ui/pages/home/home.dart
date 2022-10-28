@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -71,7 +72,9 @@ class Home extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offAllNamed('/login');
+                          },
                           child: Text("Ingresar",
                               style: GoogleFonts.kodchasan(
                                 color: Colors.white,
@@ -86,7 +89,9 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offAllNamed('/register');
+                          },
                           child: Text("Registrarse",
                               style: GoogleFonts.kodchasan(
                                 color: Colors.black,

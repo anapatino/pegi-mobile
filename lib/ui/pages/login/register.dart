@@ -4,15 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Icons.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
-  TextEditingController controlUser = TextEditingController();
+class _RegisterState extends State<Register> {
+  TextEditingController controlName = TextEditingController();
+  TextEditingController controLastName = TextEditingController();
+  TextEditingController controlEmail = TextEditingController();
   TextEditingController controlPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ingresar',
+                  'Registrar',
                   style: GoogleFonts.kodchasan(
                       color: Colors.white,
                       fontSize: 35,
@@ -74,7 +76,8 @@ class _LoginState extends State<Login> {
             top: 200,
             height: 750,
             child: Container(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.only(
+                  left: 30, top: 30, right: 30, bottom: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 color: Colors.white,
@@ -83,29 +86,36 @@ class _LoginState extends State<Login> {
                 children: [
                   Input(
                       false,
-                      controlUser,
-                      "Usuario",
+                      controlName,
+                      "Nombre",
                       const EdgeInsets.all(0),
-                      const EdgeInsets.only(top: 30, bottom: 40),
+                      const EdgeInsets.only(top: 10, bottom: 20),
                       Colors.grey.shade700,
                       const Color.fromARGB(255, 197, 197, 197)),
                   Input(
-                      true,
+                      false,
+                      controLastName,
+                      "Apellido",
+                      const EdgeInsets.all(0),
+                      const EdgeInsets.only(top: 10, bottom: 20),
+                      Colors.grey.shade700,
+                      const Color.fromARGB(255, 197, 197, 197)),
+                  Input(
+                      false,
+                      controlEmail,
+                      "Correo",
+                      const EdgeInsets.all(0),
+                      const EdgeInsets.only(top: 10, bottom: 20),
+                      Colors.grey.shade700,
+                      const Color.fromARGB(255, 197, 197, 197)),
+                  Input(
+                      false,
                       controlPassword,
                       "Contraseña",
                       const EdgeInsets.all(0),
-                      const EdgeInsets.only(bottom: 10),
+                      const EdgeInsets.only(top: 10, bottom: 20),
                       Colors.grey.shade700,
                       const Color.fromARGB(255, 197, 197, 197)),
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        '¿Olvidaste la contraseña?',
-                        style: GoogleFonts.kodchasan(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      )),
                   Padding(
                     padding: const EdgeInsets.only(top: 30, bottom: 10),
                     child: ElevatedButton(
@@ -120,33 +130,6 @@ class _LoginState extends State<Login> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        minimumSize: const Size(400, 50),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 50, bottom: 10),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          AppIcon(
-                              iconD: Icons.arrow_right_alt,
-                              iconColor: Colors.grey),
-                          Text("Continuar con Google",
-                              style: GoogleFonts.kodchasan(
-                                color: Colors.grey,
-                                fontSize: 13,
-                              ))
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            side: const BorderSide(
-                                color: Colors.grey, width: 0.5)),
                         minimumSize: const Size(400, 50),
                       ),
                     ),
