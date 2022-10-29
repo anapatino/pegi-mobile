@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/ConsultaPropuestas.dart';
-import '../widgets/ConsultaProyectos.dart';
+
+import '../../widgets/ConsultaPropuestas.dart';
+import '../../widgets/ConsultaProyectos.dart';
 
 class ConsultarDocente extends StatefulWidget {
   const ConsultarDocente({super.key});

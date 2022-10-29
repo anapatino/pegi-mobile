@@ -5,8 +5,10 @@ class ProgressAvatar extends StatefulWidget {
   final String label;
   final double percent; //
   final Color color;
+  final String texto;
   const ProgressAvatar(
       {super.key,
+      required this.texto,
       required this.label,
       required this.percent,
       required this.color});
@@ -45,19 +47,7 @@ class _ProgressAvatarState extends State<ProgressAvatar> {
                   backgroundColor: const Color.fromRGBO(65, 65, 68, 1),
                 ),
                 const SizedBox(width: 60),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Propuestas \ncalificadas',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700)),
-                    SizedBox(height: 20),
-                    Text('8/16 revisiones',
-                        style: TextStyle(color: Colors.white, fontSize: 14))
-                  ],
-                )
+                Column()
               ]))),
     );
   }

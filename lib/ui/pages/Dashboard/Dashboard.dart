@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pegi/ui/widgets/PropuestasCalificadasWidget.dart';
-import 'package:pegi/ui/widgets/ProyectosCalificadosWidget.dart';
+import 'package:pegi/ui/widgets/Estadisticas.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -60,14 +59,17 @@ class _DashboardState extends State<Dashboard> {
             ),
             SizedBox(height: 0),
             const ProgressAvatar(
-                percent: 0.5,
-                color: Color.fromRGBO(91, 59, 183, 1),
-                label: '50%'),
+              percent: 0.5,
+              color: Color.fromRGBO(91, 59, 183, 1),
+              label: '50%',
+              texto: 'Propuestas \ncalificadas \n8/16 revisiones',
+            ),
             SizedBox(height: 30),
-            const WidgetProyectos(
+            const ProgressAvatar(
                 percent: 0.3,
                 color: Color.fromRGBO(33, 150, 243, 1),
-                label: '30%'),
+                label: '30%',
+                texto: 'Proyectos \ncalificadas \n8/16 revisiones'),
           ],
         ),
       ),
