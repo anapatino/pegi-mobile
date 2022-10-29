@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../ui/pages/Dashboard/ConsultaDocente.dart';
+import '../../ui/pages/Consultar/ConsultaDocente.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
 
 class Routes extends StatelessWidget {

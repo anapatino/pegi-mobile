@@ -47,7 +47,17 @@ class _ProgressAvatarState extends State<ProgressAvatar> {
                   backgroundColor: const Color.fromRGBO(65, 65, 68, 1),
                 ),
                 const SizedBox(width: 60),
-                Column()
+                Column(
+                  children: [
+                    Text(
+                      widget.texto,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.white),
+                    )
+                  ],
+                )
               ]))),
     );
   }
