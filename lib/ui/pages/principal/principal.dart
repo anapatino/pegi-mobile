@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Principal extends StatelessWidget {
+  const Principal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
                 height: 700,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: const AssetImage('assets/images/home.png'),
+                        image: const AssetImage('assets/images/Principal.png'),
                         fit: BoxFit.cover)),
               )),
           Positioned(
@@ -73,7 +73,7 @@ class Home extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Get.offAllNamed('/login');
+                            Get.offAllNamed('/ingresar');
                           },
                           child: Text("Ingresar",
                               style: GoogleFonts.kodchasan(
@@ -90,7 +90,7 @@ class Home extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.offAllNamed('/register');
+                            Get.offAllNamed('/registrar');
                           },
                           child: Text("Registrarse",
                               style: GoogleFonts.kodchasan(

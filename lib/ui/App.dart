@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pegi/ui/pages/home/home.dart';
-import 'package:pegi/ui/pages/login/login.dart';
-import 'package:pegi/ui/pages/login/register.dart';
-import 'package:pegi/ui/theme.dart';
+import 'package:pegi/ui/pages/principal/principal.dart';
+import 'package:pegi/ui/pages/autenticacion/ingresar.dart';
+import 'package:pegi/ui/pages/autenticacion/registrar.dart';
+import 'package:pegi/ui/tema.dart';
 import 'package:get/get.dart';
 
 class App extends StatefulWidget {
@@ -25,15 +25,15 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: CustomTheme.lightTheme,
-      darkTheme: CustomTheme.darkTheme,
+      theme: Tema.temaClaro,
+      darkTheme: Tema.temaOscuro,
       themeMode: currentTheme.currentTheme,
       routes: {
-        '/home': (context) => const Home(),
-        '/login': (context) => const Login(),
-        '/register': (context) => const Register(),
+        '/principal': (context) => const Principal(),
+        '/ingresar': (context) => const Ingresar(),
+        '/registrar': (context) => const Registrar(),
       },
-      home: const Home(),
+      home: const Principal(),
     );
   }
 }

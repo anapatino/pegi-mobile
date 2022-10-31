@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Input extends StatelessWidget {
-  final TextEditingController controller;
-  final String label;
-  final bool isPassword;
-  Color? colorFill;
+  final TextEditingController controlador;
+  final String texto;
+  final bool esContrasena;
+  Color? colorF;
   EdgeInsets? margin;
   EdgeInsets? padding;
-
   Color colorText;
-  Input(this.isPassword, this.controller, this.label, this.margin, this.padding,
-      this.colorText, this.colorFill);
+
+  Input(this.esContrasena, this.controlador, this.texto, this.margin,
+      this.padding, this.colorText, this.colorF);
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +19,19 @@ class Input extends StatelessWidget {
       padding: padding,
       margin: margin,
       child: TextField(
-          obscureText: isPassword,
+          obscureText: esContrasena,
           autofocus: false,
-          controller: controller,
+          controller: controlador,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.only(left: 30),
             filled: true,
-            fillColor: colorFill,
+            fillColor: colorF,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide.none,
             ),
             focusColor: colorText,
-            labelText: label,
+            labelText: texto,
             labelStyle: TextStyle(
               color: colorText,
             ),

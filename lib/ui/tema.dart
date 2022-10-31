@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-CustomTheme currentTheme = CustomTheme();
+Tema currentTheme = Tema();
 
-class CustomTheme with ChangeNotifier {
-  static bool _isDarkTheme = true;
-  ThemeMode get currentTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
+class Tema with ChangeNotifier {
+  static bool _esDarkTema = true;
+  ThemeMode get currentTheme => _esDarkTema ? ThemeMode.dark : ThemeMode.light;
 
   void toggleTheme() {
-    _isDarkTheme = !_isDarkTheme;
+    _esDarkTema = !_esDarkTema;
     notifyListeners();
   }
 
-  static ThemeData get lightTheme {
+  static ThemeData get temaClaro {
     return ThemeData(
       primaryColor: Colors.lightBlue,
       backgroundColor: Colors.white,
@@ -25,7 +25,7 @@ class CustomTheme with ChangeNotifier {
     );
   }
 
-  static ThemeData get darkTheme {
+  static ThemeData get temaOscuro {
     return ThemeData(
       primaryColor: Color.fromARGB(51, 255, 189, 244),
       backgroundColor: Colors.black,
