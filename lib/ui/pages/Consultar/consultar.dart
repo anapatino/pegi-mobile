@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../widgets/ConsultaPropuestas.dart';
 import '../../widgets/ConsultaProyectos.dart';
 
-class ConsultarDocente extends StatefulWidget {
-  const ConsultarDocente({super.key});
+class Consultar extends StatefulWidget {
+  const Consultar({super.key});
 
   @override
-  State<ConsultarDocente> createState() => _ConsultarDocenteState();
+  State<Consultar> createState() => _ConsultarState();
 }
 
-class _ConsultarDocenteState extends State<ConsultarDocente> {
+class _ConsultarState extends State<Consultar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
