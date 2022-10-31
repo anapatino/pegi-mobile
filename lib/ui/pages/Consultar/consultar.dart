@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pegi/ui/pages/Calificar/CalificarPropuestas.dart';
+import 'package:pegi/ui/pages/Consultar/ConsultarPropuestas.dart';
 
-import '../../widgets/ConsultaPropuestas.dart';
-import '../../widgets/ConsultaProyectos.dart';
+import '../../widgets/Consulta.dart';
 
-class Consultar extends StatefulWidget {
-  const Consultar({super.key});
+class ConsultarDocente extends StatefulWidget {
+  const ConsultarDocente({super.key});
 
   @override
-  State<Consultar> createState() => _ConsultarState();
+  State<ConsultarDocente> createState() => _ConsultarDocenteState();
 }
 
-class _ConsultarState extends State<Consultar> {
+class _ConsultarDocenteState extends State<ConsultarDocente> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +40,19 @@ class _ConsultarState extends State<Consultar> {
               ),
             ),
             const SizedBox(height: 30),
-            const WidgetConsultaPropuesta(),
+            Consultar(
+                texto: 'Consultar \nPropuesta',
+                colorBoton: Color.fromRGBO(18, 180, 122, 1),
+                onPressed: () {
+                  Get.to(() => Mostrar());
+                }),
             const SizedBox(height: 30),
-            const WidgetConsultaProyectos(),
+            Consultar(
+                texto: 'Consultar \nProyecto',
+                colorBoton: Color.fromRGBO(33, 153, 245, 1),
+                onPressed: () {
+                  Get.to(() => Mostrar());
+                }),
           ],
         ),
       ),
