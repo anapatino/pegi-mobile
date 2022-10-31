@@ -19,7 +19,7 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
           children: <Widget>[
             Navbar("Docente", 'grid.png'),
-            const ProgressAvatar(
+            ProgressAvatar(
               porcentaje: 0.5,
               color: Color.fromRGBO(91, 59, 183, 1),
               label: '50%',
@@ -27,7 +27,9 @@ class _DashboardState extends State<Dashboard> {
               seguimiento: '8/16 revisiones',
             ),
             const SizedBox(height: 30),
-            const ProgressAvatar(
+            ProgressAvatar(
+              tieneFecha: true,
+              fecha: '2 abril',
               porcentaje: 0.3,
               color: Color.fromRGBO(33, 150, 243, 1),
               label: '30%',

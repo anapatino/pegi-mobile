@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'home.dart';
+import 'package:pegi/ui/pages/dashboard/dashboard.dart';
+import 'package:pegi/ui/pages/home.dart';
+import 'package:pegi/ui/pages/principal/principal.dart';
+import 'package:pegi/ui/pages/autenticacion/ingresar.dart';
+import 'package:pegi/ui/pages/autenticacion/registrar.dart';
+import 'package:pegi/ui/widgets/tema.dart';
+import 'package:get/get.dart';
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class App extends StatefulWidget {
+  const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      title: 'Pegi',
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: Tema.temaClaro,
+      darkTheme: Tema.temaOscuro,
+      themeMode: currentTheme.currentTheme,
+      routes: {
+        '/principal': (context) => const Principal(),
+        '/ingresar': (context) => const Ingresar(),
+        '/registrar': (context) => const Registrar(),
+        '/dashboard': (context) => const HomePage(),
+      },
+      home: const Principal(),
     );
   }
 }

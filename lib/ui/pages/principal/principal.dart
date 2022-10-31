@@ -18,7 +18,7 @@ class Principal extends StatelessWidget {
                 height: 700,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: const AssetImage('assets/images/Principal.png'),
+                        image: const AssetImage('assets/images/home.png'),
                         fit: BoxFit.cover)),
               )),
           Positioned(

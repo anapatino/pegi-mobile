@@ -109,7 +109,9 @@ class _IngresarState extends State<Ingresar> {
                   Padding(
                     padding: const EdgeInsets.only(top: 30, bottom: 10),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offAllNamed('/dashboard');
+                      },
                       child: Text("Ingresar",
                           style: GoogleFonts.kodchasan(
                             color: Colors.white,
@@ -131,14 +133,14 @@ class _IngresarState extends State<Ingresar> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          AppIcon(
-                              iconD: Icons.arrow_right_alt,
-                              iconColor: Colors.grey),
                           Text("Continuar con Google",
                               style: GoogleFonts.kodchasan(
                                 color: Colors.grey,
                                 fontSize: 13,
-                              ))
+                              )),
+                          AppIcon(
+                              iconD: Icons.arrow_right_alt,
+                              iconColor: Colors.grey),
                         ],
                       ),
                       style: ElevatedButton.styleFrom(

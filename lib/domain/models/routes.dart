@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pegi/ui/pages/consultar/consultar.dart';
 import 'package:pegi/ui/pages/dashboard/dashboard.dart';
+import 'package:pegi/ui/pages/principal/principal.dart';
 
 class Routes extends StatelessWidget {
   final int index;
