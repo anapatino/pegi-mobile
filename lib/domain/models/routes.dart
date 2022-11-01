@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pegi/ui/pages/Consultar/consultarDocente.dart';
+import 'package:pegi/ui/pages/consultar/consultarAdmin.dart';
+import 'package:pegi/ui/pages/consultar/consultarEvaluadores.dart';
+import 'package:pegi/ui/pages/dashboard/dashboardAdmin.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
 
 class Routes extends StatelessWidget {
@@ -9,8 +12,9 @@ class Routes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> myRoutes = [
-      const Dashboard(),
-      const ConsultarDocente(),
+      const DashboardAdmin(),
+      const ConsultarAdmin(),
+      const ConsultarEvaluador(),
     ];
     return myRoutes[index];
   }

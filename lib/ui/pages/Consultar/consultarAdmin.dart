@@ -4,14 +4,9 @@ import 'package:pegi/ui/pages/Consultar/ConsultarPropuestas.dart';
 
 import '../../widgets/Consulta.dart';
 
-class ConsultarDocente extends StatefulWidget {
-  const ConsultarDocente({super.key});
+class ConsultarAdmin extends StatelessWidget {
+  const ConsultarAdmin({super.key});
 
-  @override
-  State<ConsultarDocente> createState() => _ConsultarDocenteState();
-}
-
-class _ConsultarDocenteState extends State<ConsultarDocente> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +20,14 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
               child: Column(
                 children: [
                   Row(children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Image(
+                        image: AssetImage('assets/icons/archivo.png'),
+                        width: 30,
+                        height: 30,
+                      ),
+                    ),
                     const Spacer(),
                     IconButton(
                         onPressed: () {},
@@ -40,16 +43,16 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
             ),
             const SizedBox(height: 30),
             Consultar(
-                icon: Icons.folder,
-                texto: 'Consultar \nPropuesta',
+                icon: Icons.folder_shared_rounded,
+                texto: 'Propuesta \nEvaluadores',
                 colorBoton: Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
                   Get.to(() => Mostrar());
                 }),
             const SizedBox(height: 30),
             Consultar(
-                icon: Icons.folder,
-                texto: 'Consultar \nProyecto',
+                icon: Icons.folder_shared_rounded,
+                texto: 'Proyecto \nEvaluadores',
                 colorBoton: Color.fromRGBO(33, 153, 245, 1),
                 onPressed: () {
                   Get.to(() => Mostrar());

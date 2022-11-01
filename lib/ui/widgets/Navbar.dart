@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class Navbar extends StatelessWidget {
   final String rol;
@@ -24,12 +25,14 @@ class Navbar extends StatelessWidget {
             const Spacer(),
             IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.notifications, color: Colors.white)),
+                icon: const Icon(Icons.sunny, color: Colors.white)),
             IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.notifications, color: Colors.white)),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.offAllNamed('/principal');
+                },
                 icon: const Icon(Icons.login_outlined, color: Colors.white)),
           ]),
           const SizedBox(height: 15),

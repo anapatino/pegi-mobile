@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Consultar extends StatefulWidget {
   final String texto;
   final Color colorBoton;
   final VoidCallback onPressed;
+  final IconData icon;
 
   const Consultar({
     super.key,
+    required this.icon,
     required this.texto,
     required this.colorBoton,
     required this.onPressed,
@@ -35,12 +38,14 @@ class _ConsultarState extends State<Consultar> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.folder, size: 40, color: Colors.white),
-                        SizedBox(width: 80),
+                        Padding(
+                          padding: EdgeInsets.only(left: 8.0, right: 20),
+                          child:
+                              Icon(widget.icon, size: 40, color: Colors.white),
+                        ),
                         Text(widget.texto,
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700))
