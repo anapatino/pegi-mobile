@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ConsulatarPropuestas extends StatefulWidget {
-  const ConsulatarPropuestas({super.key});
+class Mostrar extends StatefulWidget {
+  const Mostrar({super.key});
 
   @override
-  State<ConsulatarPropuestas> createState() => _ConsulatarPropuestasState();
+  State<Mostrar> createState() => _MostrarState();
 }
 
-class _ConsulatarPropuestasState extends State<ConsulatarPropuestas> {
+class _MostrarState extends State<Mostrar> {
   @override
   Widget build(BuildContext context) {
     return Container();

@@ -25,7 +25,7 @@ class _ConsultarState extends State<Consultar> {
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: MaterialButton(
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   color: widget.colorBoton,
                   onPressed: () {
@@ -37,7 +37,7 @@ class _ConsultarState extends State<Consultar> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.folder, size: 40, color: Colors.white),
+                        const Icon(Icons.folder, size: 40, color: Colors.white),
                         SizedBox(width: 80),
                         Text(widget.texto,
                             style: TextStyle(
