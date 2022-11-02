@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MostrarTodo extends StatefulWidget {
   final String texto;
   final IconData? icon;
+  final EdgeInsets padding;
   bool fijarIcon;
   final bool? estado;
   final String? tipo;
@@ -18,7 +20,8 @@ class MostrarTodo extends StatefulWidget {
       required this.onPressed,
       required this.color,
       required this.fijarIcon,
-      this.icon});
+      this.icon,
+      required this.padding});
 
   @override
   State<MostrarTodo> createState() => _MostrarTodoState();
@@ -32,10 +35,10 @@ class _MostrarTodoState extends State<MostrarTodo> {
       child: Container(
           height: 110,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(14)),
+              borderRadius: const BorderRadius.all(Radius.circular(14)),
               color: widget.color),
           child: Padding(
-              padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 20),
+              padding: widget.padding,
               child: Row(children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -45,8 +48,8 @@ class _MostrarTodoState extends State<MostrarTodo> {
                       padding: const EdgeInsets.only(bottom: 9.0),
                       child: Text(
                         widget.texto,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                        style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w300,
                             fontSize: 17.0,
                             color: Colors.white),
                       ),
@@ -78,7 +81,7 @@ class _MostrarTodoState extends State<MostrarTodo> {
                               )),
                   ],
                 ),
-                const SizedBox(width: 110),
+                const SizedBox(width: 90),
                 Align(
                   alignment: Alignment.topCenter,
                   child: widget.fijarIcon == false

@@ -22,7 +22,8 @@ class AsignarEvaluador extends StatelessWidget {
                 tipo: 'pendiente',
                 onPressed: () {},
                 color: Colors.black,
-                fijarIcon: false),
+                fijarIcon: false,
+                padding: const EdgeInsets.only(left: 10, right: 25.0, top: 20)),
             Padding(
               padding: const EdgeInsets.only(bottom: 6),
               child: Container(
