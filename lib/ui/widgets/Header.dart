@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart';
 
 class Header extends StatelessWidget {
   IconData icon;
@@ -10,15 +9,12 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: Row(children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(icon, size: 20, color: Colors.white),
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          Row(children: [
+            IconButton(onPressed: () {}, icon: Icon(icon, color: Colors.white)),
             const Spacer(),
             IconButton(
                 onPressed: () {},
@@ -27,13 +23,16 @@ class Header extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(Icons.notifications, color: Colors.white))
           ]),
-        ),
-        Text(
-          texto,
-          style: GoogleFonts.montserrat(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.w800),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(top: 15, bottom: 30),
+            child: Text(texto,
+                style: GoogleFonts.montserrat(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600)),
+          ),
+        ],
+      ),
     );
   }
 }

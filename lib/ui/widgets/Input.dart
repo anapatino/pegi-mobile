@@ -11,7 +11,9 @@ class Input extends StatelessWidget {
   Color colorText;
 
   Input(this.esContrasena, this.controlador, this.texto, this.margin,
-      this.padding, this.colorText, this.colorF);
+      this.padding, this.colorText, this.colorF,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,8 @@ class Input extends StatelessWidget {
             ),
             focusColor: colorText,
             labelText: texto,
-            labelStyle: TextStyle(
+            labelStyle: GoogleFonts.montserrat(
+              fontSize: 16,
               color: colorText,
             ),
           )),
