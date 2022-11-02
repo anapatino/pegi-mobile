@@ -39,13 +39,16 @@ class Filter extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          height: 60,
-          width: 350,
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom:
-                  BorderSide(width: 4, color: Color.fromRGBO(30, 30, 30, 1)),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 6),
+          child: Container(
+            height: 40,
+            width: 350,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom:
+                    BorderSide(width: 4, color: Color.fromRGBO(30, 30, 30, 1)),
+              ),
             ),
           ),
         ),

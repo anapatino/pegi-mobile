@@ -9,25 +9,25 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          Row(children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(icon, color: Colors.white)),
-            const Spacer(),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.sunny, color: Colors.white)),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.notifications, color: Colors.white))
-          ]),
-          Padding(
+    return Column(
+      children: [
+        Row(children: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(icon, color: Colors.white)),
+          const Spacer(),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.sunny, color: Colors.white)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications, color: Colors.white))
+        ]),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
             padding: const EdgeInsets.only(top: 15, bottom: 30),
             child: Text(texto,
                 style: GoogleFonts.montserrat(
@@ -35,8 +35,8 @@ class Header extends StatelessWidget {
                     fontSize: 26,
                     fontWeight: FontWeight.w600)),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

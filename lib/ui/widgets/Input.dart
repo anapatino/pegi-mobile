@@ -21,6 +21,7 @@ class Input extends StatelessWidget {
       padding: padding,
       margin: margin,
       child: TextField(
+          cursorColor: Colors.black,
           obscureText: esContrasena,
           autofocus: false,
           controller: controlador,

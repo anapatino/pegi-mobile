@@ -11,11 +11,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  BottomMenu? myMenu;
+  BottomMenu? menu;
+  BottomMenu? menuEstudiante;
 
   @override
   void initState() {
-    myMenu = BottomMenu(
+    menu = BottomMenu(
       currentIndex: (i) {
         setState(() {
           index = i;
@@ -27,11 +28,30 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.monitor_weight_outlined), label: ""),
       ],
     );
+    menuEstudiante = BottomMenu(
+      currentIndex: (i) {
+        setState(() {
+          index = i;
+        });
+      },
+      items: const [
+        BottomNavigationBarItem(
+            icon: Icon(Icons.mode_edit_outline_rounded), label: ""),
+        BottomNavigationBarItem(icon: Icon(Icons.space_dashboard), label: ""),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.monitor_weight_outlined), label: ""),
+      ],
+    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(bottomNavigationBar: myMenu, body: Routes(index: index));
+    return Scaffold(
+        bottomNavigationBar: menu,
+        body: Routes(
+          index: index,
+          rutaElejida: 'admin',
+        ));
   }
 }
