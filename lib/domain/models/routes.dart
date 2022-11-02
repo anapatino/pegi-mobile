@@ -4,6 +4,7 @@ import 'package:pegi/ui/pages/consultar/consultarAdmin.dart';
 import 'package:pegi/ui/pages/dashboard/dashboardAdmin.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
 import '../../ui/pages/calificar/asignarEvaluador.dart';
+import '../../ui/pages/dashboard/dashboardEst.dart';
 
 class Routes extends StatelessWidget {
   final int index;

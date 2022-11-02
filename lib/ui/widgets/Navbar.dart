@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 class Navbar extends StatelessWidget {
   final String rol;
-  String icono;
-  Navbar(this.rol, this.icono);
+  IconData icono;
+  Navbar(this.rol, this.icono, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,7 @@ class Navbar extends StatelessWidget {
       child: Column(
         children: [
           Row(children: [
-            IconButton(
-              onPressed: () {},
-              icon: Image(
-                image: AssetImage('assets/icons/$icono'),
-                width: 30,
-                height: 30,
-              ),
-            ),
+            Icon(icono, color: Colors.white),
             const Spacer(),
             IconButton(
                 onPressed: () {},

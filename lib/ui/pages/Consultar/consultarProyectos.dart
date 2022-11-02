@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+
 import '../../widgets/Filter.dart';
 import '../../widgets/Header.dart';
 import '../Calificar/CalificarPropuestas.dart';
+import '../calificar/calificarProyectos.dart';
 
-class MostrarPropuesta extends StatefulWidget {
-  const MostrarPropuesta({super.key});
+class MostrarProyectos extends StatefulWidget {
+  const MostrarProyectos({super.key});
 
   @override
-  State<MostrarPropuesta> createState() => _MostrarPropuestaState();
+  State<MostrarProyectos> createState() => _MostrarProyectosState();
 }
 
-class _MostrarPropuestaState extends State<MostrarPropuesta> {
+class _MostrarProyectosState extends State<MostrarProyectos> {
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 children: [
                   Header(
                       icon: Icons.arrow_back_rounded,
-                      texto: 'Consultar Propuestas'),
+                      texto: 'Consultar Proyectos'),
                   Filter(controlador: controlador, texto: 'Filtrar'),
                 ],
               ),
@@ -40,14 +42,23 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 estado: true,
                 tipo: 'pendiente',
                 onPressed: () {
-                  Get.to(() => const CalificarPropuestas());
+                  Get.to(() => const CalificarProyectos());
+                }),
+            const SizedBox(height: 5),
+            MostrarTodo(
+                texto: 'Harina base de \ninsectos.',
+                colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+                estado: true,
+                tipo: 'pendiente',
+                onPressed: () {
+                  Get.to(() => const CalificarProyectos());
                 }),
             const SizedBox(height: 5),
             MostrarTodo(
                 texto: 'Harina base de \ninsectos.',
                 colorBoton: const Color.fromRGBO(26, 185, 127, 1),
                 estado: true,
-                tipo: 'calificado',
+                tipo: 'Calificada',
                 onPressed: () {
                   Get.to(() => const CalificarPropuestas());
                 }),

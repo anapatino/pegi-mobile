@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/Consultar/ConsultarPropuestas.dart';
-
+import 'package:pegi/ui/pages/Consultar/consultarPropuestas.dart';
+import 'package:pegi/ui/pages/consultar/consultarProyectos.dart';
 import '../../widgets/Consulta.dart';
 
 class ConsultarDocente extends StatefulWidget {
@@ -25,6 +25,14 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
               child: Column(
                 children: [
                   Row(children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Image(
+                        image: AssetImage('assets/icons/archivo.png'),
+                        width: 30,
+                        height: 30,
+                      ),
+                    ),
                     const Spacer(),
                     IconButton(
                         onPressed: () {},
@@ -42,17 +50,17 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
             Consultar(
                 icon: Icons.folder,
                 texto: 'Consultar \nPropuesta',
-                colorBoton: Color.fromRGBO(18, 180, 122, 1),
+                colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
-                  Get.to(() => Mostrar());
+                  Get.to(() => const MostrarPropuesta());
                 }),
             const SizedBox(height: 30),
             Consultar(
                 icon: Icons.folder,
                 texto: 'Consultar \nProyecto',
-                colorBoton: Color.fromRGBO(33, 153, 245, 1),
+                colorBoton: const Color.fromRGBO(33, 153, 245, 1),
                 onPressed: () {
-                  Get.to(() => Mostrar());
+                  Get.to(() => const MostrarProyectos());
                 }),
           ],
         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/Consultar/ConsultarPropuestas.dart';
 import 'package:pegi/ui/pages/consultar/evaluadorPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/evaluadorProyecto.dart';
 

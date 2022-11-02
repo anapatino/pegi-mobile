@@ -18,20 +18,18 @@ class _DashboardState extends State<Dashboard> {
         padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
         child: Column(
           children: <Widget>[
-            Navbar("Docente", 'grid.png'),
+            Navbar("Docente", Icons.space_dashboard),
             ProgressAvatar(
               porcentaje: 0.5,
-              color: Color.fromRGBO(91, 59, 183, 1),
+              color: const Color.fromRGBO(91, 59, 183, 1),
               label: '50%',
               texto: 'Propuestas \ncalificadas',
               seguimiento: '8/16 revisiones',
             ),
             const SizedBox(height: 30),
             ProgressAvatar(
-              tieneFecha: true,
-              fecha: '2 abril',
               porcentaje: 0.3,
-              color: Color.fromRGBO(33, 150, 243, 1),
+              color: const Color.fromRGBO(33, 150, 243, 1),
               label: '30%',
               texto: 'Proyectos \ncalificadas',
               seguimiento: '8/16 revisiones',

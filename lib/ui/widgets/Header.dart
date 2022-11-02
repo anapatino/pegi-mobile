@@ -14,7 +14,11 @@ class Header extends StatelessWidget {
       child: Column(
         children: [
           Row(children: [
-            IconButton(onPressed: () {}, icon: Icon(icon, color: Colors.white)),
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(icon, color: Colors.white)),
             const Spacer(),
             IconButton(
                 onPressed: () {},
