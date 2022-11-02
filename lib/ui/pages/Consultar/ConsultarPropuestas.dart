@@ -35,22 +35,30 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
             ),
             const SizedBox(height: 5),
             MostrarTodo(
-                texto: 'Harina base de \ninsectos.',
-                colorBoton: const Color.fromRGBO(91, 59, 183, 1),
-                estado: true,
-                tipo: 'pendiente',
-                onPressed: () {
-                  Get.to(() => const CalificarPropuestas());
-                }),
+              texto: 'Harina base de \ninsectos.',
+              colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+              estado: true,
+              tipo: 'pendiente',
+              onPressed: () {
+                Get.to(() => const CalificarPropuestas());
+              },
+              color: const Color.fromRGBO(30, 30, 30, 1),
+              fijarIcon: true,
+              icon: Icons.edit_outlined,
+            ),
             const SizedBox(height: 5),
             MostrarTodo(
-                texto: 'Harina base de \ninsectos.',
-                colorBoton: const Color.fromRGBO(26, 185, 127, 1),
-                estado: true,
-                tipo: 'calificado',
-                onPressed: () {
-                  Get.to(() => const CalificarPropuestas());
-                }),
+              texto: 'Harina base de \ninsectos.',
+              colorBoton: const Color.fromRGBO(26, 185, 127, 1),
+              estado: true,
+              tipo: 'calificado',
+              onPressed: () {
+                Get.to(() => const CalificarPropuestas());
+              },
+              color: const Color.fromRGBO(30, 30, 30, 1),
+              fijarIcon: true,
+              icon: Icons.edit_outlined,
+            ),
           ],
         ),
       ),

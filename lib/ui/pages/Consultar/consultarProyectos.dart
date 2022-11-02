@@ -37,22 +37,30 @@ class _MostrarProyectosState extends State<MostrarProyectos> {
             ),
             const SizedBox(height: 5),
             MostrarTodo(
-                texto: 'Harina base de \ninsectos.',
-                colorBoton: const Color.fromRGBO(91, 59, 183, 1),
-                estado: true,
-                tipo: 'pendiente',
-                onPressed: () {
-                  Get.to(() => const CalificarProyectos());
-                }),
+              texto: 'Harina base de \ninsectos.',
+              colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+              estado: true,
+              tipo: 'pendiente',
+              onPressed: () {
+                Get.to(() => const CalificarProyectos());
+              },
+              color: const Color.fromRGBO(30, 30, 30, 1),
+              fijarIcon: true,
+              icon: Icons.edit_outlined,
+            ),
             const SizedBox(height: 5),
             MostrarTodo(
-                texto: 'Harina base de \ninsectos.',
-                colorBoton: const Color.fromRGBO(91, 59, 183, 1),
-                estado: true,
-                tipo: 'pendiente',
-                onPressed: () {
-                  Get.to(() => const CalificarProyectos());
-                }),
+              texto: 'Harina base de \ninsectos.',
+              colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+              estado: true,
+              tipo: 'pendiente',
+              onPressed: () {
+                Get.to(() => const CalificarProyectos());
+              },
+              color: const Color.fromRGBO(30, 30, 30, 1),
+              fijarIcon: true,
+              icon: Icons.edit_outlined,
+            ),
           ],
         ),
       ),

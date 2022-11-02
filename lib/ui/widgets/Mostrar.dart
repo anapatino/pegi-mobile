@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 
 class MostrarTodo extends StatefulWidget {
   final String texto;
+  final IconData? icon;
+  bool fijarIcon;
   final bool? estado;
   final String? tipo;
   final Color colorBoton;
+  final Color color;
   final VoidCallback onPressed;
-  const MostrarTodo({
-    super.key,
-    required this.texto,
-    this.tipo,
-    this.estado = false,
-    required this.colorBoton,
-    required this.onPressed,
-  });
+  MostrarTodo(
+      {super.key,
+      required this.texto,
+      this.tipo,
+      this.estado = false,
+      required this.colorBoton,
+      required this.onPressed,
+      required this.color,
+      required this.fijarIcon,
+      this.icon});
 
   @override
   State<MostrarTodo> createState() => _MostrarTodoState();
@@ -26,9 +31,9 @@ class _MostrarTodoState extends State<MostrarTodo> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
           height: 110,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(14)),
-              color: Color.fromRGBO(30, 30, 30, 1)),
+              color: widget.color),
           child: Padding(
               padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 20),
               child: Row(children: [
@@ -76,12 +81,15 @@ class _MostrarTodoState extends State<MostrarTodo> {
                 const SizedBox(width: 110),
                 Align(
                   alignment: Alignment.topCenter,
-                  child: IconButton(
-                      onPressed: () {
-                        widget.onPressed();
-                      },
-                      icon: const Icon(Icons.edit_outlined,
-                          size: 37, color: Color.fromRGBO(91, 59, 183, 1))),
+                  child: widget.fijarIcon == false
+                      ? Container()
+                      : IconButton(
+                          onPressed: () {
+                            widget.onPressed();
+                          },
+                          icon: Icon(widget.icon,
+                              size: 37,
+                              color: const Color.fromRGBO(91, 59, 183, 1))),
                 )
               ]))),
     );
