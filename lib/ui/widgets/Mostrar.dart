@@ -72,7 +72,7 @@ class _MostrarTodoState extends State<MostrarTodo> {
                                 child: Text(
                                   widget.tipo.toString(),
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.0,
                                       color:
