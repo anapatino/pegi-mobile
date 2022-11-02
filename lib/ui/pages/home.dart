@@ -15,11 +15,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    myMenu = BottomMenu(currentIndex: (i) {
-      setState(() {
-        index = i;
-      });
-    });
+    myMenu = BottomMenu(
+      currentIndex: (i) {
+        setState(() {
+          index = i;
+        });
+      },
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.space_dashboard), label: ""),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.monitor_weight_outlined), label: ""),
+      ],
+    );
     super.initState();
   }
 

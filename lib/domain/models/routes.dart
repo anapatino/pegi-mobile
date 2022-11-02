@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pegi/ui/pages/Consultar/consultarDocente.dart';
 import 'package:pegi/ui/pages/consultar/consultarAdmin.dart';
-import 'package:pegi/ui/pages/consultar/consultarEvaluadores.dart';
 import 'package:pegi/ui/pages/dashboard/dashboardAdmin.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
+import '../../ui/pages/calificar/asignarEvaluador.dart';
 
 class Routes extends StatelessWidget {
   final int index;
@@ -12,9 +12,8 @@ class Routes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> myRoutes = [
-      const DashboardAdmin(),
-      const ConsultarAdmin(),
-      const ConsultarEvaluador(),
+      const Dashboard(),
+      const ConsultarDocente(),
     ];
     return myRoutes[index];
   }

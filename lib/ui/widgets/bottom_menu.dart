@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class BottomMenu extends StatefulWidget {
   final Function currentIndex;
-  const BottomMenu({super.key, required this.currentIndex});
+  final List<BottomNavigationBarItem> items;
+  const BottomMenu(
+      {super.key, required this.currentIndex, required this.items});
 
   @override
   State<BottomMenu> createState() => _BottomMenuState();
@@ -37,13 +39,7 @@ class _BottomMenuState extends State<BottomMenu> {
               });
             },
             type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: ""),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.edit_note_sharp), label: ""),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.monitor_weight_outlined), label: ""),
-            ],
+            items: widget.items,
           ),
         ),
       ),

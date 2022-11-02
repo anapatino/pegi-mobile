@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/pages/Consultar/ConsultarPropuestas.dart';
+import 'package:pegi/ui/pages/consultar/evaluadorPropuesta.dart';
+import 'package:pegi/ui/pages/consultar/evaluadorProyecto.dart';
 
 import '../../widgets/Consulta.dart';
 
@@ -22,7 +24,7 @@ class ConsultarAdmin extends StatelessWidget {
                   Row(children: [
                     IconButton(
                       onPressed: () {},
-                      icon: Image(
+                      icon: const Image(
                         image: AssetImage('assets/icons/archivo.png'),
                         width: 30,
                         height: 30,
@@ -45,17 +47,19 @@ class ConsultarAdmin extends StatelessWidget {
             Consultar(
                 icon: Icons.folder_shared_rounded,
                 texto: 'Propuesta \nEvaluadores',
-                colorBoton: Color.fromRGBO(18, 180, 122, 1),
+                colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
-                  Get.to(() => Mostrar());
+                  Get.to(() => const EvaluadorPropuesta());
                 }),
             const SizedBox(height: 30),
             Consultar(
                 icon: Icons.folder_shared_rounded,
                 texto: 'Proyecto \nEvaluadores',
-                colorBoton: Color.fromRGBO(33, 153, 245, 1),
+                colorBoton: const Color.fromRGBO(33, 153, 245, 1),
                 onPressed: () {
-                  Get.to(() => Mostrar());
+                  Get.to(
+                    () => const EvaluadorProyecto(),
+                  );
                 }),
           ],
         ),

@@ -43,7 +43,7 @@ class _RegistrarState extends State<Registrar> {
                       iconD: Icons.arrow_back_ios,
                       iconColor: const Color.fromARGB(255, 202, 209, 209)),
                   onPressed: () {
-                    Get.offAllNamed('/home');
+                    Get.offAllNamed('/principal');
                   },
                 )
               ],
@@ -119,7 +119,9 @@ class _RegistrarState extends State<Registrar> {
                   Padding(
                     padding: const EdgeInsets.only(top: 30, bottom: 10),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offAllNamed('/dashboard');
+                      },
                       child: Text("Ingresar",
                           style: GoogleFonts.kodchasan(
                             color: Colors.white,

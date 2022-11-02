@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';
-import 'package:pegi/ui/pages/Consultar/ConsultarPropuestas.dart';
-import '../../widgets/Consulta.dart';
-import '../../widgets/Input.dart';
 
-class ConsultarEvaluador extends StatefulWidget {
-  const ConsultarEvaluador({super.key});
+class EvaluadorPropuesta extends StatefulWidget {
+  const EvaluadorPropuesta({super.key});
 
   @override
-  State<ConsultarEvaluador> createState() => _ConsultarEvaluadorState();
+  State<EvaluadorPropuesta> createState() => _EvaluadorPropuestaState();
 }
 
-class _ConsultarEvaluadorState extends State<ConsultarEvaluador> {
+class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
