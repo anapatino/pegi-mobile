@@ -53,15 +53,6 @@ class _MostrarProyectosState extends State<MostrarProyectos> {
                 onPressed: () {
                   Get.to(() => const CalificarProyectos());
                 }),
-            const SizedBox(height: 5),
-            MostrarTodo(
-                texto: 'Harina base de \ninsectos.',
-                colorBoton: const Color.fromRGBO(26, 185, 127, 1),
-                estado: true,
-                tipo: 'Calificada',
-                onPressed: () {
-                  Get.to(() => const CalificarPropuestas());
-                }),
           ],
         ),
       ),
