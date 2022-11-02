@@ -34,8 +34,8 @@ class Principal extends StatelessWidget {
           Positioned(
               left: 0,
               right: 0,
-              top: 400,
-              height: 750,
+              top: 600,
+              height: 300,
               child: Container(
                 padding: const EdgeInsets.only(
                     left: 30, top: 30, right: 30, bottom: 10),
