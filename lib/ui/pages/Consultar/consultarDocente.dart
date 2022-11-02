@@ -20,31 +20,28 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
         padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  Row(children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Image(
-                        image: AssetImage('assets/icons/archivo.png'),
-                        width: 30,
-                        height: 30,
-                      ),
+            Column(
+              children: [
+                Row(children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Image(
+                      image: AssetImage('assets/icons/archivo.png'),
+                      width: 30,
+                      height: 30,
                     ),
-                    const Spacer(),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.sunny, color: Colors.white)),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.notifications,
-                            color: Colors.white))
-                  ]),
-                  const SizedBox(height: 15),
-                ],
-              ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.sunny, color: Colors.white)),
+                  IconButton(
+                      onPressed: () {},
+                      icon:
+                          const Icon(Icons.notifications, color: Colors.white))
+                ]),
+                const SizedBox(height: 15),
+              ],
             ),
             const SizedBox(height: 30),
             Consultar(

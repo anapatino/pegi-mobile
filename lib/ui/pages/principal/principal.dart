@@ -21,20 +21,22 @@ class Principal extends StatelessWidget {
                         image: const AssetImage('assets/images/home.png'),
                         fit: BoxFit.cover)),
               )),
-          Positioned(
-              top: 200,
-              left: 120,
-              child: Text(
-                'Pegi',
-                style: GoogleFonts.kodchasan(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.w500),
+          Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 230),
+                child: Text(
+                  'Pegi',
+                  style: GoogleFonts.kodchasan(
+                      color: Colors.white,
+                      fontSize: 50,
+                      fontWeight: FontWeight.w500),
+                ),
               )),
           Positioned(
               left: 0,
               right: 0,
-              top: 600,
+              top: 400,
               height: 300,
               child: Container(
                 padding: const EdgeInsets.only(
@@ -45,20 +47,18 @@ class Principal extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Container(
-                        child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 0, bottom: 30),
-                              child: Text(
-                                'Bienvenido',
-                                style: GoogleFonts.kodchasan(
-                                    color: Colors.black,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ))),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 0, bottom: 30),
+                          child: Text(
+                            'Bienvenido',
+                            style: GoogleFonts.kodchasan(
+                                color: Colors.black,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        )),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 40),
                       child: Text(
@@ -68,44 +68,47 @@ class Principal extends StatelessWidget {
                             fontSize: 13,
                           )),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.offAllNamed('/ingresar');
-                          },
-                          child: Text("Ingresar",
-                              style: GoogleFonts.kodchasan(
-                                color: Colors.white,
-                                fontSize: 13,
-                              )),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            minimumSize: const Size(140, 50),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.offAllNamed('/registrar');
-                          },
-                          child: Text("Registrarse",
-                              style: GoogleFonts.kodchasan(
-                                color: Colors.black,
-                                fontSize: 13,
-                              )),
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.offAllNamed('/ingresar');
+                            },
+                            child: Text("Ingresar",
+                                style: GoogleFonts.kodchasan(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                )),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.black,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  side: BorderSide(
-                                      color: Colors.black, width: 1.5)),
-                              minimumSize: const Size(140, 50)),
-                        )
-                      ],
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              minimumSize: const Size(140, 50),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.offAllNamed('/registrar');
+                            },
+                            child: Text("Registrarse",
+                                style: GoogleFonts.kodchasan(
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                )),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    side: BorderSide(
+                                        color: Colors.black, width: 1.5)),
+                                minimumSize: const Size(140, 50)),
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),

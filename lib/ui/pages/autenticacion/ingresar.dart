@@ -126,33 +126,6 @@ class _IngresarState extends State<Ingresar> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 50, bottom: 10),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text("Continuar con Google",
-                              style: GoogleFonts.kodchasan(
-                                color: Colors.grey,
-                                fontSize: 13,
-                              )),
-                          AppIcon(
-                              iconD: Icons.arrow_right_alt,
-                              iconColor: Colors.grey),
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            side: const BorderSide(
-                                color: Colors.grey, width: 0.5)),
-                        minimumSize: const Size(400, 50),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ))

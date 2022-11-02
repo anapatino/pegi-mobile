@@ -26,7 +26,7 @@ class _ConsultarState extends State<Consultar> {
       child: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: MaterialButton(
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -40,7 +40,7 @@ class _ConsultarState extends State<Consultar> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 8.0, right: 20),
+                          padding: const EdgeInsets.only(left: 8.0, right: 20),
                           child:
                               Icon(widget.icon, size: 40, color: Colors.white),
                         ),
@@ -48,7 +48,7 @@ class _ConsultarState extends State<Consultar> {
                             style: GoogleFonts.montserrat(
                                 color: Colors.white,
                                 fontSize: 20,
-                                fontWeight: FontWeight.w700))
+                                fontWeight: FontWeight.w700)),
                       ],
                     ),
                   )))

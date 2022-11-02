@@ -10,7 +10,7 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 40),
+      padding: const EdgeInsets.only(left: 10, bottom: 40),
       child: Column(
         children: [
           Row(children: [

@@ -51,6 +51,8 @@ class ProgressAvatar extends StatelessWidget {
                   ),
                 ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       texto,
@@ -93,7 +95,7 @@ class ProgressAvatar extends StatelessWidget {
                                 ),
                               )),
                   ],
-                )
+                ),
               ]))),
     );
   }
