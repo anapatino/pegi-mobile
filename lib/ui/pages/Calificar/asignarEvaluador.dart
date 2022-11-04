@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Header.dart';
+import 'package:pegi/ui/widgets/botones.dart';
 
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Mostrar.dart';
@@ -88,48 +89,7 @@ class _AsignarEvaluadorState extends State<AsignarEvaluador> {
                 hint: const Text("seleccione una opcion"),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Cancelar",
-                        style: GoogleFonts.kodchasan(
-                          color: Colors.white,
-                          fontSize: 14,
-                        )),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      minimumSize: Size(
-                          Dimensiones.width5, Dimensiones.screenHeight * 0.05),
-                    ),
-                  ),
-                  SizedBox(width: Dimensiones.screenWidth * 0.02),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Confirmar",
-                        style: GoogleFonts.kodchasan(
-                          color: Colors.white,
-                          fontSize: 14,
-                        )),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color.fromRGBO(91, 59, 183, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      minimumSize: Size(
-                          Dimensiones.width5, Dimensiones.screenHeight * 0.05),
-                    ),
-                  ),
-                ],
-              ),
-            )
+            const Botones(texto: "Confirmar")
           ],
         ),
       ),

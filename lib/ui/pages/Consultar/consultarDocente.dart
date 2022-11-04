@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/pages/Consultar/consultarPropuestas.dart';
 import 'package:pegi/ui/pages/consultar/consultarProyectos.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 import '../../widgets/Consulta.dart';
 
 class ConsultarDocente extends StatefulWidget {
@@ -17,7 +18,8 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
         child: Column(
           children: <Widget>[
             Column(
