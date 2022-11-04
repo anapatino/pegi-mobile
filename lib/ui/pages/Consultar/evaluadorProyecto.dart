@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 
+import '../../utils/Dimensiones.dart';
 import '../../widgets/Mostrar.dart';
 import '../calificar/asignarEvaluador.dart';
 
@@ -31,29 +32,31 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
                 texto: 'Harina base de \ninsectos.',
                 colorBoton: const Color.fromRGBO(91, 59, 183, 1),
                 estado: true,
-                tipo: 'pendiente',
+                tipo: 'Pendiente',
                 onPressed: () {
                   Get.to(() => const AsignarEvaluador());
                 },
                 color: const Color.fromRGBO(30, 30, 30, 1),
                 fijarIcon: true,
                 icon: Icons.person_add_alt_rounded,
-                padding:
-                    const EdgeInsets.only(left: 25.0, right: 25.0, top: 20)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensiones.screenWidth * 0.06,
+                    vertical: Dimensiones.height2)),
             const SizedBox(height: 5),
             MostrarTodo(
                 texto: 'Harina base de \ninsectos.',
                 colorBoton: const Color.fromRGBO(26, 185, 127, 1),
                 estado: true,
-                tipo: 'calificado',
+                tipo: 'Asignado',
                 onPressed: () {
                   Get.to(() => const AsignarEvaluador());
                 },
                 color: const Color.fromRGBO(30, 30, 30, 1),
                 fijarIcon: true,
-                icon: Icons.person_add_alt_rounded,
-                padding:
-                    const EdgeInsets.only(left: 25.0, right: 25.0, top: 20)),
+                icon: Icons.person_remove_alt_1_rounded,
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensiones.screenWidth * 0.06,
+                    vertical: Dimensiones.height2)),
           ],
         ),
       ),

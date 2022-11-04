@@ -5,6 +5,7 @@ class Dimensiones {
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
 
+  static double height2 = screenHeight * 0.02;
   static double height5 = screenHeight * 0.05;
   static double height10 = screenHeight * 0.1;
   static double height15 = screenHeight * 0.15;

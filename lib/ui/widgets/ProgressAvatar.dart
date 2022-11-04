@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,16 +24,18 @@ class ProgressAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      padding: EdgeInsets.symmetric(horizontal: Dimensiones.width5),
       child: Container(
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(14)),
               color: Color.fromRGBO(30, 30, 30, 1)),
           child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.symmetric(
+                  vertical: Dimensiones.screenHeight * 0.02),
               child: Row(children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 20),
+                  padding: EdgeInsets.only(
+                      left: Dimensiones.width10, right: Dimensiones.width5),
                   child: CircularPercentIndicator(
                     radius: 40.0,
                     lineWidth: 10.0,
@@ -61,20 +64,24 @@ class ProgressAvatar extends StatelessWidget {
                           fontSize: 20.0,
                           fontWeight: FontWeight.w500),
                     ),
-                    Text(
-                      seguimiento,
-                      style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: Dimensiones.screenHeight * 0.01),
+                      child: Text(
+                        seguimiento,
+                        style: GoogleFonts.montserrat(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                     Container(
                         child: tieneFecha == false
                             ? Container()
                             : Container(
-                                width: 40.0,
-                                height: 15.0,
-                                padding: EdgeInsets.only(top: 2.0),
+                                width: Dimensiones.width15,
+                                height: Dimensiones.screenHeight * 0.03,
+                                padding: const EdgeInsets.all(4.0),
                                 decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(100),

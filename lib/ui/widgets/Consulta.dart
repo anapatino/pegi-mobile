@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 
 class Consultar extends StatefulWidget {
   final String texto;
@@ -26,7 +27,7 @@ class _ConsultarState extends State<Consultar> {
       child: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: EdgeInsets.symmetric(horizontal: Dimensiones.width5),
               child: MaterialButton(
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -34,13 +35,15 @@ class _ConsultarState extends State<Consultar> {
                   onPressed: () {
                     widget.onPressed();
                   },
-                  height: 100,
+                  height: Dimensiones.height15,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(Dimensiones.screenWidth * 0.02),
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 20),
+                          padding: EdgeInsets.only(
+                              left: Dimensiones.screenWidth * 0.02,
+                              right: Dimensiones.screenWidth * 0.04),
                           child:
                               Icon(widget.icon, size: 40, color: Colors.white),
                         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/pages/consultar/evaluadorPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/evaluadorProyecto.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 
 import '../../widgets/Consulta.dart';
 
@@ -13,7 +14,8 @@ class ConsultarAdmin extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+        padding: EdgeInsets.symmetric(
+            horizontal: Dimensiones.width5, vertical: Dimensiones.height5),
         child: Column(
           children: <Widget>[
             Column(
@@ -36,10 +38,9 @@ class ConsultarAdmin extends StatelessWidget {
                       icon:
                           const Icon(Icons.notifications, color: Colors.white))
                 ]),
-                const SizedBox(height: 15),
               ],
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: Dimensiones.height5),
             Consultar(
                 icon: Icons.folder_shared_rounded,
                 texto: 'Propuesta \nEvaluadores',
@@ -47,7 +48,7 @@ class ConsultarAdmin extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => const EvaluadorPropuesta());
                 }),
-            const SizedBox(height: 30),
+            SizedBox(height: Dimensiones.height5),
             Consultar(
                 icon: Icons.folder_shared_rounded,
                 texto: 'Proyecto \nEvaluadores',

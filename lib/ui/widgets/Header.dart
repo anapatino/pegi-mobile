@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 
 class Header extends StatelessWidget {
   IconData icon;
@@ -28,7 +29,7 @@ class Header extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: const EdgeInsets.only(top: 15, bottom: 30),
+            padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
             child: Text(texto,
                 style: GoogleFonts.montserrat(
                     color: Colors.white,

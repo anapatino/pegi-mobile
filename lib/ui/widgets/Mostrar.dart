@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 
 class MostrarTodo extends StatefulWidget {
   final String texto;
@@ -31,9 +32,9 @@ class _MostrarTodoState extends State<MostrarTodo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
       child: Container(
-          height: 110,
+          height: Dimensiones.screenHeight * 0.16,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(14)),
               color: widget.color),
@@ -45,7 +46,8 @@ class _MostrarTodoState extends State<MostrarTodo> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 9.0),
+                      padding: EdgeInsets.only(
+                          bottom: Dimensiones.screenHeight * 0.015),
                       child: Text(
                         widget.texto,
                         style: GoogleFonts.montserrat(
@@ -58,8 +60,8 @@ class _MostrarTodoState extends State<MostrarTodo> {
                         child: widget.estado == false
                             ? Container()
                             : Container(
-                                width: 85.0,
-                                height: 20.0,
+                                width: Dimensiones.screenWidth * 0.25,
+                                height: Dimensiones.screenHeight * 0.03,
                                 padding: const EdgeInsets.only(top: 2.0),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.only(
@@ -81,7 +83,7 @@ class _MostrarTodoState extends State<MostrarTodo> {
                               )),
                   ],
                 ),
-                const SizedBox(width: 90),
+                SizedBox(width: Dimensiones.screenWidth * 0.26),
                 Align(
                   alignment: Alignment.topCenter,
                   child: widget.fijarIcon == false
