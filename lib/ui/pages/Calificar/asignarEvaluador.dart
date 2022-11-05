@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Header.dart';
-import 'package:pegi/ui/widgets/botones.dart';
+import 'package:pegi/ui/widgets/Button.dart';
 
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Mostrar.dart';
@@ -89,7 +89,27 @@ class _AsignarEvaluadorState extends State<AsignarEvaluador> {
                 hint: const Text("seleccione una opcion"),
               ),
             ),
-            const Botones(texto: "Confirmar")
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Button(
+                      texto: "Cancelar",
+                      color: Colors.black,
+                      colorTexto: Colors.white,
+                      onPressed: () {},
+                    ),
+                    SizedBox(width: Dimensiones.screenWidth * 0.02),
+                    Button(
+                      texto: "Confirmar",
+                      color: const Color.fromRGBO(91, 59, 183, 1),
+                      colorTexto: Colors.white,
+                      onPressed: () {},
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
