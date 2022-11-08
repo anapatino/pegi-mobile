@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/calificar/CalificarTodo.dart';
+import 'package:pegi/ui/pages/consultar/estudiante/mostrarPropuesta.dart';
+import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
+import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
@@ -49,31 +51,22 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                   ),
                 ),
                 const SizedBox(height: 5),
-                MostrarTodo(
+                Mostrar(
                     texto: 'Harina base de \ninsectos.',
-                    colorBoton: const Color.fromRGBO(91, 59, 183, 1),
-                    estado: true,
                     tipo: 'pendiente',
+                    colorTipo: const Color.fromRGBO(91, 59, 183, 1),
+                    colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                     onPressed: () {
-                      /*Get.to(() => const CalificarT());*/
-                    },
-                    color: const Color.fromRGBO(30, 30, 30, 1),
-                    fijarIcon: false,
-                    padding: const EdgeInsets.only(
-                        left: 25.0, right: 25.0, top: 20)),
-                MostrarTodo(
-                  texto: 'Harina base de \ninsectos.',
-                  colorBoton: const Color.fromRGBO(26, 185, 127, 1),
-                  estado: true,
-                  tipo: 'calificado',
-                  onPressed: () {
-                    /*Get.to(() => const CalificarT());*/
-                  },
-                  color: const Color.fromRGBO(30, 30, 30, 1),
-                  fijarIcon: false,
-                  padding:
-                      const EdgeInsets.only(left: 25.0, right: 25.0, top: 20),
-                ),
+                      Get.to(() => const MostrarPropuesta());
+                    }),
+                Mostrar(
+                    texto: 'Harina base de \ninsectos.',
+                    tipo: 'calificado',
+                    colorTipo: const Color.fromRGBO(26, 185, 127, 1),
+                    colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                    onPressed: () {
+                      Get.to(() => const MostrarPropuesta());
+                    }),
               ],
             ),
           ),

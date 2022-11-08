@@ -60,3 +60,72 @@ class _ConsultarState extends State<Consultar> {
     );
   }
 }
+
+class Mostrar extends StatelessWidget {
+  final String texto;
+  final String tipo;
+  final Color colorTipo;
+  final Color colorBoton;
+  final VoidCallback onPressed;
+
+  const Mostrar(
+      {required this.texto,
+      required this.tipo,
+      required this.colorTipo,
+      required this.colorBoton,
+      required this.onPressed,
+      super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: Dimensiones.width5, vertical: Dimensiones.height2),
+        child: MaterialButton(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            color: colorBoton,
+            onPressed: () {
+              onPressed();
+            },
+            height: Dimensiones.height15,
+            minWidth: Dimensiones.screenWidth * 0.90,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensiones.screenWidth * 0.1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    texto,
+                    style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 17.0,
+                        color: Colors.white),
+                  ),
+                  Container(
+                    width: Dimensiones.screenWidth * 0.25,
+                    height: Dimensiones.screenHeight * 0.03,
+                    padding: const EdgeInsets.only(top: 2.0),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(80),
+                          bottomRight: Radius.circular(80),
+                          topLeft: Radius.circular(80),
+                          topRight: Radius.circular(80)),
+                      color: colorTipo,
+                    ),
+                    child: Text(
+                      tipo.toString(),
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.0,
+                          color: const Color.fromARGB(255, 221, 221, 221)),
+                    ),
+                  ),
+                ],
+              ),
+            )));
+  }
+}

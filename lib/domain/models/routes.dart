@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pegi/ui/pages/consultar/admi/consultarAdmin.dart';
 import 'package:pegi/ui/pages/consultar/consultarDocente.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarEstudiante.dart';
-import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/pages/dashboard/dashboardAdmin.dart';
-import 'package:pegi/ui/pages/registrar/registrarProyecto.dart';
+import 'package:pegi/ui/pages/registrar/registrar.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
 import '../../ui/pages/dashboard/dashboardEst.dart';
 
@@ -25,7 +24,7 @@ class Routes extends StatelessWidget {
       const ConsultarAdmin(),
     ];
     List<Widget> myRoutesEstudiante = [
-      const RegistrarProyecto(),
+      const Registrar(),
       const DashboardEstudiante(),
       const ConsultarEstudiante(),
     ];
