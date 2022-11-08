@@ -18,76 +18,23 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.03),
+      padding: EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.04),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              Text(
-                DateFormat.d('en_US').format(yesterday).toString(),
-                style: GoogleFonts.montserrat(
-                    color: const Color.fromRGBO(65, 65, 65, 1),
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: Dimensiones.screenHeight * 0.01),
-              Text(DateFormat.E('en_US').format(yesterday).toString(),
-                  style: GoogleFonts.montserrat(
-                      color: const Color.fromRGBO(65, 65, 65, 1),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300)),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                DateFormat.yMMM('en_US').format(today).toString(),
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: Dimensiones.screenHeight * 0.00012),
-              Text(
-                DateFormat.d('en_US').format(today).toString(),
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 42,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: Dimensiones.screenHeight * 0.01),
-              Text(DateFormat.E('en_US').format(today).toString(),
-                  style: GoogleFonts.montserrat(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300)),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                DateFormat.d('en_US').format(tomorrow).toString(),
-                style: GoogleFonts.montserrat(
-                    color: const Color.fromRGBO(65, 65, 65, 1),
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: Dimensiones.screenHeight * 0.01),
-              Text(DateFormat.E('en_US').format(tomorrow).toString(),
-                  style: GoogleFonts.montserrat(
-                      color: const Color.fromRGBO(65, 65, 65, 1),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300)),
-            ],
-          ),
+          _date(
+              false, yesterday, const Color.fromRGBO(65, 65, 65, 1), 0, 30, 16),
+          _date(true, today, Colors.white, 15, 42, 20),
+          _date(
+              false, tomorrow, const Color.fromRGBO(65, 65, 65, 1), 0, 30, 16),
         ],
       ),
     );
   }
 }
 
-Widget _date(bool isDate, DateTime day) {
+Widget _date(bool isDate, DateTime day, Color color, double sizeDate,
+    double sizeDay, double sizeWeek) {
   return Column(
     children: [
       isDate == false
@@ -98,20 +45,20 @@ Widget _date(bool isDate, DateTime day) {
               child: Text(
                 DateFormat.yMMM('en_US').format(day).toString(),
                 style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 15,
+                    color: color,
+                    fontSize: sizeDate,
                     fontWeight: FontWeight.w600),
               ),
             ),
       Text(
         DateFormat.d('en_US').format(day).toString(),
         style: GoogleFonts.montserrat(
-            color: Colors.white, fontSize: 42, fontWeight: FontWeight.w600),
+            color: color, fontSize: sizeDay, fontWeight: FontWeight.w600),
       ),
-      SizedBox(height: Dimensiones.screenHeight * 0.01),
+      SizedBox(height: Dimensiones.screenHeight * 0.001),
       Text(DateFormat.E('en_US').format(day).toString(),
           style: GoogleFonts.montserrat(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w300)),
+              color: color, fontSize: sizeWeek, fontWeight: FontWeight.w300)),
     ],
   );
 }

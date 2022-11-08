@@ -22,7 +22,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
         child: Column(
           children: <Widget>[
             Navbar("Administrador", Icons.space_dashboard),
-            Calendar(),
+            const Calendar(),
             ProgressAvatar(
               porcentaje: 0.5,
               color: const Color.fromRGBO(91, 59, 183, 1),
