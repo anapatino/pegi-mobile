@@ -3,6 +3,8 @@ import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Navbar.dart';
 import 'package:pegi/ui/widgets/ProgressAvatar.dart';
 
+import '../../widgets/Calendar.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -21,6 +23,7 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
           children: <Widget>[
             Navbar("Docente", Icons.space_dashboard),
+            const Calendar(),
             ProgressAvatar(
               porcentaje: 0.5,
               color: const Color.fromRGBO(91, 59, 183, 1),
