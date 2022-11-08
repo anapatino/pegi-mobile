@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/ui/pages/calificar/asignarEvaluador.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';
+import 'package:pegi/ui/widgets/Mostrar.dart';
 
-import '../../utils/Dimensiones.dart';
-import '../../widgets/Mostrar.dart';
-import '../calificar/asignarEvaluador.dart';
-
-class EvaluadorProyecto extends StatefulWidget {
-  const EvaluadorProyecto({super.key});
+class EvaluadorPropuesta extends StatefulWidget {
+  const EvaluadorPropuesta({super.key});
 
   @override
-  State<EvaluadorProyecto> createState() => _EvaluadorProyectoState();
+  State<EvaluadorPropuesta> createState() => _EvaluadorPropuestaState();
 }
 
-class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
+class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: Padding(
-          padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+      backgroundColor: Colors.black,
+      body: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Header(
                     icon: Icons.arrow_back_rounded,
-                    texto: 'Evaluadores Proyecto'),
+                    texto: 'Evaluadores Propuesta'),
                 Filter(controlador: controlador, texto: 'Filtrar'),
                 const SizedBox(height: 5),
                 MostrarTodo(
@@ -61,7 +61,7 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
                         vertical: Dimensiones.height2)),
               ],
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

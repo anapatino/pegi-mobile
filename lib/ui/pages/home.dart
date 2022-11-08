@@ -48,10 +48,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: menu,
+        bottomNavigationBar: menuEstudiante,
         body: Routes(
           index: index,
-          rutaElejida: 'admin',
+          rutaElejida: 'estudiante',
         ));
   }
 }

@@ -29,7 +29,9 @@ class Header extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
+            padding: EdgeInsets.symmetric(
+                vertical: Dimensiones.height2,
+                horizontal: Dimensiones.screenWidth * 0.04),
             child: Text(texto,
                 style: GoogleFonts.montserrat(
                     color: Colors.white,

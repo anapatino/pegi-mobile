@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/consultar/evaluadorPropuesta.dart';
-import 'package:pegi/ui/pages/consultar/evaluadorProyecto.dart';
-import 'package:pegi/ui/utils/Dimensiones.dart';
+import 'package:pegi/ui/pages/consultar/estudiante/consultarPropuesta.dart';
+import 'package:pegi/ui/pages/consultar/estudiante/consultarProyecto.dart';
+import '../../../utils/Dimensiones.dart';
+import '../../../widgets/Consulta.dart';
 
-import '../../widgets/Consulta.dart';
+class ConsultarEstudiante extends StatefulWidget {
+  const ConsultarEstudiante({super.key});
 
-class ConsultarAdmin extends StatelessWidget {
-  const ConsultarAdmin({super.key});
+  @override
+  State<ConsultarEstudiante> createState() => _ConsultarEstudianteState();
+}
 
+class _ConsultarEstudianteState extends State<ConsultarEstudiante> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: Dimensiones.width5, vertical: Dimensiones.height5),
+            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
         child: Column(
           children: <Widget>[
             Column(
@@ -38,25 +42,24 @@ class ConsultarAdmin extends StatelessWidget {
                       icon:
                           const Icon(Icons.notifications, color: Colors.white))
                 ]),
+                const SizedBox(height: 15),
               ],
             ),
-            SizedBox(height: Dimensiones.height5),
+            const SizedBox(height: 30),
             Consultar(
-                icon: Icons.folder_shared_rounded,
-                texto: 'Propuesta \nEvaluadores',
+                icon: Icons.folder,
+                texto: 'Consultar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
-                  Get.to(() => const EvaluadorPropuesta());
+                  /*Get.to(() => const ConsultarPropuestas());*/
                 }),
-            SizedBox(height: Dimensiones.height5),
+            const SizedBox(height: 30),
             Consultar(
-                icon: Icons.folder_shared_rounded,
-                texto: 'Proyecto \nEvaluadores',
+                icon: Icons.folder,
+                texto: 'Consultar \nProyecto',
                 colorBoton: const Color.fromRGBO(33, 153, 245, 1),
                 onPressed: () {
-                  Get.to(
-                    () => const EvaluadorProyecto(),
-                  );
+                  Get.to(() => const ConsultarProyecto());
                 }),
           ],
         ),
