@@ -88,43 +88,49 @@ class Mostrar extends StatelessWidget {
             onPressed: () {
               onPressed();
             },
-            height: Dimensiones.height15,
+            height: Dimensiones.screenHeight * 0.17,
             minWidth: Dimensiones.screenWidth * 0.90,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimensiones.screenWidth * 0.1),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    texto,
-                    style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 17.0,
-                        color: Colors.white),
-                  ),
-                  Container(
-                    width: Dimensiones.screenWidth * 0.25,
-                    height: Dimensiones.screenHeight * 0.03,
-                    padding: const EdgeInsets.only(top: 2.0),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(80),
-                          bottomRight: Radius.circular(80),
-                          topLeft: Radius.circular(80),
-                          topRight: Radius.circular(80)),
-                      color: colorTipo,
-                    ),
-                    child: Text(
-                      tipo.toString(),
-                      textAlign: TextAlign.center,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensiones.screenWidth * 0.05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      texto,
                       style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.0,
-                          color: const Color.fromARGB(255, 221, 221, 221)),
+                          fontWeight: FontWeight.w300,
+                          fontSize: 17.0,
+                          color: Colors.white),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: Dimensiones.screenHeight * 0.015,
+                    ),
+                    Container(
+                      width: Dimensiones.screenWidth * 0.25,
+                      height: Dimensiones.screenHeight * 0.03,
+                      padding: const EdgeInsets.only(top: 2.0),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(80),
+                            bottomRight: Radius.circular(80),
+                            topLeft: Radius.circular(80),
+                            topRight: Radius.circular(80)),
+                        color: colorTipo,
+                      ),
+                      child: Text(
+                        tipo.toString(),
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13.0,
+                            color: const Color.fromARGB(255, 221, 221, 221)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )));
   }
