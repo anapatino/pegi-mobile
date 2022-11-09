@@ -16,6 +16,7 @@ class _BottomMenuState extends State<BottomMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.02),
       height: Dimensiones.screenHeight * 0.087,
       decoration: const BoxDecoration(color: Colors.black),
       child: Padding(
