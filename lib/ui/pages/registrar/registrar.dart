@@ -6,6 +6,8 @@ import 'package:pegi/ui/pages/registrar/registrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 
+import 'registrarPropuesta.dart';
+
 class Registrar extends StatefulWidget {
   const Registrar({super.key});
 
@@ -48,7 +50,7 @@ class _RegistrarState extends State<Registrar> {
                 texto: 'Registrar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
-                  /* Get.to(() => const ());*/
+                  Get.to(() => const RegistrarPropuesta());
                 }),
             const SizedBox(height: 30),
             Consultar(
