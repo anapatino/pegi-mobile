@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarProyecto.dart';
+import 'package:pegi/ui/pages/registrar/registrarPropuesta.dart';
 import 'package:pegi/ui/pages/registrar/registrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
@@ -48,7 +49,7 @@ class _RegistrarState extends State<Registrar> {
                 texto: 'Registrar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
-                  /* Get.to(() => const ());*/
+                  Get.to(() => const RegistrarPropuesta());
                 }),
             const SizedBox(height: 30),
             Consultar(

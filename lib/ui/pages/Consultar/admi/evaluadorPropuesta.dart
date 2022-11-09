@@ -21,7 +21,8 @@ class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
       backgroundColor: Colors.black,
       body: Padding(
           padding: EdgeInsets.symmetric(
-              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
+              vertical: Dimensiones.height5,
+              horizontal: Dimensiones.screenWidth * 0.02),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[

@@ -43,7 +43,7 @@ class Filter extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: Dimensiones.height2),
+            padding: EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.02),
             child: Container(
               height: Dimensiones.height5,
               width: Dimensiones.width90,

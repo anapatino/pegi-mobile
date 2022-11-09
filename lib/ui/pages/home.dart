@@ -3,7 +3,8 @@ import '../../domain/models/routes.dart';
 import '../widgets/bottom_menu.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  var rol;
+  HomePage({required this.rol, super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
         });
       },
       items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.space_dashboard), label: ""),
         BottomNavigationBarItem(
             icon: Icon(Icons.mode_edit_outline_rounded), label: ""),
-        BottomNavigationBarItem(icon: Icon(Icons.space_dashboard), label: ""),
         BottomNavigationBarItem(
             icon: Icon(Icons.monitor_weight_outlined), label: ""),
       ],
@@ -48,10 +49,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: menuEstudiante,
+        bottomNavigationBar: widget.rol == "estudiante" ? menuEstudiante : menu,
         body: Routes(
           index: index,
-          rutaElejida: 'estudiante',
+          rutaElejida: widget.rol,
         ));
   }
 }

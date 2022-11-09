@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/calificar/CalificarTodo.dart';
+import 'package:pegi/ui/pages/calificar/calificarPropuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 import '../../widgets/Filter.dart';
@@ -20,29 +20,26 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-          padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      Header(
-                          icon: Icons.arrow_back_rounded,
-                          texto: 'Consultar Propuestas'),
-                      Filter(controlador: controlador, texto: 'Filtrar'),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    Header(
+                        icon: Icons.arrow_back_rounded,
+                        texto: 'Consultar Propuestas'),
+                    Filter(controlador: controlador, texto: 'Filtrar'),
+                  ],
                 ),
-                const SizedBox(height: 5),
                 MostrarTodo(
                     texto: 'Harina base de \ninsectos.',
                     colorBoton: const Color.fromRGBO(91, 59, 183, 1),
                     estado: true,
                     tipo: 'pendiente',
                     onPressed: () {
-                      Get.to(() => const CalificarT());
+                      Get.to(() => const CalificarPropuesta());
                     },
                     color: const Color.fromRGBO(30, 30, 30, 1),
                     fijarIcon: true,
@@ -55,7 +52,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   estado: true,
                   tipo: 'calificado',
                   onPressed: () {
-                    Get.to(() => const CalificarT());
+                    Get.to(() => const CalificarPropuesta());
                   },
                   color: const Color.fromRGBO(30, 30, 30, 1),
                   fijarIcon: true,

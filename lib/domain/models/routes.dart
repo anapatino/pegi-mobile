@@ -34,7 +34,7 @@ class Routes extends StatelessWidget {
       if (rutaElejida == 'docente') {
         return myRoutesDocente[index];
       } else {
-        if (rutaElejida == 'admin') {
+        if (rutaElejida == 'admi') {
           return myRoutesAdmin[index];
         }
       }

@@ -20,7 +20,9 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-          padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.height5,
+              horizontal: Dimensiones.screenWidth * 0.02),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[

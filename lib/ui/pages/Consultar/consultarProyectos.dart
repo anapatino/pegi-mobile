@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/calificar/calificarTodo.dart';
+import 'package:pegi/ui/pages/calificar/calificarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 import '../../widgets/Filter.dart';
@@ -25,25 +25,21 @@ class _MostrarProyectosState extends State<MostrarProyectos> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      Header(
-                          icon: Icons.arrow_back_rounded,
-                          texto: 'Consultar Proyectos'),
-                      Filter(controlador: controlador, texto: 'Filtrar'),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    Header(
+                        icon: Icons.arrow_back_rounded,
+                        texto: 'Consultar Proyectos'),
+                    Filter(controlador: controlador, texto: 'Filtrar'),
+                  ],
                 ),
-                SizedBox(height: Dimensiones.height5),
                 MostrarTodo(
                     texto: 'Harina base de \ninsectos.',
                     colorBoton: const Color.fromRGBO(91, 59, 183, 1),
                     estado: true,
                     tipo: 'pendiente',
                     onPressed: () {
-                      Get.to(() => const CalificarT());
+                      Get.to(() => const CalificarProyecto());
                     },
                     color: const Color.fromRGBO(30, 30, 30, 1),
                     fijarIcon: true,
@@ -56,7 +52,7 @@ class _MostrarProyectosState extends State<MostrarProyectos> {
                     estado: true,
                     tipo: 'pendiente',
                     onPressed: () {
-                      Get.to(() => const CalificarT());
+                      Get.to(() => const CalificarProyecto());
                     },
                     color: const Color.fromRGBO(30, 30, 30, 1),
                     fijarIcon: true,

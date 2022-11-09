@@ -6,14 +6,14 @@ import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
-class CalificarT extends StatefulWidget {
-  const CalificarT({super.key});
+class CalificarPropuesta extends StatefulWidget {
+  const CalificarPropuesta({super.key});
 
   @override
-  State<CalificarT> createState() => _CalificarTState();
+  State<CalificarPropuesta> createState() => _CalificarPropuestaState();
 }
 
-class _CalificarTState extends State<CalificarT> {
+class _CalificarPropuestaState extends State<CalificarPropuesta> {
   TextEditingController controlCalificacion = TextEditingController();
   TextEditingController controlRetroalimentacion = TextEditingController();
   @override
@@ -29,7 +29,7 @@ class _CalificarTState extends State<CalificarT> {
               children: <Widget>[
                 Header(
                     icon: Icons.arrow_back_rounded,
-                    texto: 'Calificar Proyectos'),
+                    texto: 'Calificar Propuesta'),
                 MostrarTodo(
                     texto: 'Harina base de \ninsectos.',
                     colorBoton: const Color.fromRGBO(91, 59, 183, 1),
