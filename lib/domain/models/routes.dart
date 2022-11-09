@@ -24,8 +24,8 @@ class Routes extends StatelessWidget {
       const ConsultarAdmin(),
     ];
     List<Widget> myRoutesEstudiante = [
-      const Registrar(),
       const DashboardEstudiante(),
+      const Registrar(),
       const ConsultarEstudiante(),
     ];
     if (rutaElejida == 'estudiante') {
