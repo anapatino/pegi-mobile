@@ -39,6 +39,15 @@ dependencies:
   percent_indicator: ^4.2.2
   google_fonts: ^3.0.1
   intl: ^0.17.0
+  http:
+  firebase_core: 2.0.0
+  firebase_auth: 4.0.1
+  cloud_firestore:
+  firebase_storage:
+  image_picker:
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
