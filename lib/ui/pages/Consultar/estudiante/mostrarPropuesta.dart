@@ -67,9 +67,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
   Widget build(BuildContext context) {
     List<Step> stepList() => [
           Step(
-              state: _activeCurrentStep <= 0
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 0,
               title: const Text(''),
               content: Column(
@@ -232,9 +230,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 ],
               )),
           Step(
-              state: _activeCurrentStep <= 1
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 1,
               title: const Text(''),
               content: Column(
@@ -303,9 +299,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                         )),
                   ])),
           Step(
-              state: _activeCurrentStep <= 2
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 2,
               title: const Text(''),
               content: Column(
@@ -356,9 +350,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                         )),
                   ])),
           Step(
-              state: _activeCurrentStep <= 3
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 3,
               title: const Text(''),
               content: Column(
@@ -409,7 +401,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                         )),
                   ])),
           Step(
-              state: StepState.editing,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 4,
               title: const Text(''),
               content: Column(
