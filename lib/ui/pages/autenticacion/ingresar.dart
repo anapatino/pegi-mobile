@@ -99,7 +99,7 @@ class _IngresarState extends State<Ingresar> {
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: FlatButton(
+                    child: TextButton(
                         child: Text(
                           '¿No tiene una cuenta?',
                           style: GoogleFonts.kodchasan(
