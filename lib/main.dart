@@ -8,15 +8,17 @@ import 'package:pegi/ui/pages/App.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyAU4hPmspfzaZ9-7hOeIJSM_1FN3WzFlQE",
-          authDomain: "pegi-7ed4c.firebaseapp.com",
-          projectId: "pegi-7ed4c",
-          storageBucket: "pegi-7ed4c.appspot.com",
-          messagingSenderId: "743468186486",
-          appId: "1:743468186486:web:5e1c06d140dbf67d139857",
-          measurementId: "G-GRQEHTYESB"));
+  GetPlatform.isWeb
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: "AIzaSyAU4hPmspfzaZ9-7hOeIJSM_1FN3WzFlQE",
+              authDomain: "pegi-7ed4c.firebaseapp.com",
+              projectId: "pegi-7ed4c",
+              storageBucket: "pegi-7ed4c.appspot.com",
+              messagingSenderId: "743468186486",
+              appId: "1:743468186486:web:5e1c06d140dbf67d139857",
+              measurementId: "G-GRQEHTYESB"))
+      : await Firebase.initializeApp();
   Get.put(ControlUsuario());
 
   runApp(const App());
