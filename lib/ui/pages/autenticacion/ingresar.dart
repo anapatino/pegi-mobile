@@ -118,7 +118,7 @@ class _IngresarState extends State<Ingresar> {
                     child: ElevatedButton(
                       onPressed: () {
                         controlu
-                            .iniciarSesion(
+                            .enviarDatos(
                                 controlUsuario.text, controlContrasena.text)
                             .then((value) {
                           if (controlu.emailf != 'Sin Registro') {

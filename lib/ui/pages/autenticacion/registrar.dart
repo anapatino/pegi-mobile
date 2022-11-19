@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Icons.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
+import '../../../domain/Controllers/controladorUsuario.dart';
 import '../../utils/Dimensiones.dart';
 
 class Registrar extends StatefulWidget {
@@ -18,6 +19,8 @@ class _RegistrarState extends State<Registrar> {
   TextEditingController controlApellido = TextEditingController();
   TextEditingController controlCorreo = TextEditingController();
   TextEditingController controlContrasena = TextEditingController();
+  ControlUsuario controlu = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +125,36 @@ class _RegistrarState extends State<Registrar> {
                         EdgeInsets.symmetric(vertical: Dimensiones.height5),
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.offAllNamed('/dashboard');
+                        controlu.RegistrarDatos(
+                                controlCorreo.text, controlContrasena.text)
+                            .then((value) {
+                          if (controlu.emailf != 'Sin Registro') {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: 'Validacion de Usuarios',
+                              message: 'Datos registrados Correctamente',
+                              icon: Icon(Icons.gpp_good_outlined),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: Colors.greenAccent,
+                            ));
+                            Get.offAllNamed("/ingresar");
+                          } else {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: 'Validacion de Usuarios',
+                              message: 'Datos Invalidos',
+                              icon: Icon(Icons.warning),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: Colors.red,
+                            ));
+                          }
+                        }).catchError((e) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: 'Validacion de Usuarios',
+                            message: 'Datos Invalidos',
+                            icon: Icon(Icons.warning),
+                            duration: Duration(seconds: 5),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
                       },
                       child: Text("Registrar",
                           style: GoogleFonts.kodchasan(

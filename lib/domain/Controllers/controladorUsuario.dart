@@ -4,29 +4,24 @@ import 'package:get/get.dart';
 import '../models/usuario.dart';
 
 class ControlUsuario extends GetxController {
-  final FirebaseAuth authf = FirebaseAuth.instance;
-  final Rx<dynamic> _uid = "".obs;
   final Rx<dynamic> _usuarior = "Sin Registro".obs;
-  final Rx<dynamic> _mensajes = "".obs;
+  static final Rx<dynamic> _uid = "".obs;
+  static final Rx<dynamic> _mensajes = "".obs;
 
   String get emailf => _usuarior.value;
   String get uid => _uid.value;
 
-  Future<void> iniciarSesion(final String user, final String contrasena) async {
-    try {
-      UserCredential usuario = await authf.signInWithEmailAndPassword(
-          email: user, password: contrasena);
+  Future<void> enviarDatos(String user, String contrasena) async {
+    UserCredential usuario =
+        await PeticionesUsuario.iniciarSesion(user, contrasena);
+    _uid.value = usuario.user!.uid;
+    _usuarior.value = usuario.user!.email;
+  }
 
-      _uid.value = usuario.user!.uid;
-      _usuarior.value = usuario.user!.email;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        return Future.error('Usuario no Existe');
-      } else if (e.code == 'wrong-password') {
-        return Future.error('Contraseña Incorrecta');
-      }
-    }
-    // return await FirebaseAuth.instance
-    //     .signInWithEmailAndPassword(email: user, password: contrasena);
+  Future<void> RegistrarDatos(String user, String contrasena) async {
+    UserCredential usuario =
+        await PeticionesUsuario.registrar(user, contrasena);
+    _uid.value = usuario.user!.uid;
+    _usuarior.value = usuario.user!.email;
   }
 }
