@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/Controllers/controladorUsuario.dart';
 import 'package:pegi/domain/models/usuario.dart';
 import 'package:pegi/ui/pages/home.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
@@ -17,6 +18,8 @@ class Ingresar extends StatefulWidget {
 class _IngresarState extends State<Ingresar> {
   TextEditingController controlUsuario = TextEditingController();
   TextEditingController controlContrasena = TextEditingController();
+  ControlUsuario controlu = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,8 +117,30 @@ class _IngresarState extends State<Ingresar> {
                         EdgeInsets.symmetric(vertical: Dimensiones.height5),
                     child: ElevatedButton(
                       onPressed: () {
-                        ValidarUsuario(
-                            context, controlUsuario, controlContrasena);
+                        controlu
+                            .iniciarSesion(
+                                controlUsuario.text, controlContrasena.text)
+                            .then((value) {
+                          if (controlu.emailf != 'Sin Registro') {
+                            Get.offAll(HomePage(rol: "estudiante"));
+                          } else {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: 'Validacion de Usuarios',
+                              message: 'Datos Invalidos',
+                              icon: Icon(Icons.warning),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: Colors.red,
+                            ));
+                          }
+                        }).catchError((e) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: 'Validacion de Usuarios',
+                            message: 'Datos Invalidos',
+                            icon: Icon(Icons.warning),
+                            duration: Duration(seconds: 5),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
                       },
                       child: Text("Ingresar",
                           style: GoogleFonts.kodchasan(

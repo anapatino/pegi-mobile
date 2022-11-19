@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "13367697059",
-    "project_id": "pegi-mobile",
-    "storage_bucket": "pegi-mobile.appspot.com"
+    "project_number": "743468186486",
+    "project_id": "pegi-7ed4c",
+    "storage_bucket": "pegi-7ed4c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:13367697059:android:64e0ecbf1f2c8256ed2916",
+        "mobilesdk_app_id": "1:743468186486:android:46916efcdf5fc544139857",
         "android_client_info": {
           "package_name": "com.example.pegi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "13367697059-0c063eqs7fifoc0m234vjmkd48k8gron.apps.googleusercontent.com",
+          "client_id": "743468186486-i8s4603g8hp0tuaus93qskl0dk38dd7m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBmC7w1hwhzCKauwJNigS1juElNDczwGLU"
+          "current_key": "AIzaSyDSjV6jL8qpySjpOgE2DI9jBPGgwK5Ttpo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "13367697059-0c063eqs7fifoc0m234vjmkd48k8gron.apps.googleusercontent.com",
+              "client_id": "743468186486-i8s4603g8hp0tuaus93qskl0dk38dd7m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
