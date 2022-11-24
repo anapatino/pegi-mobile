@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,7 +124,11 @@ class _IngresarState extends State<Ingresar> {
                                 controlUsuario.text, controlContrasena.text)
                             .then((value) {
                           if (controlu.emailf != 'Sin Registro') {
-                            Get.offAll(HomePage(rol: "estudiante"));
+                            log(controlu.rol + "gola");
+
+                            if (controlu.rol != "") {
+                              Get.offAll(HomePage(rol: controlu.rol));
+                            }
                           } else {
                             Get.showSnackbar(const GetSnackBar(
                               title: 'Validacion de Usuarios',

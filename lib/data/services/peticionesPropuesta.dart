@@ -20,6 +20,7 @@ class PeticionesPropuesta {
   static Future<void> crearPropuesta(Map<String, dynamic> propuesta, file,
       pickedFileBytes, pickedFileName) async {
     var url = '';
+    log(pickedFileName);
     if (file != null || pickedFileName != null) {
       url = await uploadFile(file, propuesta['idPropuesta'], uploadTask,
           pickedFileBytes, pickedFileName);

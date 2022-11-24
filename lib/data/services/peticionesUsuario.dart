@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:pegi/domain/models/usuario.dart';
@@ -7,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:pegi/ui/pages/autenticacion/registrar.dart';
 
 class PeticionesUsuario {
+  static final FirebaseFirestore _db = FirebaseFirestore.instance;
   static final FirebaseAuth authf = FirebaseAuth.instance;
 
   static Future<UserCredential> iniciarSesion(
@@ -38,6 +41,36 @@ class PeticionesUsuario {
     }
     return Future.error('Error');
   }
+
+  static Future<String> obtenerRol(user) async {
+    var response = "";
+
+    await _db.collection("Usuarios").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['correo'] == user) {
+          response = (doc.data()['rol']);
+          log(doc.data()['rol'].toString());
+        }
+      }
+    });
+    return response;
+  }
+
+  static Future<bool> verificacionUser(user) async {
+    bool correoCheck = false;
+    await _db.collection("Usuarios").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['correo'] == user) {
+          correoCheck = true;
+        }
+      }
+    });
+    return correoCheck;
+  }
+}
+
+ 
+
   // static Future<List<Usuario>> validarUsuario(
   //     String usuario, String contrasena) async {
   //   var url = Uri.parse("");
@@ -51,4 +84,4 @@ class PeticionesUsuario {
 
   //   return pasar.map<Usuario>((json) => Usuario.desdeJson(json)).toList();
   // }
-}
+
