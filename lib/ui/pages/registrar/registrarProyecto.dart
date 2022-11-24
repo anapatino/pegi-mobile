@@ -15,6 +15,8 @@ class RegistrarProyecto extends StatefulWidget {
 }
 
 class _RegistrarProyectoState extends State<RegistrarProyecto> {
+  TextEditingController controlAnexo = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +29,7 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
             Header(icon: Icons.arrow_back_rounded, texto: 'Registrar Proyecto'),
             const SizedBox(height: 5),
             InputDownload(
+                controlador: controlAnexo,
                 texto: "Agregar documento",
                 icon: Icons.add_to_photos_outlined,
                 color: const Color.fromRGBO(30, 30, 30, 1),

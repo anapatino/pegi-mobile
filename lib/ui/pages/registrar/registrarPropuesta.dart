@@ -1,10 +1,18 @@
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/data/services/peticionesIndex.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
+import '../../../data/services/peticionesPropuesta.dart';
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Button.dart';
-import '../../widgets/Filter.dart';
 import '../../widgets/Header.dart';
 
 class RegistrarPropuesta extends StatefulWidget {
@@ -39,6 +47,30 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
 
   TextEditingController controlGeneral = TextEditingController();
   TextEditingController controlEspecifico = TextEditingController();
+  TextEditingController controlAnexo = TextEditingController();
+  PlatformFile? file;
+  static late final FilePickerResult? pickedFile;
+  static late final Uint8List? pickedFileBytes;
+  static late final String pickedFileName;
+
+  Future selectFile() async {
+    if (kIsWeb) {
+      pickedFile = await FilePicker.platform.pickFiles();
+      if (pickedFile != null) {
+        pickedFileBytes = pickedFile!.files.first.bytes;
+        pickedFileName = pickedFile!.files.first.name;
+      }
+      print('Archivo selecionado: $pickedFileName');
+    } else {
+      final fileSelect = await FilePicker.platform.pickFiles();
+
+      if (fileSelect == null) return;
+      setState(() {
+        file = fileSelect.files.first;
+      });
+      print('Archivo selecionado: ${file!.name}');
+    }
+  }
 
   int _activeCurrentStep = 0;
 
@@ -403,11 +435,24 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    InputDownload(
-                        texto: "Añadir anexo",
-                        icon: Icons.add_to_photos_outlined,
-                        color: const Color.fromRGBO(30, 30, 30, 1),
-                        onPressed: () {}),
+                    if (file == null)
+                      InputDownload(
+                          controlador: controlAnexo,
+                          texto: "Añadir anexo",
+                          icon: Icons.add_to_photos_outlined,
+                          color: const Color.fromRGBO(30, 30, 30, 1),
+                          onPressed: () {
+                            selectFile();
+                          }),
+                    if (file != null)
+                      InputDownload(
+                          controlador: controlAnexo,
+                          texto: file!.name,
+                          icon: Icons.add_to_photos_outlined,
+                          color: const Color.fromRGBO(30, 30, 30, 1),
+                          onPressed: () {
+                            selectFile();
+                          }),
                     Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: Dimensiones.height2),
@@ -428,7 +473,66 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                               texto: "Enviar",
                               color: const Color.fromRGBO(91, 59, 183, 1),
                               colorTexto: Colors.white,
-                              onPressed: () {},
+                              onPressed: () async {
+                                String index =
+                                    await PeticionesIndex.consultarIndex();
+
+                                var Propuesta = <String, dynamic>{
+                                  'idPropuesta': index,
+                                  'nombre': controlNombre.text,
+                                  'apellido': controlApellido.text,
+                                  'identificacion': controlIdentificacion.text,
+                                  'numero': controlNumero.text,
+                                  'programa': controlPrograma.text,
+                                  'correo': controlCorreo.text,
+                                  'celular': controlCelular.text,
+                                  'nombre2': controlNombre2.text,
+                                  'apellido2': controlApellido2.text,
+                                  'identificacion2':
+                                      controlIdentificacion2.text,
+                                  'numero2': controlNumero2.text,
+                                  'programa2': controlPrograma2.text,
+                                  'correo2': controlCorreo2.text,
+                                  'celular2': controlCelular2.text,
+                                  'lineaInvestigacion':
+                                      controlLineaInvestigacion.text,
+                                  'sublineaInvestigacion':
+                                      controlSublineaInvestigacion.text,
+                                  'areaTematica': controlAreaTematica.text,
+                                  'grupoInvestigacion':
+                                      controlGrupoInvestigacion.text,
+                                  'planteamiento': controlPlanteamiento.text,
+                                  'justificacion': controlJustificacion.text,
+                                  'general': controlGeneral.text,
+                                  'especificos': controlEspecifico.text,
+                                  'bibliografia': controlBibliografia.text,
+                                  'anexos': controlAnexo.text,
+                                };
+                                // uploadFile();
+                                log(file.toString());
+                                PeticionesPropuesta.crearPropuesta(Propuesta,
+                                        file, pickedFileBytes, pickedFileName)
+                                    .then((value) => {
+                                          log("Sin error")
+                                          // Get.showSnackbar(const GetSnackBar(
+                                          //   title: 'Validacion de Usuarios',
+                                          //   message:
+                                          //       'Datos registrados Correctamente',
+                                          //   icon: Icon(Icons.gpp_good_outlined),
+                                          //   duration: Duration(seconds: 5),
+                                          //   backgroundColor: Colors.greenAccent,
+                                          // ))
+                                        })
+                                    .catchError((e) {
+                                  Get.showSnackbar(const GetSnackBar(
+                                    title: 'Validacion de Usuarios',
+                                    message: 'Datos Invalidos',
+                                    icon: Icon(Icons.warning),
+                                    duration: Duration(seconds: 5),
+                                    backgroundColor: Colors.red,
+                                  ));
+                                });
+                              },
                             ),
                           ],
                         )),
