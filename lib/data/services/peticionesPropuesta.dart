@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fs;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -17,13 +18,16 @@ class PeticionesPropuesta {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
   static UploadTask? uploadTask;
 
-  static Future<void> crearPropuesta(Map<String, dynamic> propuesta, file,
-      pickedFileBytes, pickedFileName) async {
-    var url = '';
-    log(pickedFileName);
-    if (file != null || pickedFileName != null) {
-      url = await uploadFile(file, propuesta['idPropuesta'], uploadTask,
-          pickedFileBytes, pickedFileName);
+  static Future<void> crearPropuesta(Map<String, dynamic> propuesta,
+      String? file, String? pickedFileextencion) async {
+    var url;
+    if (file != null) {
+      url = await uploadFile(
+          file, propuesta['idPropuesta'], uploadTask, pickedFileextencion);
+    } else {
+      log("es null");
+
+      url = '';
     }
 
     propuesta['anexos'] = url.toString();
@@ -48,25 +52,22 @@ class PeticionesPropuesta {
   //   return url.toString();
   // }
 
-  static Future<dynamic> uploadFile(
-      file, idPropuesta, uploadTask, pickedFileBytes, pickedFileName) async {
-    if (kIsWeb) {
-      final path = 'anexo/$idPropuesta';
+  static Future<dynamic> uploadFile(String? file, idPropuesta,
+      UploadTask? uploadTask, String? pickedFileextencion) async {
+    var r;
+    final path = 'anexo/$idPropuesta.$pickedFileextencion';
+    if (file != null) {
       final ref = FirebaseStorage.instance.ref().child(path);
-      uploadTask = ref.putData(pickedFileBytes!);
-    } else {
-      final path = 'anexo/$idPropuesta';
-      final anexo = File(file!.name);
-      final ref = FirebaseStorage.instance.ref().child(path);
-      uploadTask = ref.putFile(anexo);
+      log(file.toString());
+      uploadTask = ref.putString(file);
+      final snaphot = await uploadTask.whenComplete(() {});
+
+      final urlDownload = await snaphot.ref.getDownloadURL();
+      r = urlDownload;
+      log('Link de descarga: $urlDownload');
     }
 
-    final snaphot = await uploadTask!.whenComplete(() {});
-    final urlDownload = await snaphot.ref.getDownloadURL();
-
-    log('Link de descarga: $urlDownload');
-
-    return urlDownload;
+    return r;
   }
 
   // static Future<void> actualizarArticulo(
