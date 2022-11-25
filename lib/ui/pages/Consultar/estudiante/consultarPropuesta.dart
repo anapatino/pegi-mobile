@@ -83,7 +83,11 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {
+<<<<<<< HEAD
                     //  Get.to(() => const MostrarPropuesta());
+=======
+                    //Get.to(() => const MostrarPropuesta());
+>>>>>>> f2775eba4741e40c5affe28bca37b0a3cfc577f7
                   });
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');

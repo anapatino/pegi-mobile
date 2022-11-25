@@ -17,13 +17,12 @@ class PeticionesProyecto {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
   static UploadTask? uploadTask;
 
-  static Future<void> crearProyecto(Map<String, dynamic> proyecto, file,
-      pickedFileBytes, pickedFileName) async {
+  static Future<void> crearProyecto(Map<String, dynamic> proyecto, String? file,
+      String? pickedFileextencion) async {
     var url = '';
-    log(pickedFileName);
-    if (file != null || pickedFileName != null) {
-      url = await uploadFile(file, proyecto['idProyecto'], uploadTask,
-          pickedFileBytes, pickedFileName);
+    if (file != null) {
+      url = await uploadFile(
+          file, proyecto['idProyecto'], uploadTask, pickedFileextencion);
     }
 
     proyecto['anexos'] = url.toString();
@@ -35,25 +34,22 @@ class PeticionesProyecto {
         .catchError((e) {});
   }
 
-  static Future<dynamic> uploadFile(
-      file, idproyecto, uploadTask, pickedFileBytes, pickedFileName) async {
-    if (kIsWeb) {
-      final path = 'anexo/$idproyecto';
+  static Future<dynamic> uploadFile(String? file, idProyecto,
+      UploadTask? uploadTask, String? pickedFileextencion) async {
+    var r;
+    final path = 'anexo/$idProyecto.$pickedFileextencion';
+    if (file != null) {
       final ref = FirebaseStorage.instance.ref().child(path);
-      uploadTask = ref.putData(pickedFileBytes!);
-    } else {
-      final path = 'anexo/$idproyecto';
-      final anexo = File(file!.name);
-      final ref = FirebaseStorage.instance.ref().child(path);
-      uploadTask = ref.putFile(anexo);
+      log(file.toString());
+      uploadTask = ref.putString(file);
+      final snaphot = await uploadTask.whenComplete(() {});
+
+      final urlDownload = await snaphot.ref.getDownloadURL();
+      r = urlDownload;
+      log('Link de descarga: $urlDownload');
     }
 
-    final snaphot = await uploadTask!.whenComplete(() {});
-    final urlDownload = await snaphot.ref.getDownloadURL();
-
-    log('Link de descarga: $urlDownload');
-
-    return urlDownload;
+    return r;
   }
 
   Future<List<Proyecto>> consultarProyectos() async {

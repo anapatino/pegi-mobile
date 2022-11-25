@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/data/services/peticionesIndex.dart';
 import 'package:pegi/domain/Controllers/controlPropuesta.dart';
@@ -55,29 +56,42 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
   TextEditingController controlGeneral = TextEditingController();
   TextEditingController controlEspecifico = TextEditingController();
   TextEditingController controlAnexo = TextEditingController();
+  TextEditingController controlTitulo = TextEditingController();
 
-  PlatformFile? file;
-  static late final FilePickerResult? pickedFile;
-  static late final Uint8List? pickedFileBytes;
-  static late final String pickedFileName;
+  static PlatformFile? file;
+  // static FilePickerResult? pickedFile;
+  // Uint8List? pickedFilePath;
+  // static String pickedFileName = "";
 
+  // Future selectFile() async {
+  //   if (kIsWeb) {
+  //     pickedFile = await FilePicker.platform.pickFiles();
+  //     if (pickedFile != null) {
+  //       pickedFilePath = pickedFile!.files.first.bytes;
+  //       pickedFileName = pickedFile!.files.first.name;
+  //     }
+  //     log('Archivo selecionado: $pickedFileName');
+  //   } else {
+  //     final fileSelect = await FilePicker.platform.pickFiles();
+
+  //     if (fileSelect == null) return;
+  //     setState(() {
+  //       file = fileSelect.files.first;
+  //     });
+  //     log('Archivo selecionado: ${file!.name}');
+  //   }
+  // }
+
+  String? pickedFilePath;
+  String? pickedFileextencion;
+  static String pickedFileName = "";
   Future selectFile() async {
-    if (kIsWeb) {
-      pickedFile = await FilePicker.platform.pickFiles();
-      if (pickedFile != null) {
-        pickedFileBytes = pickedFile!.files.first.bytes;
-        pickedFileName = pickedFile!.files.first.name;
-      }
-      print('Archivo selecionado: $pickedFileName');
-    } else {
-      final fileSelect = await FilePicker.platform.pickFiles();
-
-      if (fileSelect == null) return;
-      setState(() {
-        file = fileSelect.files.first;
-      });
-      print('Archivo selecionado: ${file!.name}');
-    }
+    final fileSelect = await FilePicker.platform.pickFiles();
+    if (fileSelect == null) return;
+    pickedFilePath = fileSelect.files.first.path;
+    pickedFileextencion = fileSelect.files.first.extension;
+    pickedFileName = fileSelect.files.first.name;
+    log('Archivo selecionado: $pickedFileName');
   }
 
   int _activeCurrentStep = 0;
@@ -94,6 +108,15 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Input(
+                      false,
+                      controlTitulo,
+                      "Titulo de la Propuesta",
+                      const EdgeInsets.all(0),
+                      const EdgeInsets.only(bottom: 8),
+                      const Color.fromRGBO(30, 30, 30, 1),
+                      const Color.fromARGB(255, 221, 221, 221)),
+                  SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Text('Primer Integrante',
                       style: GoogleFonts.montserrat(
                           fontSize: 16.0,
@@ -443,7 +466,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    if (file == null)
+                    if (pickedFileName == "")
                       InputDownload(
                           controlador: controlAnexo,
                           texto: "Añadir anexo",
@@ -452,10 +475,10 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                           onPressed: () {
                             selectFile();
                           }),
-                    if (file != null)
+                    if (pickedFileName != "")
                       InputDownload(
                           controlador: controlAnexo,
-                          texto: file!.name,
+                          texto: pickedFileName,
                           icon: Icons.add_to_photos_outlined,
                           color: const Color.fromRGBO(30, 30, 30, 1),
                           onPressed: () {
@@ -485,6 +508,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                 String index = await controlI.consultarIndex();
 
                                 var Propuesta = <String, dynamic>{
+                                  'titulo': controlTitulo.text,
                                   'idEstudiante': controlu.emailf,
                                   'idPropuesta': index,
                                   'nombre': controlNombre.text,
@@ -520,28 +544,32 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                   'calificacion': '',
                                   'idDocente': ''
                                 };
-                                controlp
-                                    .registrarPropuesta(Propuesta, file,
-                                        pickedFileBytes, pickedFileName)
-                                    .then((value) => {
-                                          Get.showSnackbar(const GetSnackBar(
-                                            title: 'Regristrar Propuesta',
-                                            message:
-                                                'Datos registrados Correctamente',
-                                            icon: Icon(Icons.gpp_good_outlined),
-                                            duration: Duration(seconds: 5),
-                                            backgroundColor: Colors.greenAccent,
-                                          ))
-                                        })
-                                    .catchError((e) {
-                                  Get.showSnackbar(const GetSnackBar(
-                                    title: 'Regristrar Propuesta',
-                                    message: 'Error al registrar propuesta',
-                                    icon: Icon(Icons.warning),
-                                    duration: Duration(seconds: 5),
-                                    backgroundColor: Colors.red,
-                                  ));
-                                });
+                                if (pickedFileName != "") {
+                                  controlp
+                                      .registrarPropuesta(Propuesta,
+                                          pickedFilePath, pickedFileextencion)
+                                      .then((value) => {
+                                            Get.showSnackbar(const GetSnackBar(
+                                              title: 'Regristrar Propuesta',
+                                              message:
+                                                  'Datos registrados Correctamente',
+                                              icon:
+                                                  Icon(Icons.gpp_good_outlined),
+                                              duration: Duration(seconds: 5),
+                                              backgroundColor:
+                                                  Colors.greenAccent,
+                                            ))
+                                          })
+                                      .catchError((e) {
+                                    Get.showSnackbar(const GetSnackBar(
+                                      title: 'Regristrar Propuesta',
+                                      message: 'Error al registrar propuesta',
+                                      icon: Icon(Icons.warning),
+                                      duration: Duration(seconds: 5),
+                                      backgroundColor: Colors.red,
+                                    ));
+                                  });
+                                }
                               },
                             ),
                           ],

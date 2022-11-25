@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 import '../../data/services/peticionesProyecto.dart';
 
 class ControlProyecto extends GetxController {
-  Future<void> registrarProyecto(Map<String, dynamic> proyecto, file,
-      pickedFileBytes, pickedFileName) async {
+  Future<void> registrarProyecto(Map<String, dynamic> proyecto,
+      String? pickedFilePath, String? pickedFileextencion) async {
     try {
       await PeticionesProyecto.crearProyecto(
-          proyecto, file, pickedFileBytes, pickedFileName);
+          proyecto, pickedFilePath, pickedFileextencion);
     } on FirebaseAuthException catch (e) {
       log(e.toString());
       // if (e.code == 'user-not-found') {
