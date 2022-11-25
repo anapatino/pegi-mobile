@@ -478,7 +478,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                     if (pickedFileName != "")
                       InputDownload(
                           controlador: controlAnexo,
-                          texto: pickedFileName!,
+                          texto: pickedFileName,
                           icon: Icons.add_to_photos_outlined,
                           color: const Color.fromRGBO(30, 30, 30, 1),
                           onPressed: () {
