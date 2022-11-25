@@ -4,12 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pegi/data/services/peticionesPropuesta.dart';
 import 'package:get/get.dart';
 
-class ControlPropuesta extends GetxController {
-  Future<void> registrarPropuesta(Map<String, dynamic> propuesta, file,
+import '../../data/services/peticionesProyecto.dart';
+
+class ControlProyecto extends GetxController {
+  Future<void> registrarProyecto(Map<String, dynamic> proyecto, file,
       pickedFileBytes, pickedFileName) async {
     try {
-      await PeticionesPropuesta.crearPropuesta(
-          propuesta, file, pickedFileBytes, pickedFileName);
+      await PeticionesProyecto.crearProyecto(
+          proyecto, file, pickedFileBytes, pickedFileName);
     } on FirebaseAuthException catch (e) {
       log(e.toString());
       // if (e.code == 'user-not-found') {

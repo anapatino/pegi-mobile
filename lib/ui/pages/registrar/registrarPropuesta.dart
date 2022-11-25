@@ -8,9 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/data/services/peticionesIndex.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
 import '../../../data/services/peticionesPropuesta.dart';
+import '../../../domain/Controllers/controladorIndex.dart';
+import '../../../domain/Controllers/controladorUsuario.dart';
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Button.dart';
 import '../../widgets/Header.dart';
@@ -23,6 +26,9 @@ class RegistrarPropuesta extends StatefulWidget {
 }
 
 class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
+  ControlUsuario controlu = Get.find();
+  ControlPropuesta controlp = Get.find();
+  ControlIndex controlI = Get.find();
   TextEditingController controlNombre = TextEditingController();
   TextEditingController controlApellido = TextEditingController();
   TextEditingController controlIdentificacion = TextEditingController();
@@ -48,6 +54,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
   TextEditingController controlGeneral = TextEditingController();
   TextEditingController controlEspecifico = TextEditingController();
   TextEditingController controlAnexo = TextEditingController();
+
   PlatformFile? file;
   static late final FilePickerResult? pickedFile;
   static late final Uint8List? pickedFileBytes;
@@ -474,10 +481,10 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                               color: const Color.fromRGBO(91, 59, 183, 1),
                               colorTexto: Colors.white,
                               onPressed: () async {
-                                String index =
-                                    await PeticionesIndex.consultarIndex();
+                                String index = await controlI.consultarIndex();
 
                                 var Propuesta = <String, dynamic>{
+                                  'idEstudiante': controlu.emailf,
                                   'idPropuesta': index,
                                   'nombre': controlNombre.text,
                                   'apellido': controlApellido.text,
@@ -507,26 +514,28 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                   'especificos': controlEspecifico.text,
                                   'bibliografia': controlBibliografia.text,
                                   'anexos': controlAnexo.text,
+                                  'estado': "pendiente",
+                                  'retroalimentacion': '',
+                                  'calificacion': '',
+                                  'idDocente': ''
                                 };
-                                // uploadFile();
-                                log(file.toString());
-                                PeticionesPropuesta.crearPropuesta(Propuesta,
-                                        file, pickedFileBytes, pickedFileName)
+                                controlp
+                                    .registrarPropuesta(Propuesta, file,
+                                        pickedFileBytes, pickedFileName)
                                     .then((value) => {
-                                          log("Sin error")
-                                          // Get.showSnackbar(const GetSnackBar(
-                                          //   title: 'Validacion de Usuarios',
-                                          //   message:
-                                          //       'Datos registrados Correctamente',
-                                          //   icon: Icon(Icons.gpp_good_outlined),
-                                          //   duration: Duration(seconds: 5),
-                                          //   backgroundColor: Colors.greenAccent,
-                                          // ))
+                                          Get.showSnackbar(const GetSnackBar(
+                                            title: 'Regristrar Propuesta',
+                                            message:
+                                                'Datos registrados Correctamente',
+                                            icon: Icon(Icons.gpp_good_outlined),
+                                            duration: Duration(seconds: 5),
+                                            backgroundColor: Colors.greenAccent,
+                                          ))
                                         })
                                     .catchError((e) {
                                   Get.showSnackbar(const GetSnackBar(
-                                    title: 'Validacion de Usuarios',
-                                    message: 'Datos Invalidos',
+                                    title: 'Regristrar Propuesta',
+                                    message: 'Error al registrar propuesta',
                                     icon: Icon(Icons.warning),
                                     duration: Duration(seconds: 5),
                                     backgroundColor: Colors.red,

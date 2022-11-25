@@ -36,29 +36,29 @@ class PeticionesPropuesta {
     //return "true";
   }
 
-  static Future<dynamic> cargaranexos(var anexos, var idArt) async {
-    final fs.Reference storageReference =
-        fs.FirebaseStorage.instance.ref().child("Propuesta");
+  // static Future<dynamic> cargaranexos(var anexos, var idArt) async {
+  //   final fs.Reference storageReference =
+  //       fs.FirebaseStorage.instance.ref().child("Propuesta");
 
-    fs.TaskSnapshot taskSnapshot =
-        await storageReference.child(idArt).putFile(anexos);
+  //   fs.TaskSnapshot taskSnapshot =
+  //       await storageReference.child(idArt).putFile(anexos);
 
-    var url = await taskSnapshot.ref.getDownloadURL();
+  //   var url = await taskSnapshot.ref.getDownloadURL();
 
-    return url.toString();
-  }
+  //   return url.toString();
+  // }
 
   static Future<dynamic> uploadFile(
       file, idPropuesta, uploadTask, pickedFileBytes, pickedFileName) async {
     if (kIsWeb) {
-      final path = 'anexo/$pickedFileName';
+      final path = 'anexo/$idPropuesta';
       final ref = FirebaseStorage.instance.ref().child(path);
-      uploadTask = ref.child(idPropuesta).putData(pickedFileBytes!);
+      uploadTask = ref.putData(pickedFileBytes!);
     } else {
-      final path = 'anexo/${file!.name}';
+      final path = 'anexo/$idPropuesta';
       final anexo = File(file!.name);
       final ref = FirebaseStorage.instance.ref().child(path);
-      uploadTask = ref.child(idPropuesta).putFile(anexo);
+      uploadTask = ref.putFile(anexo);
     }
 
     final snaphot = await uploadTask!.whenComplete(() {});
@@ -66,12 +66,6 @@ class PeticionesPropuesta {
 
     log('Link de descarga: $urlDownload');
 
-    Get.showSnackbar(const GetSnackBar(
-      message: 'Guardado con exito',
-      icon: Icon(Icons.gpp_good_outlined),
-      duration: Duration(seconds: 5),
-      backgroundColor: Colors.greenAccent,
-    ));
     return urlDownload;
   }
 

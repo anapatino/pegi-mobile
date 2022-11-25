@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
+import 'package:pegi/domain/Controllers/controlProyecto.dart';
+import 'package:pegi/domain/Controllers/controladorIndex.dart';
 import 'package:pegi/domain/Controllers/controladorUsuario.dart';
 import 'package:pegi/ui/pages/App.dart';
 
@@ -20,6 +23,9 @@ void main() async {
               measurementId: "G-GRQEHTYESB"))
       : await Firebase.initializeApp();
   Get.put(ControlUsuario());
+  Get.put(ControlPropuesta());
+  Get.put(ControlIndex());
+  Get.put(ControlProyecto());
 
   runApp(const App());
 }

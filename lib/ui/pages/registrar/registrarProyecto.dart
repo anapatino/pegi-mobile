@@ -3,9 +3,14 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
+import '../../../domain/Controllers/controlProyecto.dart';
+import '../../../domain/Controllers/controladorIndex.dart';
+import '../../../domain/Controllers/controladorUsuario.dart';
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Button.dart';
 import '../../widgets/Filter.dart';
@@ -20,6 +25,10 @@ class RegistrarProyecto extends StatefulWidget {
 
 class _RegistrarProyectoState extends State<RegistrarProyecto> {
   TextEditingController controlAnexo = TextEditingController();
+  ControlProyecto controlp = Get.find();
+  ControlUsuario controlu = Get.find();
+  ControlIndex controlI = Get.find();
+
   PlatformFile? file;
   static late final FilePickerResult? pickedFile;
   static late final Uint8List? pickedFileBytes;
@@ -73,14 +82,47 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                       texto: "Cancelar",
                       color: Colors.black,
                       colorTexto: Colors.white,
-                      onPressed: () {},
+                      onPressed: () async {},
                     ),
                     SizedBox(width: Dimensiones.screenWidth * 0.02),
                     Button(
                       texto: "Enviar",
                       color: const Color.fromRGBO(91, 59, 183, 1),
                       colorTexto: Colors.white,
-                      onPressed: () {},
+                      onPressed: () async {
+                        String index = await controlI.consultarIndex();
+                        var Proyecto = <String, dynamic>{
+                          'idProyecto': index,
+                          'anexos': "",
+                          'idEstudiante': controlu.emailf,
+                          'estado': "pendiente",
+                          'retroalimentacion': '',
+                          'calificacion': '',
+                          'idDocente': '',
+                        };
+
+                        controlp
+                            .registrarProyecto(
+                                Proyecto, file, pickedFileBytes, pickedFileName)
+                            .then((value) => {
+                                  Get.showSnackbar(const GetSnackBar(
+                                    title: 'Regristrar Proyecto',
+                                    message: 'Datos registrados Correctamente',
+                                    icon: Icon(Icons.gpp_good_outlined),
+                                    duration: Duration(seconds: 5),
+                                    backgroundColor: Colors.greenAccent,
+                                  ))
+                                })
+                            .catchError((e) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: 'Regristrar Proyecto',
+                            message: 'Error al registrar proyecto',
+                            icon: Icon(Icons.warning),
+                            duration: Duration(seconds: 5),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
+                      },
                     ),
                   ],
                 )),
