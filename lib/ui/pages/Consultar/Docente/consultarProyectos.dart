@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/pages/calificar/calificarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
+import 'package:pegi/ui/widgets/Filter.dart';
+import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
-import '../../widgets/Filter.dart';
-import '../../widgets/Header.dart';
 
 class MostrarProyectos extends StatefulWidget {
   const MostrarProyectos({super.key});

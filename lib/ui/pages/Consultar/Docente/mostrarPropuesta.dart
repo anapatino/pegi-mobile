@@ -489,7 +489,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
               margin: EdgeInsets.symmetric(
                   vertical: Dimensiones.screenHeight * 0.002),
               padding: EdgeInsets.symmetric(
-                  horizontal: Dimensiones.screenWidth * 0.0001),
+                  horizontal: Dimensiones.screenWidth * 0.001),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,

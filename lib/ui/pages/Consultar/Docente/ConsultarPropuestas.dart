@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:pegi/ui/pages/calificar/calificarPropuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
-import '../../widgets/Filter.dart';
-import '../../widgets/Header.dart';
+import '../../../widgets/Filter.dart';
+import '../../../widgets/Header.dart';
 
 class MostrarPropuesta extends StatefulWidget {
   const MostrarPropuesta({super.key});
