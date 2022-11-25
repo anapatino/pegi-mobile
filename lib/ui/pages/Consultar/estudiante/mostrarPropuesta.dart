@@ -8,7 +8,10 @@ import '../../../widgets/Button.dart';
 import '../../../widgets/Input.dart';
 
 class MostrarPropuesta extends StatefulWidget {
-  const MostrarPropuesta({super.key});
+  final String areaTematica;
+  final String estado;
+  const MostrarPropuesta(
+      {super.key, required this.areaTematica, required this.estado});
 
   @override
   State<MostrarPropuesta> createState() => _MostrarPropuestaState();
@@ -460,10 +463,12 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
             Header(
                 icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
             MostrarTodo(
-                texto: 'Harina base de \ninsectos.',
-                colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+                texto: widget.areaTematica,
+                colorBoton: widget.estado.toLowerCase() == 'pendiente'
+                    ? const Color.fromRGBO(91, 59, 183, 1)
+                    : const Color.fromRGBO(18, 180, 122, 1),
                 estado: true,
-                tipo: 'Pendiente',
+                tipo: widget.estado,
                 onPressed: () {},
                 color: Colors.black,
                 fijarIcon: false,

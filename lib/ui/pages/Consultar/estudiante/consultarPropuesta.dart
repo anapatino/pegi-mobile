@@ -66,7 +66,7 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
 
   Widget mostrarLista() {
     return ListView.builder(
-      itemCount: 1,
+      itemCount: 5,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Propuesta>>(

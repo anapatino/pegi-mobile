@@ -7,6 +7,7 @@ import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../../data/services/peticionesProyecto.dart';
+import '../../Calificar/asignarEvaluador.dart';
 import '../../Calificar/calificarProyecto.dart';
 
 class MostrarProyecto extends StatefulWidget {
@@ -43,11 +44,11 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
               estado: true,
               tipo: widget.estado,
               onPressed: () {
-                Get.to(() => const CalificarProyecto());
+                Get.to(() => const AsignarEvaluador());
               },
               color: Colors.black,
-              fijarIcon: false,
-              icon: Icons.mode_edit_outline_rounded,
+              fijarIcon: true,
+              icon: Icons.person_add_alt_rounded,
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensiones.screenWidth * 0.06,
                   vertical: Dimensiones.height2)),

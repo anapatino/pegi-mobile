@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Header.dart';
@@ -6,6 +7,7 @@ import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../widgets/Button.dart';
 import '../../../widgets/Input.dart';
+import '../../Calificar/asignarEvaluador.dart';
 
 class MostrarPropuesta extends StatefulWidget {
   const MostrarPropuesta({super.key});
@@ -464,10 +466,12 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 colorBoton: const Color.fromRGBO(91, 59, 183, 1),
                 estado: true,
                 tipo: 'Pendiente',
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const AsignarEvaluador());
+                },
                 color: Colors.black,
-                fijarIcon: false,
-                icon: Icons.mode_edit_outline_rounded,
+                fijarIcon: true,
+                icon: Icons.person_add_alt_rounded,
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensiones.screenWidth * 0.06,
                     vertical: Dimensiones.height2)),
