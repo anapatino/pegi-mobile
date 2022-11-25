@@ -59,7 +59,7 @@ class PeticionesPropuesta {
     if (file != null) {
       final ref = FirebaseStorage.instance.ref().child(path);
       log(file.toString());
-      uploadTask = ref.putString(file);
+      uploadTask = ref.putFile(File(file));
       final snaphot = await uploadTask.whenComplete(() {});
 
       final urlDownload = await snaphot.ref.getDownloadURL();

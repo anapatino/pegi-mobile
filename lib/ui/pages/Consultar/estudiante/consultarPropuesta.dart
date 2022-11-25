@@ -79,7 +79,7 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                   colorTipo: const Color.fromRGBO(91, 59, 183, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {
-                    Get.to(() => const MostrarPropuesta());
+                    //Get.to(() => const MostrarPropuesta());
                   });
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');
