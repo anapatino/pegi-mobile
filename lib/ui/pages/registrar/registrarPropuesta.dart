@@ -485,8 +485,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                             selectFile();
                           }),
                     Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
+                        padding: EdgeInsets.symmetric(),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -578,18 +577,19 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
         ];
     return Scaffold(
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-        child: SingleChildScrollView(
-            child: Column(
+            vertical: Dimensiones.screenHeight * 0.01,
+            horizontal: Dimensiones.width5),
+        child: Column(
           children: <Widget>[
             Header(
                 icon: Icons.arrow_back_rounded, texto: 'Registrar Propuesta'),
             Container(
               margin: EdgeInsets.zero,
               padding: EdgeInsets.zero,
-              height: Dimensiones.screenHeight * 0.95,
+              height: Dimensiones.screenHeight * 0.82,
               child: Column(
                 children: [
                   Container(
@@ -660,7 +660,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
               ),
             ),
           ],
-        )),
+        ),
       ),
     );
   }
