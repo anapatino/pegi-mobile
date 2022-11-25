@@ -252,25 +252,22 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const EdgeInsets.only(bottom: 8),
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
-                  Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const SizedBox(),
-                          SizedBox(width: Dimensiones.screenWidth * 0.02),
-                          Button(
-                            texto: "Siguiente",
-                            color: const Color.fromRGBO(91, 59, 183, 1),
-                            colorTexto: Colors.white,
-                            onPressed: () {
-                              setState(() => _activeCurrentStep += 1);
-                            },
-                          ),
-                        ],
-                      )),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const SizedBox(),
+                      SizedBox(width: Dimensiones.screenWidth * 0.02),
+                      Button(
+                        texto: "Siguiente",
+                        color: const Color.fromRGBO(91, 59, 183, 1),
+                        colorTexto: Colors.white,
+                        onPressed: () {
+                          setState(() => _activeCurrentStep += 1);
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               )),
           Step(
@@ -317,32 +314,29 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         const EdgeInsets.only(bottom: 8),
                         const Color.fromRGBO(30, 30, 30, 1),
                         const Color.fromARGB(255, 221, 221, 221)),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Siguiente",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep += 1);
-                              },
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Siguiente",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep += 1);
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
           Step(
               state: _activeCurrentStep <= 2
@@ -370,32 +364,29 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       Colors.white,
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Siguiente",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep += 1);
-                              },
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Siguiente",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep += 1);
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
           Step(
               state: _activeCurrentStep <= 3
@@ -423,32 +414,29 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       Colors.white,
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Siguiente",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep += 1);
-                              },
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Siguiente",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep += 1);
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
           Step(
               state: StepState.editing,
@@ -484,104 +472,100 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                           onPressed: () {
                             selectFile();
                           }),
-                    Padding(
-                        padding: EdgeInsets.symmetric(),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Enviar",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () async {
-                                String index = await controlI.consultarIndex();
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Enviar",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () async {
+                            String index = await controlI.consultarIndex();
 
-                                var Propuesta = <String, dynamic>{
-                                  'titulo': controlTitulo.text,
-                                  'idEstudiante': controlu.emailf,
-                                  'idPropuesta': index,
-                                  'nombre': controlNombre.text,
-                                  'apellido': controlApellido.text,
-                                  'identificacion': controlIdentificacion.text,
-                                  'numero': controlNumero.text,
-                                  'programa': controlPrograma.text,
-                                  'correo': controlCorreo.text,
-                                  'celular': controlCelular.text,
-                                  'nombre2': controlNombre2.text,
-                                  'apellido2': controlApellido2.text,
-                                  'identificacion2':
-                                      controlIdentificacion2.text,
-                                  'numero2': controlNumero2.text,
-                                  'programa2': controlPrograma2.text,
-                                  'correo2': controlCorreo2.text,
-                                  'celular2': controlCelular2.text,
-                                  'lineaInvestigacion':
-                                      controlLineaInvestigacion.text,
-                                  'sublineaInvestigacion':
-                                      controlSublineaInvestigacion.text,
-                                  'areaTematica': controlAreaTematica.text,
-                                  'grupoInvestigacion':
-                                      controlGrupoInvestigacion.text,
-                                  'planteamiento': controlPlanteamiento.text,
-                                  'justificacion': controlJustificacion.text,
-                                  'general': controlGeneral.text,
-                                  'especificos': controlEspecifico.text,
-                                  'bibliografia': controlBibliografia.text,
-                                  'anexos': controlAnexo.text,
-                                  'estado': "pendiente",
-                                  'retroalimentacion': '',
-                                  'calificacion': '',
-                                  'idDocente': ''
-                                };
-                                if (pickedFileName != "") {
-                                  controlp
-                                      .registrarPropuesta(Propuesta,
-                                          pickedFilePath, pickedFileextencion)
-                                      .then((value) => {
-                                            Get.showSnackbar(const GetSnackBar(
-                                              title: 'Regristrar Propuesta',
-                                              message:
-                                                  'Datos registrados Correctamente',
-                                              icon:
-                                                  Icon(Icons.gpp_good_outlined),
-                                              duration: Duration(seconds: 5),
-                                              backgroundColor:
-                                                  Colors.greenAccent,
-                                            ))
-                                          })
-                                      .catchError((e) {
-                                    Get.showSnackbar(const GetSnackBar(
-                                      title: 'Regristrar Propuesta',
-                                      message: 'Error al registrar propuesta',
-                                      icon: Icon(Icons.warning),
-                                      duration: Duration(seconds: 5),
-                                      backgroundColor: Colors.red,
-                                    ));
-                                  });
-                                }
-                              },
-                            ),
-                          ],
-                        )),
+                            var Propuesta = <String, dynamic>{
+                              'titulo': controlTitulo.text,
+                              'idEstudiante': controlu.emailf,
+                              'idPropuesta': index,
+                              'nombre': controlNombre.text,
+                              'apellido': controlApellido.text,
+                              'identificacion': controlIdentificacion.text,
+                              'numero': controlNumero.text,
+                              'programa': controlPrograma.text,
+                              'correo': controlCorreo.text,
+                              'celular': controlCelular.text,
+                              'nombre2': controlNombre2.text,
+                              'apellido2': controlApellido2.text,
+                              'identificacion2': controlIdentificacion2.text,
+                              'numero2': controlNumero2.text,
+                              'programa2': controlPrograma2.text,
+                              'correo2': controlCorreo2.text,
+                              'celular2': controlCelular2.text,
+                              'lineaInvestigacion':
+                                  controlLineaInvestigacion.text,
+                              'sublineaInvestigacion':
+                                  controlSublineaInvestigacion.text,
+                              'areaTematica': controlAreaTematica.text,
+                              'grupoInvestigacion':
+                                  controlGrupoInvestigacion.text,
+                              'planteamiento': controlPlanteamiento.text,
+                              'justificacion': controlJustificacion.text,
+                              'general': controlGeneral.text,
+                              'especificos': controlEspecifico.text,
+                              'bibliografia': controlBibliografia.text,
+                              'anexos': controlAnexo.text,
+                              'estado': "pendiente",
+                              'retroalimentacion': '',
+                              'calificacion': '',
+                              'idDocente': ''
+                            };
+                            if (pickedFileName != "") {
+                              controlp
+                                  .registrarPropuesta(Propuesta, pickedFilePath,
+                                      pickedFileextencion)
+                                  .then((value) => {
+                                        Get.showSnackbar(const GetSnackBar(
+                                          title: 'Regristrar Propuesta',
+                                          message:
+                                              'Datos registrados Correctamente',
+                                          icon: Icon(Icons.gpp_good_outlined),
+                                          duration: Duration(seconds: 5),
+                                          backgroundColor: Colors.greenAccent,
+                                        ))
+                                      })
+                                  .catchError((e) {
+                                Get.showSnackbar(const GetSnackBar(
+                                  title: 'Regristrar Propuesta',
+                                  message: 'Error al registrar propuesta',
+                                  icon: Icon(Icons.warning),
+                                  duration: Duration(seconds: 5),
+                                  backgroundColor: Colors.red,
+                                ));
+                              });
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
         ];
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: Dimensiones.screenHeight * 0.01,
-            horizontal: Dimensiones.width5),
+        padding: EdgeInsets.only(
+            top: Dimensiones.height5,
+            right: Dimensiones.width5,
+            left: Dimensiones.width5),
         child: Column(
           children: <Widget>[
             Header(
@@ -589,7 +573,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
             Container(
               margin: EdgeInsets.zero,
               padding: EdgeInsets.zero,
-              height: Dimensiones.screenHeight * 0.82,
+              height: Dimensiones.screenHeight * 0.79,
               child: Column(
                 children: [
                   Container(
@@ -599,31 +583,31 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Gen',
+                          Text('General',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Esp',
+                          Text('Especif',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Prob',
+                          Text('Probem',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Obj',
+                          Text('Objetivo',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Bib',
+                          Text('anexos',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
@@ -645,6 +629,9 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                           canvasColor: Colors.transparent,
                           shadowColor: Colors.transparent),
                       child: Stepper(
+                        controlsBuilder: (context, controller) {
+                          return const SizedBox.shrink();
+                        },
                         physics: const ScrollPhysics(),
                         margin: EdgeInsets.zero,
                         type: StepperType.horizontal,
