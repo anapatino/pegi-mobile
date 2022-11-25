@@ -63,9 +63,13 @@ class PeticionesProyecto {
         log(doc.data().toString());
         lista.add(Proyecto(
           titulo: doc.data()['titulo'],
-          nombrePersona: doc.data()['nombre persona'],
-          documento: doc.data()['documento'],
+          idEstudiante: doc.data()['idEstudiante'],
+          anexos: doc.data()['anexos'],
           estado: doc.data()['estado'],
+          calificacion: doc.data()['calificacion'],
+          idDocente: doc.data()['idDocente'],
+          idProyecto: doc.data()['idProyecto'],
+          retroalimentacion: doc.data()['retroalimentacion'],
         ));
       }
     });
@@ -79,9 +83,13 @@ class PeticionesProyecto {
         log(doc.data().toString());
         lista.add(Proyecto(
           titulo: doc.data()['titulo'],
-          nombrePersona: doc.data()['nombre persona'],
-          documento: doc.data()['documento'],
+          idEstudiante: doc.data()['idEstudiante'],
+          anexos: doc.data()['anexos'],
           estado: doc.data()['estado'],
+          calificacion: doc.data()['calificacion'],
+          idDocente: doc.data()['idDocente'],
+          idProyecto: doc.data()['idProyecto'],
+          retroalimentacion: doc.data()['retroalimentacion'],
         ));
         print(doc.data()['titulo']);
       }

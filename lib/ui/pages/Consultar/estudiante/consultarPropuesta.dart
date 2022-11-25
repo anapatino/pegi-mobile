@@ -74,12 +74,16 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Mostrar(
-                  texto: snapshot.data![index].areaTematica.toString(),
-                  tipo: 'pendiente',
-                  colorTipo: const Color.fromRGBO(91, 59, 183, 1),
+                  texto: snapshot.data![index].titulo.toString(),
+                  tipo: snapshot.data![index].estado.toString(),
+                  colorTipo:
+                      snapshot.data![index].estado.toString().toLowerCase() ==
+                              'pendiente'
+                          ? Color.fromARGB(255, 0, 0, 0)
+                          : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {
-                    Get.to(() => const MostrarPropuesta());
+                    //  Get.to(() => const MostrarPropuesta());
                   });
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');

@@ -1,4 +1,6 @@
 class Propuesta {
+  var titulo;
+  var estado;
   var idPropuesta;
   var nombre;
   var apellido;
@@ -26,7 +28,9 @@ class Propuesta {
   var anexos;
 
   Propuesta(
-      {required this.idPropuesta,
+      {required this.titulo,
+      required this.estado,
+      required this.idPropuesta,
       required this.lineaInvestigacion,
       required this.sublineaInvestigacion,
       required this.areaTematica,

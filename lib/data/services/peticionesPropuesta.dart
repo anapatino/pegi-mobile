@@ -114,6 +114,8 @@ class PeticionesPropuesta {
       for (var doc in respuesta.docs) {
         log(doc.data().toString());
         lista.add(Propuesta(
+          titulo: doc.data()['titulo'],
+          estado: doc.data()['estado'],
           anexos: doc.data()['anexos'],
           apellido: doc.data()['apellido'],
           apellido2: doc.data()['apellido2'],
