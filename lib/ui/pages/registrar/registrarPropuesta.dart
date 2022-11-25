@@ -134,7 +134,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                   Input(
                       false,
                       controlApellido,
-                      "Appelido",
+                      "Apellido",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
                       const Color.fromRGBO(30, 30, 30, 1),
@@ -202,7 +202,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                   Input(
                       false,
                       controlApellido2,
-                      "Appelido",
+                      "Apellido",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
                       const Color.fromRGBO(30, 30, 30, 1),
@@ -599,31 +599,31 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('General',
+                          Text('Gen',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Especificaciones',
+                          Text('Esp',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Problematica',
+                          Text('Prob',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Objetivos',
+                          Text('Obj',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,
                                   color: const Color.fromARGB(
                                       255, 221, 221, 221))),
-                          Text('Bibliografia',
+                          Text('Bib',
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12.0,

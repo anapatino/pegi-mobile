@@ -79,7 +79,7 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                   colorTipo:
                       snapshot.data![index].estado.toString().toLowerCase() ==
                               'pendiente'
-                          ? Color.fromARGB(255, 0, 0, 0)
+                          ? const Color.fromRGBO(91, 59, 183, 1)
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {});
