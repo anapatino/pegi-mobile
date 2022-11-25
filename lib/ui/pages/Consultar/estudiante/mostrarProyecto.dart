@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/models/proyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
+import '../../../../data/services/peticionesProyecto.dart';
+import '../../Calificar/calificarProyecto.dart';
+
 class MostrarProyecto extends StatefulWidget {
-  const MostrarProyecto({super.key});
+  final String titulo;
+  final String estado;
+  const MostrarProyecto(
+      {super.key, required this.titulo, required this.estado});
 
   @override
   State<MostrarProyecto> createState() => _MostrarProyectoState();
 }
 
 class _MostrarProyectoState extends State<MostrarProyecto> {
+  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  late Future<List<Proyecto>> listaProyecto =
+      peticionesProyecto.consultarProyectos();
   TextEditingController controlDocumento = TextEditingController();
 
   @override
@@ -26,13 +36,17 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
             Widget>[
           Header(icon: Icons.arrow_back_rounded, texto: 'Consultar Proyecto'),
           MostrarTodo(
-              texto: 'Harina base de \ninsectos.',
-              colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+              texto: widget.titulo,
+              colorBoton: widget.estado.toLowerCase() == 'pendiente'
+                  ? const Color.fromRGBO(91, 59, 183, 1)
+                  : const Color.fromRGBO(18, 180, 122, 1),
               estado: true,
-              tipo: 'Pendiente',
-              onPressed: () {},
+              tipo: widget.estado,
+              onPressed: () {
+                Get.to(() => const CalificarProyecto());
+              },
               color: Colors.black,
-              fijarIcon: true,
+              fijarIcon: false,
               icon: Icons.mode_edit_outline_rounded,
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensiones.screenWidth * 0.06,

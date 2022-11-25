@@ -466,7 +466,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 tipo: 'Pendiente',
                 onPressed: () {},
                 color: Colors.black,
-                fijarIcon: true,
+                fijarIcon: false,
                 icon: Icons.mode_edit_outline_rounded,
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensiones.screenWidth * 0.06,
@@ -487,9 +487,9 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
             ),
             Container(
               margin: EdgeInsets.symmetric(
-                  vertical: Dimensiones.screenHeight * 0.02),
+                  vertical: Dimensiones.screenHeight * 0.002),
               padding: EdgeInsets.symmetric(
-                  horizontal: Dimensiones.screenWidth * 0.04),
+                  horizontal: Dimensiones.screenWidth * 0.0001),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,

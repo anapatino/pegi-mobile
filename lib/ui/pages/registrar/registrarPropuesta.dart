@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -390,7 +391,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       Colors.white,
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
-                    SizedBox(height: Dimensiones.screenHeight * 0.022),
+                    SizedBox(height: Dimensiones.screenHeight * 0.02),
                     InputMedium(
                       controlEspecifico,
                       "Especificos",
@@ -565,7 +566,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(
-                        horizontal: Dimensiones.screenWidth * 0.04),
+                        horizontal: Dimensiones.screenWidth * 0.01),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,

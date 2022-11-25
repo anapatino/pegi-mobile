@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/data/services/peticionesProyecto.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+
+import '../../../../domain/models/proyecto.dart';
 
 class ConsultarProyecto extends StatefulWidget {
   const ConsultarProyecto({super.key});
@@ -14,6 +17,9 @@ class ConsultarProyecto extends StatefulWidget {
 }
 
 class _ConsultarProyectoState extends State<ConsultarProyecto> {
+  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  late Future<List<Proyecto>> listaProyecto =
+      peticionesProyecto.consultarProyectos();
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -50,32 +56,46 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
                   ),
                 ),
                 const SizedBox(height: 5),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    children: [
-                      Mostrar(
-                          texto: 'Harina base de \ninsectos.',
-                          tipo: 'pendiente',
-                          colorTipo: const Color.fromRGBO(91, 59, 183, 1),
-                          colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                          onPressed: () {
-                            Get.to(() => const MostrarProyecto());
-                          }),
-                      Mostrar(
-                          texto: 'Harina base de \ninsectos.',
-                          tipo: 'calificado',
-                          colorTipo: const Color.fromRGBO(26, 185, 127, 1),
-                          colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                          onPressed: () {
-                            Get.to(() => const MostrarProyecto());
-                          }),
-                    ],
-                  ),
+                Column(
+                  children: [mostrarLista()],
                 )
               ],
             ),
           ),
         ));
+  }
+
+  Widget mostrarLista() {
+    return ListView.builder(
+      itemCount: 4,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return FutureBuilder<List<Proyecto>>(
+          future: listaProyecto,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Mostrar(
+                  texto: snapshot.data![index].titulo.toString(),
+                  tipo: snapshot.data![index].estado.toString(),
+                  colorTipo:
+                      snapshot.data![index].estado.toString().toLowerCase() ==
+                              'pendiente'
+                          ? const Color.fromRGBO(91, 59, 183, 1)
+                          : const Color.fromRGBO(18, 180, 122, 1),
+                  colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                  onPressed: () {
+                    Get.to(() => MostrarProyecto(
+                          titulo: snapshot.data![index].titulo.toString(),
+                          estado: snapshot.data![index].estado.toString(),
+                        ));
+                  });
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        );
+      },
+    );
   }
 }

@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:pegi/domain/models/index.dart';
+import 'package:pegi/domain/models/proyecto.dart';
 
 class PeticionesProyecto {
   static final fs.FirebaseStorage storage = fs.FirebaseStorage.instance;
@@ -53,5 +54,38 @@ class PeticionesProyecto {
     log('Link de descarga: $urlDownload');
 
     return urlDownload;
+  }
+
+  Future<List<Proyecto>> consultarProyectos() async {
+    List<Proyecto> lista = [];
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        log(doc.data().toString());
+        lista.add(Proyecto(
+          titulo: doc.data()['titulo'],
+          nombrePersona: doc.data()['nombre persona'],
+          documento: doc.data()['documento'],
+          estado: doc.data()['estado'],
+        ));
+      }
+    });
+    return lista;
+  }
+
+  Future<List<Proyecto>> consultarProyecto(String titulo) async {
+    List<Proyecto> lista = [];
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        log(doc.data().toString());
+        lista.add(Proyecto(
+          titulo: doc.data()['titulo'],
+          nombrePersona: doc.data()['nombre persona'],
+          documento: doc.data()['documento'],
+          estado: doc.data()['estado'],
+        ));
+        print(doc.data()['titulo']);
+      }
+    });
+    return lista;
   }
 }
