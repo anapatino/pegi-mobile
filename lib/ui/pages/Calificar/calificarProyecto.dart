@@ -31,10 +31,10 @@ class _CalificarProyectoState extends State<CalificarProyecto> {
                     icon: Icons.arrow_back_rounded,
                     texto: 'Calificar Proyectos'),
                 MostrarTodo(
-                    texto: 'Harina base de \ninsectos.',
-                    colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+                    texto: 'Arroz de coco',
+                    colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                     estado: true,
-                    tipo: 'pendiente',
+                    tipo: 'Calificado',
                     onPressed: () {},
                     color: Colors.black,
                     fijarIcon: false,

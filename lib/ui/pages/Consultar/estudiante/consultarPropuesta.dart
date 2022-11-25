@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/mostrarPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+
+import '../../../../data/services/peticionesPropuesta.dart';
 
 class ConsultarPropuestas extends StatefulWidget {
   const ConsultarPropuestas({super.key});
@@ -15,6 +18,9 @@ class ConsultarPropuestas extends StatefulWidget {
 }
 
 class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
+  PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
+  late Future<List<Propuesta>> listaPropuesta =
+      peticionesPropuesta.consultarPropuestas();
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -51,25 +57,37 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                   ),
                 ),
                 const SizedBox(height: 5),
-                Mostrar(
-                    texto: 'Harina base de \ninsectos.',
-                    tipo: 'pendiente',
-                    colorTipo: const Color.fromRGBO(91, 59, 183, 1),
-                    colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                    onPressed: () {
-                      Get.to(() => const MostrarPropuesta());
-                    }),
-                Mostrar(
-                    texto: 'Harina base de \ninsectos.',
-                    tipo: 'calificado',
-                    colorTipo: const Color.fromRGBO(26, 185, 127, 1),
-                    colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                    onPressed: () {
-                      Get.to(() => const MostrarPropuesta());
-                    }),
+                mostrarLista()
               ],
             ),
           ),
         ));
+  }
+
+  Widget mostrarLista() {
+    return ListView.builder(
+      itemCount: 5,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return FutureBuilder<List<Propuesta>>(
+          future: listaPropuesta,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Mostrar(
+                  texto: snapshot.data![index].areaTematica.toString(),
+                  tipo: 'pendiente',
+                  colorTipo: const Color.fromRGBO(91, 59, 183, 1),
+                  colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                  onPressed: () {
+                    Get.to(() => const MostrarPropuesta());
+                  });
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        );
+      },
+    );
   }
 }

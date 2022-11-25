@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pegi/ui/pages/consultar/admi/consultarAdmin.dart';
-import 'package:pegi/ui/pages/consultar/consultarDocente.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarEstudiante.dart';
 import 'package:pegi/ui/pages/dashboard/dashboardAdmin.dart';
 import 'package:pegi/ui/pages/registrar/registrar.dart';
+import '../../ui/pages/Consultar/Docente/consultarDocente.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
 import '../../ui/pages/dashboard/dashboardEst.dart';
 

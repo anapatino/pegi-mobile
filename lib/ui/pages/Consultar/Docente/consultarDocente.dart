@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/Consultar/consultarPropuestas.dart';
-import 'package:pegi/ui/pages/consultar/consultarProyectos.dart';
+
 import 'package:pegi/ui/utils/Dimensiones.dart';
-import '../../widgets/Consulta.dart';
+import '../../../widgets/Consulta.dart';
 
 class ConsultarDocente extends StatefulWidget {
   const ConsultarDocente({super.key});
@@ -50,17 +49,13 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
                 icon: Icons.folder,
                 texto: 'Consultar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
-                onPressed: () {
-                  Get.to(() => const MostrarPropuesta());
-                }),
+                onPressed: () {}),
             const SizedBox(height: 30),
             Consultar(
                 icon: Icons.folder,
                 texto: 'Consultar \nProyecto',
                 colorBoton: const Color.fromRGBO(33, 153, 245, 1),
-                onPressed: () {
-                  Get.to(() => const MostrarProyectos());
-                }),
+                onPressed: () {}),
           ],
         ),
       ),

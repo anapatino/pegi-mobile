@@ -1,29 +1,29 @@
 class Propuesta {
-  final String idPropuesta;
-  final String nombre;
-  final String apellido;
-  final String identificacion;
-  final String numero;
-  final String programa;
-  final String correo;
-  final String celular;
-  final String nombre2;
-  final String apellido2;
-  final String identificacion2;
-  final String numero2;
-  final String programa2;
-  final String correo2;
-  final String celular2;
-  final String lineaInvestigacion;
-  final String sublineaInvestigacion;
-  final String areaTematica;
-  final String grupoInvestigacion;
-  final String planteamiento;
-  final String justificacion;
-  final String general;
-  final String especificos;
-  final String bibliografia;
-  final String anexos;
+  var idPropuesta;
+  var nombre;
+  var apellido;
+  var identificacion;
+  var numero;
+  var programa;
+  var correo;
+  var celular;
+  var nombre2;
+  var apellido2;
+  var identificacion2;
+  var numero2;
+  var programa2;
+  var correo2;
+  var celular2;
+  var lineaInvestigacion;
+  var sublineaInvestigacion;
+  var areaTematica;
+  var grupoInvestigacion;
+  var planteamiento;
+  var justificacion;
+  var general;
+  var especificos;
+  var bibliografia;
+  var anexos;
 
   Propuesta(
       {required this.idPropuesta,

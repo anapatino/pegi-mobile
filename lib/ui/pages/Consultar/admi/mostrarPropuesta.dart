@@ -1,98 +1,68 @@
-import 'dart:developer';
-import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pegi/data/services/peticionesIndex.dart';
-import 'package:pegi/domain/Controllers/controlPropuesta.dart';
-import 'package:pegi/ui/widgets/Input.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
+import 'package:pegi/ui/widgets/Header.dart';
+import 'package:pegi/ui/widgets/Mostrar.dart';
 
-import '../../../data/services/peticionesPropuesta.dart';
-import '../../../domain/Controllers/controladorIndex.dart';
-import '../../../domain/Controllers/controladorUsuario.dart';
-import '../../utils/Dimensiones.dart';
-import '../../widgets/Button.dart';
-import '../../widgets/Header.dart';
+import '../../../widgets/Button.dart';
+import '../../../widgets/Input.dart';
+import '../../Calificar/asignarEvaluador.dart';
 
-class RegistrarPropuesta extends StatefulWidget {
-  const RegistrarPropuesta({super.key});
+class MostrarPropuesta extends StatefulWidget {
+  const MostrarPropuesta({super.key});
 
   @override
-  State<RegistrarPropuesta> createState() => _RegistrarPropuestaState();
+  State<MostrarPropuesta> createState() => _MostrarPropuestaState();
 }
 
-class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
-  ControlUsuario controlu = Get.find();
-  ControlPropuesta controlp = Get.find();
-  ControlIndex controlI = Get.find();
+class _MostrarPropuestaState extends State<MostrarPropuesta> {
   TextEditingController controlNombre = TextEditingController();
+
   TextEditingController controlApellido = TextEditingController();
+
   TextEditingController controlIdentificacion = TextEditingController();
+
   TextEditingController controlNumero = TextEditingController();
+
   TextEditingController controlPrograma = TextEditingController();
+
   TextEditingController controlCorreo = TextEditingController();
+
   TextEditingController controlCelular = TextEditingController();
+
   TextEditingController controlNombre2 = TextEditingController();
+
   TextEditingController controlApellido2 = TextEditingController();
+
   TextEditingController controlIdentificacion2 = TextEditingController();
+
   TextEditingController controlNumero2 = TextEditingController();
+
   TextEditingController controlPrograma2 = TextEditingController();
+
   TextEditingController controlCorreo2 = TextEditingController();
+
   TextEditingController controlCelular2 = TextEditingController();
+
   TextEditingController controlLineaInvestigacion = TextEditingController();
+
   TextEditingController controlSublineaInvestigacion = TextEditingController();
+
   TextEditingController controlAreaTematica = TextEditingController();
+
   TextEditingController controlGrupoInvestigacion = TextEditingController();
+
   TextEditingController controlPlanteamiento = TextEditingController();
+
   TextEditingController controlJustificacion = TextEditingController();
+
   TextEditingController controlBibliografia = TextEditingController();
 
   TextEditingController controlGeneral = TextEditingController();
+
   TextEditingController controlEspecifico = TextEditingController();
   TextEditingController controlAnexo = TextEditingController();
-  TextEditingController controlTitulo = TextEditingController();
-
-  static PlatformFile? file;
-  // static FilePickerResult? pickedFile;
-  // Uint8List? pickedFilePath;
-  // static String pickedFileName = "";
-
-  // Future selectFile() async {
-  //   if (kIsWeb) {
-  //     pickedFile = await FilePicker.platform.pickFiles();
-  //     if (pickedFile != null) {
-  //       pickedFilePath = pickedFile!.files.first.bytes;
-  //       pickedFileName = pickedFile!.files.first.name;
-  //     }
-  //     log('Archivo selecionado: $pickedFileName');
-  //   } else {
-  //     final fileSelect = await FilePicker.platform.pickFiles();
-
-  //     if (fileSelect == null) return;
-  //     setState(() {
-  //       file = fileSelect.files.first;
-  //     });
-  //     log('Archivo selecionado: ${file!.name}');
-  //   }
-  // }
-
-  String? pickedFilePath;
-  String? pickedFileextencion;
-  static String pickedFileName = "";
-  Future selectFile() async {
-    final fileSelect = await FilePicker.platform.pickFiles();
-    if (fileSelect == null) return;
-    pickedFilePath = fileSelect.files.first.path;
-    pickedFileextencion = fileSelect.files.first.extension;
-    pickedFileName = fileSelect.files.first.name;
-    log('Archivo selecionado: $pickedFileName');
-  }
 
   int _activeCurrentStep = 0;
 
@@ -100,23 +70,12 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
   Widget build(BuildContext context) {
     List<Step> stepList() => [
           Step(
-              state: _activeCurrentStep <= 0
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 0,
               title: const Text(''),
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Input(
-                      false,
-                      controlTitulo,
-                      "Titulo de la Propuesta",
-                      const EdgeInsets.all(0),
-                      const EdgeInsets.only(bottom: 8),
-                      const Color.fromRGBO(30, 30, 30, 1),
-                      const Color.fromARGB(255, 221, 221, 221)),
-                  SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Text('Primer Integrante',
                       style: GoogleFonts.montserrat(
                           fontSize: 16.0,
@@ -274,9 +233,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                 ],
               )),
           Step(
-              state: _activeCurrentStep <= 1
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 1,
               title: const Text(''),
               content: Column(
@@ -345,9 +302,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         )),
                   ])),
           Step(
-              state: _activeCurrentStep <= 2
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 2,
               title: const Text(''),
               content: Column(
@@ -398,9 +353,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         )),
                   ])),
           Step(
-              state: _activeCurrentStep <= 3
-                  ? StepState.editing
-                  : StepState.complete,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 3,
               title: const Text(''),
               content: Column(
@@ -414,7 +367,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       Colors.white,
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
-                    SizedBox(height: Dimensiones.screenHeight * 0.02),
+                    SizedBox(height: Dimensiones.screenHeight * 0.022),
                     InputMedium(
                       controlEspecifico,
                       "Especificos",
@@ -451,7 +404,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         )),
                   ])),
           Step(
-              state: StepState.editing,
+              state: StepState.indexed,
               isActive: _activeCurrentStep >= 4,
               title: const Text(''),
               content: Column(
@@ -466,24 +419,12 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    if (pickedFileName == "")
-                      InputDownload(
-                          controlador: controlAnexo,
-                          texto: "Añadir anexo",
-                          icon: Icons.add_to_photos_outlined,
-                          color: const Color.fromRGBO(30, 30, 30, 1),
-                          onPressed: () {
-                            selectFile();
-                          }),
-                    if (pickedFileName != "")
-                      InputDownload(
-                          controlador: controlAnexo,
-                          texto: pickedFileName!,
-                          icon: Icons.add_to_photos_outlined,
-                          color: const Color.fromRGBO(30, 30, 30, 1),
-                          onPressed: () {
-                            selectFile();
-                          }),
+                    InputDownload(
+                        controlador: controlAnexo,
+                        texto: "Añadir anexo",
+                        icon: Icons.add_to_photos_outlined,
+                        color: const Color.fromRGBO(30, 30, 30, 1),
+                        onPressed: () {}),
                     Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: Dimensiones.height2),
@@ -504,73 +445,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                               texto: "Enviar",
                               color: const Color.fromRGBO(91, 59, 183, 1),
                               colorTexto: Colors.white,
-                              onPressed: () async {
-                                String index = await controlI.consultarIndex();
-
-                                var Propuesta = <String, dynamic>{
-                                  'titulo': controlTitulo.text,
-                                  'idEstudiante': controlu.emailf,
-                                  'idPropuesta': index,
-                                  'nombre': controlNombre.text,
-                                  'apellido': controlApellido.text,
-                                  'identificacion': controlIdentificacion.text,
-                                  'numero': controlNumero.text,
-                                  'programa': controlPrograma.text,
-                                  'correo': controlCorreo.text,
-                                  'celular': controlCelular.text,
-                                  'nombre2': controlNombre2.text,
-                                  'apellido2': controlApellido2.text,
-                                  'identificacion2':
-                                      controlIdentificacion2.text,
-                                  'numero2': controlNumero2.text,
-                                  'programa2': controlPrograma2.text,
-                                  'correo2': controlCorreo2.text,
-                                  'celular2': controlCelular2.text,
-                                  'lineaInvestigacion':
-                                      controlLineaInvestigacion.text,
-                                  'sublineaInvestigacion':
-                                      controlSublineaInvestigacion.text,
-                                  'areaTematica': controlAreaTematica.text,
-                                  'grupoInvestigacion':
-                                      controlGrupoInvestigacion.text,
-                                  'planteamiento': controlPlanteamiento.text,
-                                  'justificacion': controlJustificacion.text,
-                                  'general': controlGeneral.text,
-                                  'especificos': controlEspecifico.text,
-                                  'bibliografia': controlBibliografia.text,
-                                  'anexos': controlAnexo.text,
-                                  'estado': "pendiente",
-                                  'retroalimentacion': '',
-                                  'calificacion': '',
-                                  'idDocente': ''
-                                };
-                                if (pickedFileName != "") {
-                                  controlp
-                                      .registrarPropuesta(Propuesta,
-                                          pickedFilePath, pickedFileextencion)
-                                      .then((value) => {
-                                            Get.showSnackbar(const GetSnackBar(
-                                              title: 'Regristrar Propuesta',
-                                              message:
-                                                  'Datos registrados Correctamente',
-                                              icon:
-                                                  Icon(Icons.gpp_good_outlined),
-                                              duration: Duration(seconds: 5),
-                                              backgroundColor:
-                                                  Colors.greenAccent,
-                                            ))
-                                          })
-                                      .catchError((e) {
-                                    Get.showSnackbar(const GetSnackBar(
-                                      title: 'Regristrar Propuesta',
-                                      message: 'Error al registrar propuesta',
-                                      icon: Icon(Icons.warning),
-                                      duration: Duration(seconds: 5),
-                                      backgroundColor: Colors.red,
-                                    ));
-                                  });
-                                }
-                              },
+                              onPressed: () {},
                             ),
                           ],
                         )),
@@ -581,86 +456,101 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
       body: Padding(
         padding: EdgeInsets.symmetric(
             vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-        child: SingleChildScrollView(
-            child: Column(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Header(
-                icon: Icons.arrow_back_rounded, texto: 'Registrar Propuesta'),
+                icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
+            MostrarTodo(
+                texto: 'Harina base de \ninsectos.',
+                colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+                estado: true,
+                tipo: 'Pendiente',
+                onPressed: () {
+                  Get.to(() => const AsignarEvaluador());
+                },
+                color: Colors.black,
+                fijarIcon: true,
+                icon: Icons.person_add_alt_rounded,
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensiones.screenWidth * 0.06,
+                    vertical: Dimensiones.height2)),
+            Padding(
+              padding:
+                  EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.0001),
+              child: Container(
+                height: Dimensiones.screenHeight * 0.0001,
+                width: Dimensiones.width90,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        width: 4, color: Color.fromRGBO(30, 30, 30, 1)),
+                  ),
+                ),
+              ),
+            ),
             Container(
-              margin: EdgeInsets.zero,
-              padding: EdgeInsets.zero,
-              height: Dimensiones.screenHeight * 0.95,
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Dimensiones.screenWidth * 0.01),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('General',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: const Color.fromARGB(
-                                      255, 221, 221, 221))),
-                          Text('Especificaciones',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: const Color.fromARGB(
-                                      255, 221, 221, 221))),
-                          Text('Problematica',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: const Color.fromARGB(
-                                      255, 221, 221, 221))),
-                          Text('Objetivos',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: const Color.fromARGB(
-                                      255, 221, 221, 221))),
-                          Text('Bibliografia',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12.0,
-                                  color: const Color.fromARGB(
-                                      255, 221, 221, 221))),
-                        ]),
-                  ),
-                  Expanded(
-                    child: Theme(
-                      data: ThemeData(
-                          scrollbarTheme: ScrollbarThemeData(
-                            interactive: true,
-                            crossAxisMargin: Dimensiones.screenWidth * 0.02,
-                            mainAxisMargin: Dimensiones.screenWidth * 0.05,
-                            radius: const Radius.circular(14),
-                            thumbColor:
-                                MaterialStateProperty.all((Colors.grey[500])),
-                          ),
-                          canvasColor: Colors.transparent,
-                          shadowColor: Colors.transparent),
-                      child: Stepper(
-                        physics: const ScrollPhysics(),
-                        margin: EdgeInsets.zero,
-                        type: StepperType.horizontal,
-                        currentStep: _activeCurrentStep,
-                        steps: stepList(),
-                        onStepTapped: (int index) {
-                          setState(() => _activeCurrentStep = index);
-                        },
-                      ),
+              margin: EdgeInsets.symmetric(
+                  vertical: Dimensiones.screenHeight * 0.002),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensiones.screenWidth * 0.001),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('General',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12.0,
+                            color: const Color.fromARGB(255, 221, 221, 221))),
+                    Text('Especificaciones',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12.0,
+                            color: const Color.fromARGB(255, 221, 221, 221))),
+                    Text('Problematica',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12.0,
+                            color: const Color.fromARGB(255, 221, 221, 221))),
+                    Text('Objetivos',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12.0,
+                            color: const Color.fromARGB(255, 221, 221, 221))),
+                    Text('Bibliografia',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12.0,
+                            color: const Color.fromARGB(255, 221, 221, 221))),
+                  ]),
+            ),
+            Expanded(
+              child: Theme(
+                data: ThemeData(
+                    scrollbarTheme: ScrollbarThemeData(
+                      interactive: true,
+                      crossAxisMargin: Dimensiones.screenWidth * 0.02,
+                      mainAxisMargin: Dimensiones.screenWidth * 0.05,
+                      radius: const Radius.circular(14),
+                      thumbColor: MaterialStateProperty.all((Colors.grey[500])),
                     ),
-                  ),
-                ],
+                    canvasColor: Colors.transparent,
+                    shadowColor: Colors.transparent),
+                child: Stepper(
+                  physics: const ScrollPhysics(),
+                  margin: EdgeInsets.zero,
+                  type: StepperType.horizontal,
+                  currentStep: _activeCurrentStep,
+                  steps: stepList(),
+                  onStepTapped: (int index) {
+                    setState(() => _activeCurrentStep = index);
+                  },
+                ),
               ),
             ),
           ],
-        )),
+        ),
       ),
     );
   }
