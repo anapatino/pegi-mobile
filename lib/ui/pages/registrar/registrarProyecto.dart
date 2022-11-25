@@ -25,6 +25,8 @@ class RegistrarProyecto extends StatefulWidget {
 
 class _RegistrarProyectoState extends State<RegistrarProyecto> {
   TextEditingController controlAnexo = TextEditingController();
+  TextEditingController controlTitulo = TextEditingController();
+
   ControlProyecto controlp = Get.find();
   ControlUsuario controlu = Get.find();
   ControlIndex controlI = Get.find();
@@ -64,6 +66,15 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
           children: <Widget>[
             Header(icon: Icons.arrow_back_rounded, texto: 'Registrar Proyecto'),
             const SizedBox(height: 5),
+            Input(
+                false,
+                controlTitulo,
+                "Titulo del proyecto",
+                const EdgeInsets.all(0),
+                const EdgeInsets.only(bottom: 8),
+                const Color.fromRGBO(30, 30, 30, 1),
+                const Color.fromARGB(255, 221, 221, 221)),
+            SizedBox(height: Dimensiones.screenHeight * 0.022),
             InputDownload(
                 controlador: controlAnexo,
                 texto: "Agregar documento",
@@ -93,6 +104,7 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                         String index = await controlI.consultarIndex();
                         var Proyecto = <String, dynamic>{
                           'idProyecto': index,
+                          'titulo': controlTitulo.text,
                           'anexos': "",
                           'idEstudiante': controlu.emailf,
                           'estado': "pendiente",
