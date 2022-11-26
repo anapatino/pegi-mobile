@@ -61,32 +61,6 @@ class ConsultarProyecto extends StatelessWidget {
                     ],
                   ),
                 ),
-<<<<<<< HEAD
-                const SizedBox(height: 5),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    children: [
-                      Mostrar(
-                          texto: 'Harina base de \ninsectos.',
-                          tipo: 'pendiente',
-                          colorTipo: const Color.fromRGBO(91, 59, 183, 1),
-                          colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                          onPressed: () {
-                            Get.to(() => const MostrarProyecto());
-                          }),
-                      Mostrar(
-                          texto: 'Harina base de \ninsectos.',
-                          tipo: 'calificado',
-                          colorTipo: const Color.fromRGBO(26, 185, 127, 1),
-                          colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                          onPressed: () {
-                            Get.to(() => const MostrarProyecto());
-                          }),
-                    ],
-                  ),
-                )
-=======
                 Column(children: [
                   Obx(
                     () => controlp.getproyectosGral?.isEmpty == false
@@ -124,7 +98,6 @@ class ConsultarProyecto extends StatelessWidget {
                         : const Icon(Icons.abc),
                   )
                 ])
->>>>>>> origin/anap
               ],
             ),
           ),
