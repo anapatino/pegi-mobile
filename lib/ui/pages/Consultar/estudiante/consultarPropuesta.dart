@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/models/propuesta.dart';
-import 'package:pegi/ui/pages/consultar/estudiante/mostrarPropuesta.dart';
-import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
+import 'package:pegi/ui/pages/Consultar/estudiante/mostrarPropuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../../data/services/peticionesPropuesta.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
 
 class ConsultarPropuestas extends StatefulWidget {
   const ConsultarPropuestas({super.key});
@@ -19,11 +20,17 @@ class ConsultarPropuestas extends StatefulWidget {
 
 class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
   PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
+  ControlPropuesta controlp = Get.find();
+
+  ControlUsuario controlu = Get.find();
+
   late Future<List<Propuesta>> listaPropuesta =
-      peticionesPropuesta.consultarPropuestas();
+      PeticionesPropuesta.consultarPropuestas(controlu.emailf);
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    controlp.consultarPropuestas(controlu.emailf).then((value) => null);
+
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
@@ -66,25 +73,30 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
 
   Widget mostrarLista() {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: controlp.getproyectosGral?.isEmpty == true
+          ? 0
+          : controlp.getproyectosGral!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Propuesta>>(
           future: listaPropuesta,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
+          builder: (context, posicion) {
+            if (posicion.hasData) {
               return Mostrar(
-                  texto: snapshot.data![index].titulo.toString(),
-                  tipo: snapshot.data![index].estado.toString(),
+                  texto: posicion.data![index].titulo.toString(),
+                  tipo: posicion.data![index].estado.toString(),
                   colorTipo:
-                      snapshot.data![index].estado.toString().toLowerCase() ==
+                      posicion.data![index].estado.toString().toLowerCase() ==
                               'pendiente'
                           ? const Color.fromRGBO(91, 59, 183, 1)
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
-                  onPressed: () {});
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
+                  onPressed: () {
+                    Get.to(() =>
+                        MostrarPropuesta(propuesta: posicion.data![index]));
+                  });
+            } else if (posicion.hasError) {
+              return Text('${posicion.error}');
             }
             return const CircularProgressIndicator();
           },

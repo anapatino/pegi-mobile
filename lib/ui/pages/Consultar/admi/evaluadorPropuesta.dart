@@ -10,6 +10,8 @@ import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
+import '../../../../domain/Controllers/controladorUsuario.dart';
+
 class EvaluadorPropuesta extends StatefulWidget {
   const EvaluadorPropuesta({super.key});
 
@@ -19,8 +21,10 @@ class EvaluadorPropuesta extends StatefulWidget {
 
 class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
   PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
+  ControlUsuario controlu = Get.find();
+
   late Future<List<Propuesta>> listaPropuesta =
-      peticionesPropuesta.consultarPropuestas();
+      PeticionesPropuesta.consultarPropuestas(controlu.emailf);
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {

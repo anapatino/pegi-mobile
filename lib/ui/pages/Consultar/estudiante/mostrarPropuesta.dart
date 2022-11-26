@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
@@ -8,115 +9,18 @@ import '../../../widgets/Button.dart';
 import '../../../widgets/Input.dart';
 
 class MostrarPropuesta extends StatefulWidget {
-  final String titulo;
-  final String estado;
-  final String idPropuesta;
-  final String nombre;
-  final String apellido;
-  final String identificacion;
-  final String numero;
-  final String programa;
-  final String correo;
-  final String celular;
-  final String nombre2;
-  final String apellido2;
-  final String identificacion2;
-  final String numero2;
-  final String programa2;
-  final String correo2;
-  final String celular2;
-  final String lineaInvestigacion;
-  final String sublineaInvestigacion;
-  final String areaTematica;
-  final String grupoInvestigacion;
-  final String planteamiento;
-  final String justificacion;
-  final String general;
-  final String especificos;
-  final String bibliografia;
-  final String anexos;
-  const MostrarPropuesta(
-      {super.key,
-      required this.areaTematica,
-      required this.estado,
-      required this.titulo,
-      required this.idPropuesta,
-      required this.nombre,
-      required this.apellido,
-      required this.identificacion,
-      required this.numero,
-      required this.programa,
-      required this.correo,
-      required this.celular,
-      required this.nombre2,
-      required this.apellido2,
-      required this.identificacion2,
-      required this.numero2,
-      required this.programa2,
-      required this.correo2,
-      required this.celular2,
-      required this.lineaInvestigacion,
-      required this.sublineaInvestigacion,
-      required this.grupoInvestigacion,
-      required this.planteamiento,
-      required this.justificacion,
-      required this.general,
-      required this.especificos,
-      required this.bibliografia,
-      required this.anexos});
+  final Propuesta propuesta;
+
+  const MostrarPropuesta({
+    super.key,
+    required this.propuesta,
+  });
 
   @override
   State<MostrarPropuesta> createState() => _MostrarPropuestaState();
 }
 
 class _MostrarPropuestaState extends State<MostrarPropuesta> {
-  TextEditingController controlNombre = TextEditingController();
-
-  TextEditingController controlApellido = TextEditingController();
-
-  TextEditingController controlIdentificacion = TextEditingController();
-
-  TextEditingController controlNumero = TextEditingController();
-
-  TextEditingController controlPrograma = TextEditingController();
-
-  TextEditingController controlCorreo = TextEditingController();
-
-  TextEditingController controlCelular = TextEditingController();
-
-  TextEditingController controlNombre2 = TextEditingController();
-
-  TextEditingController controlApellido2 = TextEditingController();
-
-  TextEditingController controlIdentificacion2 = TextEditingController();
-
-  TextEditingController controlNumero2 = TextEditingController();
-
-  TextEditingController controlPrograma2 = TextEditingController();
-
-  TextEditingController controlCorreo2 = TextEditingController();
-
-  TextEditingController controlCelular2 = TextEditingController();
-
-  TextEditingController controlLineaInvestigacion = TextEditingController();
-
-  TextEditingController controlSublineaInvestigacion = TextEditingController();
-
-  TextEditingController controlAreaTematica = TextEditingController();
-
-  TextEditingController controlGrupoInvestigacion = TextEditingController();
-
-  TextEditingController controlPlanteamiento = TextEditingController();
-
-  TextEditingController controlJustificacion = TextEditingController();
-
-  TextEditingController controlBibliografia = TextEditingController();
-
-  TextEditingController controlGeneral = TextEditingController();
-
-  TextEditingController controlEspecifico = TextEditingController();
-  TextEditingController controlAnexo = TextEditingController();
-
   int _activeCurrentStep = 0;
 
   @override
@@ -136,7 +40,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlNombre,
+                      widget.propuesta.nombre,
                       "Nombre",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -145,7 +49,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlApellido,
+                      widget.propuesta.apellido,
                       "Appelido",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -154,7 +58,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlIdentificacion,
+                      widget.propuesta.identificacion,
                       "Identificacion",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -163,7 +67,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlNumero,
+                      widget.propuesta.numero,
                       "N°",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -172,7 +76,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlPrograma,
+                      widget.propuesta.programa,
                       "Programa",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -181,7 +85,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlCorreo,
+                      widget.propuesta.correo,
                       "Correo",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -190,7 +94,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlCelular,
+                      widget.propuesta.celular,
                       "Celular",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -204,7 +108,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlNombre2,
+                      widget.propuesta.nombre2,
                       "Nombre",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -213,7 +117,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlApellido2,
+                      widget.propuesta.apellido2,
                       "Appelido",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -222,7 +126,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlIdentificacion2,
+                      widget.propuesta.identificacion2,
                       "Identificacion",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -231,7 +135,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlNumero2,
+                      widget.propuesta.numero2,
                       "N°",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -240,7 +144,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlPrograma2,
+                      widget.propuesta.programa2,
                       "Programa",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -249,7 +153,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlCorreo2,
+                      widget.propuesta.correo2,
                       "Correo",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
@@ -258,31 +162,28 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Input(
                       false,
-                      controlCelular2,
+                      widget.propuesta.celular2,
                       "Celular",
                       const EdgeInsets.all(0),
                       const EdgeInsets.only(bottom: 8),
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
-                  Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const SizedBox(),
-                          SizedBox(width: Dimensiones.screenWidth * 0.02),
-                          Button(
-                            texto: "Siguiente",
-                            color: const Color.fromRGBO(91, 59, 183, 1),
-                            colorTexto: Colors.white,
-                            onPressed: () {
-                              setState(() => _activeCurrentStep += 1);
-                            },
-                          ),
-                        ],
-                      )),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const SizedBox(),
+                      SizedBox(width: Dimensiones.screenWidth * 0.02),
+                      Button(
+                        texto: "Siguiente",
+                        color: const Color.fromRGBO(91, 59, 183, 1),
+                        colorTexto: Colors.white,
+                        onPressed: () {
+                          setState(() => _activeCurrentStep += 1);
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               )),
           Step(
@@ -294,7 +195,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   children: [
                     Input(
                         false,
-                        controlLineaInvestigacion,
+                        widget.propuesta.lineaInvestigacion,
                         "Linea de investigacion",
                         const EdgeInsets.all(0),
                         const EdgeInsets.only(bottom: 8),
@@ -303,7 +204,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
                     Input(
                         false,
-                        controlSublineaInvestigacion,
+                        widget.propuesta.sublineaInvestigacion,
                         "Sublinea de investigacion",
                         const EdgeInsets.all(0),
                         const EdgeInsets.only(bottom: 8),
@@ -312,7 +213,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
                     Input(
                         false,
-                        controlAreaTematica,
+                        widget.propuesta.areaTematica,
                         "Area tematica",
                         const EdgeInsets.all(0),
                         const EdgeInsets.only(bottom: 8),
@@ -321,38 +222,35 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
                     Input(
                         false,
-                        controlGrupoInvestigacion,
+                        widget.propuesta.grupoInvestigacion,
                         "Grupo de investigacion",
                         const EdgeInsets.all(0),
                         const EdgeInsets.only(bottom: 8),
                         const Color.fromRGBO(30, 30, 30, 1),
                         const Color.fromARGB(255, 221, 221, 221)),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Siguiente",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep += 1);
-                              },
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Siguiente",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep += 1);
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
           Step(
               state: StepState.indexed,
@@ -362,7 +260,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InputMedium(
-                      controlPlanteamiento,
+                      widget.propuesta.planteamiento,
                       "Planteamiento",
                       EdgeInsets.symmetric(
                           vertical: Dimensiones.screenHeight * 0.02),
@@ -371,39 +269,36 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
                     InputMedium(
-                      controlJustificacion,
+                      widget.propuesta.justificacion,
                       "Justificacion",
                       EdgeInsets.symmetric(
                           vertical: Dimensiones.screenHeight * 0.02),
                       Colors.white,
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Siguiente",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep += 1);
-                              },
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Siguiente",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep += 1);
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
           Step(
               state: StepState.indexed,
@@ -413,7 +308,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InputMedium(
-                      controlGeneral,
+                      widget.propuesta.general,
                       "General",
                       EdgeInsets.symmetric(
                           vertical: Dimensiones.screenHeight * 0.02),
@@ -422,39 +317,36 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
                     InputMedium(
-                      controlEspecifico,
+                      widget.propuesta.especificos,
                       "Especificos",
                       EdgeInsets.symmetric(
                           vertical: Dimensiones.screenHeight * 0.02),
                       Colors.white,
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Siguiente",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep += 1);
-                              },
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Siguiente",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep += 1);
+                          },
+                        ),
+                      ],
+                    ),
                   ])),
           Step(
               state: StepState.indexed,
@@ -464,7 +356,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InputMedium(
-                      controlBibliografia,
+                      widget.propuesta.bibliografia,
                       "Bibliografias",
                       EdgeInsets.symmetric(
                           vertical: Dimensiones.screenHeight * 0.02),
@@ -473,35 +365,31 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
                     InputDownload(
-                        controlador: controlAnexo,
-                        texto: "Añadir anexo",
+                        texto: "Descargar anexo",
                         icon: Icons.add_to_photos_outlined,
                         color: const Color.fromRGBO(30, 30, 30, 1),
                         onPressed: () {}),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: Dimensiones.height2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Button(
-                              texto: "Atras",
-                              color: Color.fromARGB(255, 66, 66, 66),
-                              colorTexto: Colors.white,
-                              onPressed: () {
-                                setState(() => _activeCurrentStep -= 1);
-                              },
-                            ),
-                            SizedBox(width: Dimensiones.screenWidth * 0.02),
-                            Button(
-                              texto: "Enviar",
-                              color: const Color.fromRGBO(91, 59, 183, 1),
-                              colorTexto: Colors.white,
-                              onPressed: () {},
-                            ),
-                          ],
-                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Button(
+                          texto: "Atras",
+                          color: Color.fromARGB(255, 66, 66, 66),
+                          colorTexto: Colors.white,
+                          onPressed: () {
+                            setState(() => _activeCurrentStep -= 1);
+                          },
+                        ),
+                        SizedBox(width: Dimensiones.screenWidth * 0.02),
+                        Button(
+                          texto: "Enviar",
+                          color: const Color.fromRGBO(91, 59, 183, 1),
+                          colorTexto: Colors.white,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
                   ])),
         ];
     return Scaffold(
@@ -515,12 +403,12 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
             Header(
                 icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
             MostrarTodo(
-                texto: widget.areaTematica,
-                colorBoton: widget.estado.toLowerCase() == 'pendiente'
+                texto: widget.propuesta.areaTematica,
+                colorBoton: widget.propuesta.estado.toLowerCase() == 'pendiente'
                     ? const Color.fromRGBO(91, 59, 183, 1)
                     : const Color.fromRGBO(18, 180, 122, 1),
                 estado: true,
-                tipo: widget.estado,
+                tipo: widget.propuesta.estado,
                 onPressed: () {},
                 color: Colors.black,
                 fijarIcon: false,

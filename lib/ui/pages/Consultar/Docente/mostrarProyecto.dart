@@ -67,7 +67,6 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
             ),
           ),
           InputDownload(
-              controlador: controlDocumento,
               texto: "Descargar documento",
               icon: Icons.download_rounded,
               color: const Color.fromRGBO(30, 30, 30, 1),

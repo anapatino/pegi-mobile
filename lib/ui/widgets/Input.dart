@@ -90,14 +90,12 @@ class InputMedium extends StatelessWidget {
 }
 
 class InputDownload extends StatelessWidget {
-  final TextEditingController controlador;
   final String texto;
   IconData icon;
   final Color color;
   final VoidCallback? onPressed;
   InputDownload(
-      {required this.controlador,
-      required this.texto,
+      {required this.texto,
       required this.icon,
       required this.color,
       this.onPressed,

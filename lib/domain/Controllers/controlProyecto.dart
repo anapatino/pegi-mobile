@@ -9,7 +9,6 @@ import 'package:pegi/domain/models/proyecto.dart';
 import '../../data/services/peticionesProyecto.dart';
 
 class ControlProyecto extends GetxController {
-  static final FirebaseFirestore _db = FirebaseFirestore.instance;
   final Rxn<List<Proyecto>> _proyectoFirestore = Rxn<List<Proyecto>>();
 
   Future<void> consultarProyectos(email) async {
