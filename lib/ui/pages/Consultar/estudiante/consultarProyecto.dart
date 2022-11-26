@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/data/services/peticionesProyecto.dart';
+import 'package:pegi/domain/Controllers/controladorUsuario.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
+import '../../../../domain/Controllers/controlProyecto.dart';
 import '../../../../domain/models/proyecto.dart';
 
 class ConsultarProyecto extends StatefulWidget {
@@ -18,11 +20,17 @@ class ConsultarProyecto extends StatefulWidget {
 
 class _ConsultarProyectoState extends State<ConsultarProyecto> {
   PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  ControlProyecto controlp = Get.find();
+
+  ControlUsuario controlu = Get.find();
+
   late Future<List<Proyecto>> listaProyecto =
-      peticionesProyecto.consultarProyectos();
+      PeticionesProyecto.consultarProyectos(controlu.emailf);
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    controlp.consultarProyectos(controlu.emailf).then((value) => null);
+
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
@@ -67,30 +75,32 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
 
   Widget mostrarLista() {
     return ListView.builder(
-      itemCount: 4,
+      itemCount: controlp.getproyectosGral?.isEmpty == true
+          ? 0
+          : controlp.getproyectosGral!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Proyecto>>(
           future: listaProyecto,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
+          builder: (context, posicion) {
+            if (posicion.hasData) {
               return Mostrar(
-                  texto: snapshot.data![index].titulo.toString(),
-                  tipo: snapshot.data![index].estado.toString(),
+                  texto: posicion.data![index].titulo.toString(),
+                  tipo: posicion.data![index].estado.toString(),
                   colorTipo:
-                      snapshot.data![index].estado.toString().toLowerCase() ==
+                      posicion.data![index].estado.toString().toLowerCase() ==
                               'pendiente'
                           ? const Color.fromRGBO(91, 59, 183, 1)
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {
                     Get.to(() => MostrarProyecto(
-                          titulo: snapshot.data![index].titulo.toString(),
-                          estado: snapshot.data![index].estado.toString(),
+                          titulo: posicion.data![index].titulo.toString(),
+                          estado: posicion.data![index].estado.toString(),
                         ));
                   });
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
+            } else if (posicion.hasError) {
+              return Text('${posicion.error}');
             }
             return const CircularProgressIndicator();
           },

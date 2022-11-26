@@ -7,6 +7,7 @@ import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../../data/services/peticionesProyecto.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
 import '../../Calificar/asignarEvaluador.dart';
 import '../../Calificar/calificarProyecto.dart';
 
@@ -22,8 +23,9 @@ class MostrarProyecto extends StatefulWidget {
 
 class _MostrarProyectoState extends State<MostrarProyecto> {
   PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  ControlUsuario controlu = Get.find();
   late Future<List<Proyecto>> listaProyecto =
-      peticionesProyecto.consultarProyectos();
+      PeticionesProyecto.consultarProyectos(controlu.emailf);
   TextEditingController controlDocumento = TextEditingController();
 
   @override

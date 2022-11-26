@@ -6,6 +6,7 @@ import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import '../../../../data/services/peticionesProyecto.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
 import '../../../utils/Dimensiones.dart';
 import '../../../widgets/Mostrar.dart';
 import '../../calificar/asignarEvaluador.dart';
@@ -19,8 +20,9 @@ class EvaluadorProyecto extends StatefulWidget {
 
 class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
   PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  ControlUsuario controlu = Get.find();
   late Future<List<Proyecto>> listaProyecto =
-      peticionesProyecto.consultarProyectos();
+      PeticionesProyecto.consultarProyectos(controlu.emailf);
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {

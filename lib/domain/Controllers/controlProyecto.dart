@@ -1,12 +1,24 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pegi/data/services/peticionesPropuesta.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/models/proyecto.dart';
 
 import '../../data/services/peticionesProyecto.dart';
 
 class ControlProyecto extends GetxController {
+  static final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final Rxn<List<Proyecto>> _proyectoFirestore = Rxn<List<Proyecto>>();
+
+  Future<void> consultarProyectos(email) async {
+    _proyectoFirestore.value =
+        await PeticionesProyecto.consultarProyectos(email);
+  }
+
+  List<Proyecto>? get getproyectosGral => _proyectoFirestore.value;
+
   Future<void> registrarProyecto(Map<String, dynamic> proyecto,
       String? pickedFilePath, String? pickedFileextencion) async {
     try {

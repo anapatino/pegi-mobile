@@ -52,44 +52,25 @@ class PeticionesProyecto {
     return r;
   }
 
-  Future<List<Proyecto>> consultarProyectos() async {
+  static Future<List<Proyecto>> consultarProyectos(email) async {
     List<Proyecto> lista = [];
     await _db.collection("Proyectos").get().then((respuesta) {
       for (var doc in respuesta.docs) {
-        log(doc.data().toString());
-        lista.add(Proyecto(
-          titulo: doc.data()['titulo'],
-          idEstudiante: doc.data()['idEstudiante'],
-          anexos: doc.data()['anexos'],
-          estado: doc.data()['estado'],
-          calificacion: doc.data()['calificacion'],
-          idDocente: doc.data()['idDocente'],
-          idProyecto: doc.data()['idProyecto'],
-          retroalimentacion: doc.data()['retroalimentacion'],
-        ));
+        if (doc.data()['idEstudiante'] == email) {
+          lista.add(Proyecto(
+            titulo: doc.data()['titulo'],
+            idEstudiante: doc.data()['idEstudiante'],
+            anexos: doc.data()['anexos'],
+            estado: doc.data()['estado'],
+            calificacion: doc.data()['calificacion'],
+            idDocente: doc.data()['idDocente'],
+            idProyecto: doc.data()['idProyecto'],
+            retroalimentacion: doc.data()['retroalimentacion'],
+          ));
+        }
       }
     });
-    return lista;
-  }
 
-  Future<List<Proyecto>> consultarProyecto(String titulo) async {
-    List<Proyecto> lista = [];
-    await _db.collection("Proyectos").get().then((respuesta) {
-      for (var doc in respuesta.docs) {
-        log(doc.data().toString());
-        lista.add(Proyecto(
-          titulo: doc.data()['titulo'],
-          idEstudiante: doc.data()['idEstudiante'],
-          anexos: doc.data()['anexos'],
-          estado: doc.data()['estado'],
-          calificacion: doc.data()['calificacion'],
-          idDocente: doc.data()['idDocente'],
-          idProyecto: doc.data()['idProyecto'],
-          retroalimentacion: doc.data()['retroalimentacion'],
-        ));
-        print(doc.data()['titulo']);
-      }
-    });
     return lista;
   }
 }
