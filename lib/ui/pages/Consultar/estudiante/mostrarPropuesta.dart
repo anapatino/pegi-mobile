@@ -403,7 +403,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
             Header(
                 icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
             MostrarTodo(
-                texto: widget.propuesta.areaTematica,
+                texto: widget.propuesta.titulo,
                 colorBoton: widget.propuesta.estado.toLowerCase() == 'pendiente'
                     ? const Color.fromRGBO(91, 59, 183, 1)
                     : const Color.fromRGBO(18, 180, 122, 1),
