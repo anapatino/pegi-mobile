@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarProyecto.dart';
+import '../../../../domain/Controllers/controlProyecto.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
 import '../../../utils/Dimensiones.dart';
 import '../../../widgets/Consulta.dart';
 
@@ -15,6 +20,9 @@ class ConsultarEstudiante extends StatefulWidget {
 class _ConsultarEstudianteState extends State<ConsultarEstudiante> {
   @override
   Widget build(BuildContext context) {
+    ControlProyecto controlp = Get.find();
+    ControlUsuario controlu = Get.find();
+    ControlPropuesta controlpropues = Get.find();
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -50,7 +58,10 @@ class _ConsultarEstudianteState extends State<ConsultarEstudiante> {
                 icon: Icons.folder,
                 texto: 'Consultar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
-                onPressed: () {
+                onPressed: () async {
+                  await controlpropues
+                      .consultarPropuestas(controlu.emailf)
+                      .then((value) => log("consulta estudiante"));
                   Get.to(() => const ConsultarPropuestas());
                 }),
             const SizedBox(height: 30),
@@ -58,7 +69,11 @@ class _ConsultarEstudianteState extends State<ConsultarEstudiante> {
                 icon: Icons.folder,
                 texto: 'Consultar \nProyecto',
                 colorBoton: const Color.fromRGBO(33, 153, 245, 1),
-                onPressed: () {
+                onPressed: () async {
+                  await controlp
+                      .consultarProyectos(controlu.emailf)
+                      .then((value) => log("consulta estudiante"));
+
                   Get.to(() => const ConsultarProyecto());
                 }),
           ],

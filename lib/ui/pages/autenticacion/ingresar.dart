@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/Controllers/controladorUsuario.dart';
+import 'package:pegi/domain/models/usuario.dart';
+import 'package:pegi/ui/pages/home.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Icons.dart';
 import 'package:pegi/ui/widgets/Input.dart';
@@ -15,6 +20,8 @@ class Ingresar extends StatefulWidget {
 class _IngresarState extends State<Ingresar> {
   TextEditingController controlUsuario = TextEditingController();
   TextEditingController controlContrasena = TextEditingController();
+  ControlUsuario controlu = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +104,7 @@ class _IngresarState extends State<Ingresar> {
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: FlatButton(
+                    child: TextButton(
                         child: Text(
                           '¿No tiene una cuenta?',
                           style: GoogleFonts.kodchasan(
@@ -112,7 +119,34 @@ class _IngresarState extends State<Ingresar> {
                         EdgeInsets.symmetric(vertical: Dimensiones.height5),
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.offAllNamed('/dashboard');
+                        controlu
+                            .enviarDatos(
+                                controlUsuario.text, controlContrasena.text)
+                            .then((value) {
+                          if (controlu.emailf != 'Sin Registro') {
+                            log(controlu.rol + "gola");
+
+                            if (controlu.rol != "") {
+                              Get.offAll(HomePage(rol: controlu.rol));
+                            }
+                          } else {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: 'Validacion de Usuarios',
+                              message: 'Datos Invalidos',
+                              icon: Icon(Icons.warning),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: Colors.red,
+                            ));
+                          }
+                        }).catchError((e) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: 'Validacion de Usuarios',
+                            message: 'Datos Invalidos',
+                            icon: Icon(Icons.warning),
+                            duration: Duration(seconds: 5),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
                       },
                       child: Text("Ingresar",
                           style: GoogleFonts.kodchasan(
@@ -133,5 +167,46 @@ class _IngresarState extends State<Ingresar> {
             ))
       ]),
     );
+  }
+
+  ValidarUsuario(BuildContext context, TextEditingController controlUsuario,
+      TextEditingController controlContra) {
+    var rol = EncontrarUsuario(context, controlUsuario, controlContra);
+    if (rol != null) {
+      Get.offAll(HomePage(rol: rol));
+    } else {
+      Get.showSnackbar(const GetSnackBar(
+        title: 'Validacion de usuario',
+        message: 'Los datos ingresados no son correctos',
+        icon: Icon(Icons.warning),
+        duration: Duration(seconds: 5),
+        backgroundColor: Colors.red,
+      ));
+    }
+    controlUsuario.clear();
+    controlContra.clear();
+  }
+
+  EncontrarUsuario(BuildContext context, TextEditingController controlUsuario,
+      TextEditingController controlContra) {
+    String user = controlUsuario.text;
+    String password = controlContra.text;
+    String findUser;
+    if (user.isNotEmpty && password.isNotEmpty) {
+      for (var element in listaUsuario) {
+        if (element.usuario == user && element.contrasena == password) {
+          findUser = element.rol;
+          return findUser;
+        }
+      }
+    } else {
+      Get.showSnackbar(const GetSnackBar(
+        title: 'Mensaje Informativo',
+        message: 'No ha ingresado los campos requeridos',
+        icon: Icon(Icons.warning),
+        duration: Duration(seconds: 5),
+        backgroundColor: Colors.red,
+      ));
+    }
   }
 }

@@ -33,7 +33,6 @@ class _AppState extends State<App> {
         '/principal': (context) => const Principal(),
         '/ingresar': (context) => const Ingresar(),
         '/registrar': (context) => const Registrar(),
-        '/dashboard': (context) => const HomePage(),
       },
       home: const Principal(),
     );

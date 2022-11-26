@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 
 class BottomMenu extends StatefulWidget {
   final Function currentIndex;
@@ -15,9 +16,13 @@ class _BottomMenuState extends State<BottomMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.02),
+      height: Dimensiones.screenHeight * 0.087,
       decoration: const BoxDecoration(color: Colors.black),
       child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimensiones.screenHeight * 0.002,
+            horizontal: Dimensiones.screenWidth * 0.03),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(100),

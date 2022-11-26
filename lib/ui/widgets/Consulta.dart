@@ -109,7 +109,11 @@ class Mostrar extends StatelessWidget {
                       height: Dimensiones.screenHeight * 0.015,
                     ),
                     Container(
+<<<<<<< HEAD
                       width: Dimensiones.screenWidth * 0.18,
+=======
+                      width: Dimensiones.screenWidth * 0.25,
+>>>>>>> origin/anap
                       height: Dimensiones.screenHeight * 0.03,
                       padding: const EdgeInsets.only(top: 2.0),
                       decoration: BoxDecoration(

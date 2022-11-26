@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/models/proyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+import 'package:pegi/ui/widgets/inputText.dart';
+
+import '../../../../data/services/peticionesProyecto.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
+import '../../Calificar/calificarProyecto.dart';
 
 class MostrarProyecto extends StatefulWidget {
-  const MostrarProyecto({super.key});
+  final Proyecto proyecto;
+
+  const MostrarProyecto({super.key, required this.proyecto});
 
   @override
   State<MostrarProyecto> createState() => _MostrarProyectoState();
@@ -24,13 +32,15 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
             Widget>[
           Header(icon: Icons.arrow_back_rounded, texto: 'Consultar Proyecto'),
           MostrarTodo(
-              texto: 'Harina base de \ninsectos.',
-              colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+              texto: widget.proyecto.titulo,
+              colorBoton: widget.proyecto.estado.toLowerCase() == 'pendiente'
+                  ? const Color.fromRGBO(91, 59, 183, 1)
+                  : const Color.fromRGBO(18, 180, 122, 1),
               estado: true,
-              tipo: 'Pendiente',
+              tipo: widget.proyecto.estado,
               onPressed: () {},
               color: Colors.black,
-              fijarIcon: true,
+              fijarIcon: false,
               icon: Icons.mode_edit_outline_rounded,
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensiones.screenWidth * 0.06,
@@ -48,6 +58,15 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
               ),
             ),
           ),
+          InputText(
+              false,
+              widget.proyecto.titulo,
+              "Titulo del proyecto",
+              const EdgeInsets.all(0),
+              const EdgeInsets.only(bottom: 8),
+              const Color.fromRGBO(30, 30, 30, 1),
+              const Color.fromARGB(255, 221, 221, 221)),
+          SizedBox(height: Dimensiones.screenHeight * 0.022),
           InputDownload(
               texto: "Descargar documento",
               icon: Icons.download_rounded,

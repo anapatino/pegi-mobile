@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pegi/ui/pages/consultar/admi/consultarAdmin.dart';
-import 'package:pegi/ui/pages/consultar/consultarDocente.dart';
 import 'package:pegi/ui/pages/consultar/estudiante/consultarEstudiante.dart';
 import 'package:pegi/ui/pages/dashboard/dashboardAdmin.dart';
 import 'package:pegi/ui/pages/registrar/registrar.dart';
+import '../../ui/pages/Consultar/Docente/consultarDocente.dart';
 import '../../ui/pages/Dashboard/Dashboard.dart';
 import '../../ui/pages/dashboard/dashboardEst.dart';
 
@@ -24,8 +24,8 @@ class Routes extends StatelessWidget {
       const ConsultarAdmin(),
     ];
     List<Widget> myRoutesEstudiante = [
-      const Registrar(),
       const DashboardEstudiante(),
+      const Registrar(),
       const ConsultarEstudiante(),
     ];
     if (rutaElejida == 'estudiante') {
@@ -34,7 +34,7 @@ class Routes extends StatelessWidget {
       if (rutaElejida == 'docente') {
         return myRoutesDocente[index];
       } else {
-        if (rutaElejida == 'admin') {
+        if (rutaElejida == 'admi') {
           return myRoutesAdmin[index];
         }
       }

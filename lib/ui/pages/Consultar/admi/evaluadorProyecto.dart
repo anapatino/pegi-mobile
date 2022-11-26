@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/models/proyecto.dart';
+import 'package:pegi/ui/pages/Consultar/admi/mostrarProyecto.dart';
+import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';
+import '../../../../data/services/peticionesProyecto.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
 import '../../../utils/Dimensiones.dart';
 import '../../../widgets/Mostrar.dart';
 import '../../calificar/asignarEvaluador.dart';
@@ -14,13 +19,19 @@ class EvaluadorProyecto extends StatefulWidget {
 }
 
 class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
+  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  ControlUsuario controlu = Get.find();
+  late Future<List<Proyecto>> listaProyecto =
+      PeticionesProyecto.consultarProyectos(controlu.emailf);
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-          padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.height5,
+              horizontal: Dimensiones.screenWidth * 0.02),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -29,38 +40,46 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
                     texto: 'Evaluadores Proyecto'),
                 Filter(controlador: controlador, texto: 'Filtrar'),
                 const SizedBox(height: 5),
-                MostrarTodo(
-                    texto: 'Harina base de \ninsectos.',
-                    colorBoton: const Color.fromRGBO(91, 59, 183, 1),
-                    estado: true,
-                    tipo: 'Pendiente',
-                    onPressed: () {
-                      Get.to(() => const AsignarEvaluador());
-                    },
-                    color: const Color.fromRGBO(30, 30, 30, 1),
-                    fijarIcon: true,
-                    icon: Icons.person_add_alt_rounded,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Dimensiones.screenWidth * 0.06,
-                        vertical: Dimensiones.height2)),
-                const SizedBox(height: 5),
-                MostrarTodo(
-                    texto: 'Harina base de \ninsectos.',
-                    colorBoton: const Color.fromRGBO(26, 185, 127, 1),
-                    estado: true,
-                    tipo: 'Asignado',
-                    onPressed: () {
-                      Get.to(() => const AsignarEvaluador());
-                    },
-                    color: const Color.fromRGBO(30, 30, 30, 1),
-                    fijarIcon: true,
-                    icon: Icons.person_remove_alt_1_rounded,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Dimensiones.screenWidth * 0.06,
-                        vertical: Dimensiones.height2)),
+                Column(
+                  children: [mostrarLista()],
+                )
               ],
             ),
           ),
         ));
+  }
+
+  Widget mostrarLista() {
+    return ListView.builder(
+      itemCount: 4,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return FutureBuilder<List<Proyecto>>(
+          future: listaProyecto,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Mostrar(
+                  texto: snapshot.data![index].titulo.toString(),
+                  tipo: snapshot.data![index].estado.toString(),
+                  colorTipo:
+                      snapshot.data![index].estado.toString().toLowerCase() ==
+                              'pendiente'
+                          ? const Color.fromRGBO(91, 59, 183, 1)
+                          : const Color.fromRGBO(18, 180, 122, 1),
+                  colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                  onPressed: () {
+                    Get.to(() => MostrarProyecto(
+                          titulo: snapshot.data![index].titulo.toString(),
+                          estado: snapshot.data![index].estado.toString(),
+                        ));
+                  });
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        );
+      },
+    );
   }
 }
