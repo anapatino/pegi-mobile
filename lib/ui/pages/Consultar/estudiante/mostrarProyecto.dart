@@ -5,6 +5,7 @@ import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+import 'package:pegi/ui/widgets/inputText.dart';
 
 import '../../../../data/services/peticionesProyecto.dart';
 import '../../../../domain/Controllers/controladorUsuario.dart';
@@ -20,12 +21,6 @@ class MostrarProyecto extends StatefulWidget {
 }
 
 class _MostrarProyectoState extends State<MostrarProyecto> {
-  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
-  ControlUsuario controlu = Get.find();
-  late Future<List<Proyecto>> listaProyecto =
-      PeticionesProyecto.consultarProyectos(controlu.emailf);
-  TextEditingController controlDocumento = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +60,15 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
               ),
             ),
           ),
+          InputText(
+              false,
+              widget.proyecto.titulo,
+              "Titulo del proyecto",
+              const EdgeInsets.all(0),
+              const EdgeInsets.only(bottom: 8),
+              const Color.fromRGBO(30, 30, 30, 1),
+              const Color.fromARGB(255, 221, 221, 221)),
+          SizedBox(height: Dimensiones.screenHeight * 0.022),
           InputDownload(
               texto: "Descargar documento",
               icon: Icons.download_rounded,

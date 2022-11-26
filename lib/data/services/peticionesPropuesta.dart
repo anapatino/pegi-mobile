@@ -114,6 +114,7 @@ class PeticionesPropuesta {
     await _db.collection("Propuesta").get().then((respuesta) {
       for (var doc in respuesta.docs) {
         if (doc.data()['idEstudiante'] == email) {
+          log(doc.data()['idEstudiante']);
           lista.add(Propuesta(
             titulo: doc.data()['titulo'],
             estado: doc.data()['estado'],

@@ -6,7 +6,7 @@ import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../widgets/Button.dart';
-import '../../../widgets/Input.dart';
+import '../../../widgets/inputText.dart';
 
 class MostrarPropuesta extends StatefulWidget {
   final Propuesta propuesta;
@@ -21,6 +21,32 @@ class MostrarPropuesta extends StatefulWidget {
 }
 
 class _MostrarPropuestaState extends State<MostrarPropuesta> {
+  TextEditingController controlNombre = TextEditingController();
+  TextEditingController controlApellido = TextEditingController();
+  TextEditingController controlIdentificacion = TextEditingController();
+  TextEditingController controlNumero = TextEditingController();
+  TextEditingController controlPrograma = TextEditingController();
+  TextEditingController controlCorreo = TextEditingController();
+  TextEditingController controlCelular = TextEditingController();
+  TextEditingController controlNombre2 = TextEditingController();
+  TextEditingController controlApellido2 = TextEditingController();
+  TextEditingController controlIdentificacion2 = TextEditingController();
+  TextEditingController controlNumero2 = TextEditingController();
+  TextEditingController controlPrograma2 = TextEditingController();
+  TextEditingController controlCorreo2 = TextEditingController();
+  TextEditingController controlCelular2 = TextEditingController();
+  TextEditingController controlLineaInvestigacion = TextEditingController();
+  TextEditingController controlSublineaInvestigacion = TextEditingController();
+  TextEditingController controlAreaTematica = TextEditingController();
+  TextEditingController controlGrupoInvestigacion = TextEditingController();
+  TextEditingController controlPlanteamiento = TextEditingController();
+  TextEditingController controlJustificacion = TextEditingController();
+  TextEditingController controlBibliografia = TextEditingController();
+
+  TextEditingController controlGeneral = TextEditingController();
+  TextEditingController controlEspecifico = TextEditingController();
+  TextEditingController controlAnexo = TextEditingController();
+  TextEditingController controlTitulo = TextEditingController();
   int _activeCurrentStep = 0;
 
   @override
@@ -33,12 +59,21 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  InputText(
+                      false,
+                      controlNombre.text = widget.propuesta.titulo,
+                      "Titulo de la Propuesta",
+                      const EdgeInsets.all(0),
+                      const EdgeInsets.only(bottom: 8),
+                      const Color.fromRGBO(30, 30, 30, 1),
+                      const Color.fromARGB(255, 221, 221, 221)),
+                  SizedBox(height: Dimensiones.screenHeight * 0.022),
                   Text('Primer Integrante',
                       style: GoogleFonts.montserrat(
                           fontSize: 16.0,
                           color: const Color.fromARGB(255, 221, 221, 221))),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.nombre,
                       "Nombre",
@@ -47,7 +82,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.apellido,
                       "Appelido",
@@ -56,7 +91,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.identificacion,
                       "Identificacion",
@@ -65,7 +100,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.numero,
                       "N°",
@@ -74,7 +109,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.programa,
                       "Programa",
@@ -83,7 +118,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.correo,
                       "Correo",
@@ -92,7 +127,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.celular,
                       "Celular",
@@ -106,7 +141,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                           fontSize: 16.0,
                           color: const Color.fromARGB(255, 221, 221, 221))),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.nombre2,
                       "Nombre",
@@ -115,7 +150,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.apellido2,
                       "Appelido",
@@ -124,7 +159,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.identificacion2,
                       "Identificacion",
@@ -133,7 +168,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.numero2,
                       "N°",
@@ -142,7 +177,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.programa2,
                       "Programa",
@@ -151,7 +186,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.correo2,
                       "Correo",
@@ -160,7 +195,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                       const Color.fromARGB(255, 221, 221, 221)),
                   SizedBox(height: Dimensiones.screenHeight * 0.022),
-                  Input(
+                  InputText(
                       false,
                       widget.propuesta.celular2,
                       "Celular",
@@ -193,7 +228,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
               content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Input(
+                    InputText(
                         false,
                         widget.propuesta.lineaInvestigacion,
                         "Linea de investigacion",
@@ -202,7 +237,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                         const Color.fromRGBO(30, 30, 30, 1),
                         const Color.fromARGB(255, 221, 221, 221)),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    Input(
+                    InputText(
                         false,
                         widget.propuesta.sublineaInvestigacion,
                         "Sublinea de investigacion",
@@ -211,7 +246,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                         const Color.fromRGBO(30, 30, 30, 1),
                         const Color.fromARGB(255, 221, 221, 221)),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    Input(
+                    InputText(
                         false,
                         widget.propuesta.areaTematica,
                         "Area tematica",
@@ -220,7 +255,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                         const Color.fromRGBO(30, 30, 30, 1),
                         const Color.fromARGB(255, 221, 221, 221)),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    Input(
+                    InputText(
                         false,
                         widget.propuesta.grupoInvestigacion,
                         "Grupo de investigacion",
@@ -259,7 +294,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
               content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputMedium(
+                    InputTextMedium(
                       widget.propuesta.planteamiento,
                       "Planteamiento",
                       EdgeInsets.symmetric(
@@ -268,7 +303,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    InputMedium(
+                    InputTextMedium(
                       widget.propuesta.justificacion,
                       "Justificacion",
                       EdgeInsets.symmetric(
@@ -307,7 +342,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
               content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputMedium(
+                    InputTextMedium(
                       widget.propuesta.general,
                       "General",
                       EdgeInsets.symmetric(
@@ -316,7 +351,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    InputMedium(
+                    InputTextMedium(
                       widget.propuesta.especificos,
                       "Especificos",
                       EdgeInsets.symmetric(
@@ -355,7 +390,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
               content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputMedium(
+                    InputTextMedium(
                       widget.propuesta.bibliografia,
                       "Bibliografias",
                       EdgeInsets.symmetric(
@@ -364,7 +399,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     SizedBox(height: Dimensiones.screenHeight * 0.022),
-                    InputDownload(
+                    InputTextDownload(
                         texto: "Descargar anexo",
                         icon: Icons.add_to_photos_outlined,
                         color: const Color.fromRGBO(30, 30, 30, 1),
@@ -393,16 +428,19 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                   ])),
         ];
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Header(
-                icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
-            MostrarTodo(
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+              top: Dimensiones.height5,
+              right: Dimensiones.width5,
+              left: Dimensiones.width5),
+          child: Column(
+            children: <Widget>[
+              Header(
+                  icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
+              MostrarTodo(
                 texto: widget.propuesta.titulo,
                 colorBoton: widget.propuesta.estado.toLowerCase() == 'pendiente'
                     ? const Color.fromRGBO(91, 59, 183, 1)
@@ -413,84 +451,86 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 color: Colors.black,
                 fijarIcon: false,
                 icon: Icons.mode_edit_outline_rounded,
-                padding: EdgeInsets.symmetric(
-                    horizontal: Dimensiones.screenWidth * 0.06,
-                    vertical: Dimensiones.height2)),
-            Padding(
-              padding:
-                  EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.0001),
-              child: Container(
-                height: Dimensiones.screenHeight * 0.0001,
-                width: Dimensiones.width90,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        width: 4, color: Color.fromRGBO(30, 30, 30, 1)),
-                  ),
-                ),
+                padding: EdgeInsets.zero,
               ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                  vertical: Dimensiones.screenHeight * 0.002),
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimensiones.screenWidth * 0.001),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              Container(
+                margin: EdgeInsets.zero,
+                padding: EdgeInsets.zero,
+                height: Dimensiones.screenHeight * 0.55,
+                child: Column(
                   children: [
-                    Text('General',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 12.0,
-                            color: const Color.fromARGB(255, 221, 221, 221))),
-                    Text('Especificaciones',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 12.0,
-                            color: const Color.fromARGB(255, 221, 221, 221))),
-                    Text('Problematica',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 12.0,
-                            color: const Color.fromARGB(255, 221, 221, 221))),
-                    Text('Objetivos',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 12.0,
-                            color: const Color.fromARGB(255, 221, 221, 221))),
-                    Text('Bibliografia',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 12.0,
-                            color: const Color.fromARGB(255, 221, 221, 221))),
-                  ]),
-            ),
-            Expanded(
-              child: Theme(
-                data: ThemeData(
-                    scrollbarTheme: ScrollbarThemeData(
-                      interactive: true,
-                      crossAxisMargin: Dimensiones.screenWidth * 0.02,
-                      mainAxisMargin: Dimensiones.screenWidth * 0.05,
-                      radius: const Radius.circular(14),
-                      thumbColor: MaterialStateProperty.all((Colors.grey[500])),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Dimensiones.screenWidth * 0.01),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('General',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12.0,
+                                    color: const Color.fromARGB(
+                                        255, 221, 221, 221))),
+                            Text('Especif',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12.0,
+                                    color: const Color.fromARGB(
+                                        255, 221, 221, 221))),
+                            Text('Probem',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12.0,
+                                    color: const Color.fromARGB(
+                                        255, 221, 221, 221))),
+                            Text('Objetivo',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12.0,
+                                    color: const Color.fromARGB(
+                                        255, 221, 221, 221))),
+                            Text('anexos',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12.0,
+                                    color: const Color.fromARGB(
+                                        255, 221, 221, 221))),
+                          ]),
                     ),
-                    canvasColor: Colors.transparent,
-                    shadowColor: Colors.transparent),
-                child: Stepper(
-                  physics: const ScrollPhysics(),
-                  margin: EdgeInsets.zero,
-                  type: StepperType.horizontal,
-                  currentStep: _activeCurrentStep,
-                  steps: stepList(),
-                  onStepTapped: (int index) {
-                    setState(() => _activeCurrentStep = index);
-                  },
+                    Expanded(
+                      child: Theme(
+                        data: ThemeData(
+                            scrollbarTheme: ScrollbarThemeData(
+                              interactive: true,
+                              crossAxisMargin: Dimensiones.screenWidth * 0.02,
+                              mainAxisMargin: Dimensiones.screenWidth * 0.05,
+                              radius: const Radius.circular(14),
+                              thumbColor:
+                                  MaterialStateProperty.all((Colors.grey[500])),
+                            ),
+                            canvasColor: Colors.transparent,
+                            shadowColor: Colors.transparent),
+                        child: Stepper(
+                          controlsBuilder: (context, controller) {
+                            return const SizedBox.shrink();
+                          },
+                          physics: const ScrollPhysics(),
+                          margin: EdgeInsets.zero,
+                          type: StepperType.horizontal,
+                          currentStep: _activeCurrentStep,
+                          steps: stepList(),
+                          onStepTapped: (int index) {
+                            setState(() => _activeCurrentStep = index);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

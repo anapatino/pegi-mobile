@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/data/services/peticionesProyecto.dart';
 import 'package:pegi/domain/Controllers/controladorUsuario.dart';
-import 'package:pegi/ui/pages/consultar/estudiante/mostrarProyecto.dart';
+import 'package:pegi/ui/pages/Consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
@@ -75,7 +75,7 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
 
   Widget mostrarLista() {
     return ListView.builder(
-      itemCount: controlp.getproyectosGral?.isEmpty == true
+      itemCount: controlp.getproyectosGral!.isEmpty == true
           ? 0
           : controlp.getproyectosGral!.length,
       shrinkWrap: true,
@@ -94,10 +94,8 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {
-                    Get.to(() => MostrarProyecto(
-                          titulo: posicion.data![index].titulo.toString(),
-                          estado: posicion.data![index].estado.toString(),
-                        ));
+                    Get.to(
+                        () => MostrarProyecto(proyecto: posicion.data![index]));
                   });
             } else if (posicion.hasError) {
               return Text('${posicion.error}');
