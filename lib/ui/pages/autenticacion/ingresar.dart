@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Icons.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
@@ -23,32 +24,26 @@ class _IngresarState extends State<Ingresar> {
             right: 0,
             child: Container(
               width: double.maxFinite,
-              height: 500,
-              decoration: BoxDecoration(
+              height: Dimensiones.height70,
+              decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: const AssetImage('assets/images/home.png'),
+                      image: AssetImage('assets/images/home.png'),
                       fit: BoxFit.cover)),
             )),
         Positioned(
-            top: 25,
-            left: 20,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: AppIcon(
-                      iconD: Icons.arrow_back_ios,
-                      iconColor: const Color.fromARGB(255, 202, 209, 209)),
-                  onPressed: () {
-                    Get.offAllNamed('/principal');
-                  },
-                )
-              ],
+            top: Dimensiones.height5,
+            left: Dimensiones.width5,
+            child: IconButton(
+              icon: AppIcon(
+                  iconD: Icons.arrow_back_ios,
+                  iconColor: const Color.fromARGB(255, 202, 209, 209)),
+              onPressed: () {
+                Get.offAllNamed('/principal');
+              },
             )),
         Positioned(
-            top: 100,
-            left: 60,
+            top: Dimensiones.height15,
+            left: Dimensiones.width15,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -71,10 +66,12 @@ class _IngresarState extends State<Ingresar> {
         Positioned(
             left: 0,
             right: 0,
-            top: 200,
-            height: 750,
+            top: Dimensiones.height30,
+            height: Dimensiones.height80,
             child: Container(
-              padding: const EdgeInsets.all(30),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensiones.width10,
+                  vertical: Dimensiones.height5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 color: Colors.white,
@@ -86,28 +83,33 @@ class _IngresarState extends State<Ingresar> {
                       controlUsuario,
                       "Usuario",
                       const EdgeInsets.all(0),
-                      const EdgeInsets.only(top: 30, bottom: 40),
-                      Colors.grey.shade700,
-                      const Color.fromARGB(255, 197, 197, 197)),
+                      EdgeInsets.symmetric(vertical: Dimensiones.height5),
+                      const Color.fromARGB(255, 197, 197, 197),
+                      Colors.grey.shade700),
                   Input(
-                      true,
-                      controlContrasena,
-                      "Contraseña",
-                      const EdgeInsets.all(0),
-                      const EdgeInsets.only(bottom: 10),
-                      Colors.grey.shade700,
-                      const Color.fromARGB(255, 197, 197, 197)),
+                    true,
+                    controlContrasena,
+                    "Contraseña",
+                    const EdgeInsets.all(0),
+                    const EdgeInsets.only(bottom: 8),
+                    const Color.fromARGB(255, 197, 197, 197),
+                    Colors.grey.shade700,
+                  ),
                   Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        '¿Olvidaste la contraseña?',
-                        style: GoogleFonts.kodchasan(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      )),
+                    alignment: Alignment.bottomRight,
+                    child: FlatButton(
+                        child: Text(
+                          '¿No tiene una cuenta?',
+                          style: GoogleFonts.kodchasan(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        onPressed: () => Get.offAllNamed('/registrar')),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 10),
+                    padding:
+                        EdgeInsets.symmetric(vertical: Dimensiones.height5),
                     child: ElevatedButton(
                       onPressed: () {
                         Get.offAllNamed('/dashboard');

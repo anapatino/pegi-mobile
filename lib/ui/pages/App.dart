@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pegi/ui/pages/dashboard/dashboard.dart';
 import 'package:pegi/ui/pages/home.dart';
 import 'package:pegi/ui/pages/principal/principal.dart';
 import 'package:pegi/ui/pages/autenticacion/ingresar.dart';
 import 'package:pegi/ui/pages/autenticacion/registrar.dart';
-import 'package:pegi/ui/widgets/tema.dart';
+import 'package:pegi/ui/utils/tema.dart';
 import 'package:get/get.dart';
 
 class App extends StatefulWidget {

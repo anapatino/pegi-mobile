@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 
 class Navbar extends StatelessWidget {
   final String rol;
@@ -10,7 +11,7 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, bottom: 40),
+      padding: EdgeInsets.only(bottom: Dimensiones.height5),
       child: Column(
         children: [
           Row(children: [

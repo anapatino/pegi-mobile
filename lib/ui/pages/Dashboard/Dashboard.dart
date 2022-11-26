@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Navbar.dart';
 import 'package:pegi/ui/widgets/ProgressAvatar.dart';
+
+import '../../widgets/Calendar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -15,10 +18,12 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
         child: Column(
           children: <Widget>[
             Navbar("Docente", Icons.space_dashboard),
+            const Calendar(),
             ProgressAvatar(
               porcentaje: 0.5,
               color: const Color.fromRGBO(91, 59, 183, 1),
@@ -26,7 +31,7 @@ class _DashboardState extends State<Dashboard> {
               texto: 'Propuestas \ncalificadas',
               seguimiento: '8/16 revisiones',
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: Dimensiones.height5),
             ProgressAvatar(
               porcentaje: 0.3,
               color: const Color.fromRGBO(33, 150, 243, 1),

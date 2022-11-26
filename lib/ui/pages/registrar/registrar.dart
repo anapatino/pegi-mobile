@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegi/ui/pages/Consultar/consultarPropuestas.dart';
-import 'package:pegi/ui/pages/consultar/consultarProyectos.dart';
+import 'package:pegi/ui/pages/consultar/estudiante/consultarPropuesta.dart';
+import 'package:pegi/ui/pages/consultar/estudiante/consultarProyecto.dart';
+import 'package:pegi/ui/pages/registrar/registrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
-import '../../widgets/Consulta.dart';
+import 'package:pegi/ui/widgets/Consulta.dart';
 
-class ConsultarDocente extends StatefulWidget {
-  const ConsultarDocente({super.key});
+import 'registrarPropuesta.dart';
+
+class Registrar extends StatefulWidget {
+  const Registrar({super.key});
 
   @override
-  State<ConsultarDocente> createState() => _ConsultarDocenteState();
+  State<Registrar> createState() => _RegistrarState();
 }
 
-class _ConsultarDocenteState extends State<ConsultarDocente> {
+class _RegistrarState extends State<Registrar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +29,9 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
               children: [
                 Row(children: [
                   IconButton(
-                    onPressed: () {},
-                    icon: const Image(
-                      image: AssetImage('assets/icons/archivo.png'),
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
+                      onPressed: () {},
+                      icon: const Icon(Icons.mode_edit_outline_rounded,
+                          color: Colors.white)),
                   const Spacer(),
                   IconButton(
                       onPressed: () {},
@@ -47,19 +46,19 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
             ),
             const SizedBox(height: 30),
             Consultar(
-                icon: Icons.folder,
-                texto: 'Consultar \nPropuesta',
+                icon: Icons.add_to_photos_outlined,
+                texto: 'Registrar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
                 onPressed: () {
-                  Get.to(() => const MostrarPropuesta());
+                  Get.to(() => const RegistrarPropuesta());
                 }),
             const SizedBox(height: 30),
             Consultar(
-                icon: Icons.folder,
-                texto: 'Consultar \nProyecto',
+                icon: Icons.add_to_photos_outlined,
+                texto: 'Registrar \nProyecto',
                 colorBoton: const Color.fromRGBO(33, 153, 245, 1),
                 onPressed: () {
-                  Get.to(() => const MostrarProyectos());
+                  Get.to(() => const RegistrarProyecto());
                 }),
           ],
         ),

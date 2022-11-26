@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/ui/widgets/Icons.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
+import '../../utils/Dimensiones.dart';
+
 class Registrar extends StatefulWidget {
   const Registrar({super.key});
 
@@ -25,32 +27,26 @@ class _RegistrarState extends State<Registrar> {
             right: 0,
             child: Container(
               width: double.maxFinite,
-              height: 500,
+              height: Dimensiones.height70,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: const AssetImage('assets/images/home.png'),
                       fit: BoxFit.cover)),
             )),
         Positioned(
-            top: 25,
-            left: 20,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: AppIcon(
-                      iconD: Icons.arrow_back_ios,
-                      iconColor: const Color.fromARGB(255, 202, 209, 209)),
-                  onPressed: () {
-                    Get.offAllNamed('/principal');
-                  },
-                )
-              ],
+            top: Dimensiones.height5,
+            left: Dimensiones.width5,
+            child: IconButton(
+              icon: AppIcon(
+                  iconD: Icons.arrow_back_ios,
+                  iconColor: const Color.fromARGB(255, 202, 209, 209)),
+              onPressed: () {
+                Get.offAllNamed('/principal');
+              },
             )),
         Positioned(
-            top: 100,
-            left: 60,
+            top: Dimensiones.height15,
+            left: Dimensiones.width15,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -73,11 +69,12 @@ class _RegistrarState extends State<Registrar> {
         Positioned(
             left: 0,
             right: 0,
-            top: 200,
-            height: 750,
+            top: Dimensiones.height30,
+            height: Dimensiones.height80,
             child: Container(
-              padding: const EdgeInsets.only(
-                  left: 30, top: 30, right: 30, bottom: 10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensiones.width10,
+                  vertical: Dimensiones.height5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 color: Colors.white,
@@ -85,44 +82,49 @@ class _RegistrarState extends State<Registrar> {
               child: Column(
                 children: [
                   Input(
-                      false,
-                      controlNombre,
-                      "Nombre",
-                      const EdgeInsets.all(0),
-                      const EdgeInsets.only(top: 10, bottom: 20),
-                      Colors.grey.shade700,
-                      const Color.fromARGB(255, 197, 197, 197)),
+                    false,
+                    controlNombre,
+                    "Nombre",
+                    const EdgeInsets.all(0),
+                    const EdgeInsets.only(top: 10, bottom: 20),
+                    const Color.fromARGB(255, 197, 197, 197),
+                    Colors.grey.shade700,
+                  ),
                   Input(
-                      false,
-                      controlApellido,
-                      "Apellido",
-                      const EdgeInsets.all(0),
-                      const EdgeInsets.only(top: 10, bottom: 20),
-                      Colors.grey.shade700,
-                      const Color.fromARGB(255, 197, 197, 197)),
+                    false,
+                    controlApellido,
+                    "Apellido",
+                    const EdgeInsets.all(0),
+                    const EdgeInsets.only(top: 10, bottom: 20),
+                    const Color.fromARGB(255, 197, 197, 197),
+                    Colors.grey.shade700,
+                  ),
                   Input(
-                      false,
-                      controlCorreo,
-                      "Correo",
-                      const EdgeInsets.all(0),
-                      const EdgeInsets.only(top: 10, bottom: 20),
-                      Colors.grey.shade700,
-                      const Color.fromARGB(255, 197, 197, 197)),
+                    false,
+                    controlCorreo,
+                    "Correo",
+                    const EdgeInsets.all(0),
+                    const EdgeInsets.only(top: 10, bottom: 20),
+                    const Color.fromARGB(255, 197, 197, 197),
+                    Colors.grey.shade700,
+                  ),
                   Input(
-                      false,
-                      controlContrasena,
-                      "Contraseña",
-                      const EdgeInsets.all(0),
-                      const EdgeInsets.only(top: 10, bottom: 20),
-                      Colors.grey.shade700,
-                      const Color.fromARGB(255, 197, 197, 197)),
+                    false,
+                    controlContrasena,
+                    "Contraseña",
+                    const EdgeInsets.all(0),
+                    const EdgeInsets.only(top: 10),
+                    const Color.fromARGB(255, 197, 197, 197),
+                    Colors.grey.shade700,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 10),
+                    padding:
+                        EdgeInsets.symmetric(vertical: Dimensiones.height5),
                     child: ElevatedButton(
                       onPressed: () {
                         Get.offAllNamed('/dashboard');
                       },
-                      child: Text("Ingresar",
+                      child: Text("Registrar",
                           style: GoogleFonts.kodchasan(
                             color: Colors.white,
                             fontSize: 13,

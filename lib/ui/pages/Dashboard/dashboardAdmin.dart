@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pegi/ui/utils/Dimensiones.dart';
+import 'package:pegi/ui/widgets/Calendar.dart';
 import 'package:pegi/ui/widgets/Navbar.dart';
 import 'package:pegi/ui/widgets/ProgressAvatar.dart';
 
@@ -15,10 +17,12 @@ class _DashboardAdminState extends State<DashboardAdmin> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+        padding: EdgeInsets.symmetric(
+            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
         child: Column(
           children: <Widget>[
             Navbar("Administrador", Icons.space_dashboard),
+            const Calendar(),
             ProgressAvatar(
               porcentaje: 0.5,
               color: const Color.fromRGBO(91, 59, 183, 1),
