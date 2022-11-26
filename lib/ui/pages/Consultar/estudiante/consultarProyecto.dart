@@ -47,7 +47,8 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
                           icon: Icons.arrow_back_rounded,
                           texto: 'Consultar Proyecto'),
                       Padding(
-                        padding: EdgeInsets.only(bottom: Dimensiones.height2),
+                        padding: EdgeInsets.only(
+                            bottom: Dimensiones.screenHeight * 0.00000001),
                         child: Container(
                           height: Dimensiones.height5,
                           width: Dimensiones.width90,
@@ -63,7 +64,6 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 5),
                 Column(
                   children: [mostrarLista()],
                 )

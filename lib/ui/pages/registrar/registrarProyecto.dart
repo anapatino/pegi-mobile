@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/ui/pages/registrar/registrar.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
 import '../../../domain/Controllers/controlProyecto.dart';
@@ -59,11 +60,15 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                 false,
                 controlTitulo,
                 "Titulo del proyecto",
-                const EdgeInsets.all(0),
+                EdgeInsets.only(
+                  left: Dimensiones.screenWidth * 0.04,
+                  right: Dimensiones.screenWidth * 0.04,
+                  top: Dimensiones.buttonHeight * 0.40,
+                  bottom: Dimensiones.buttonHeight * 0.03,
+                ),
                 const EdgeInsets.only(bottom: 8),
                 const Color.fromRGBO(30, 30, 30, 1),
                 const Color.fromARGB(255, 221, 221, 221)),
-            SizedBox(height: Dimensiones.screenHeight * 0.022),
             if (pickedFileName == "")
               InputDownload(
                   texto: "Agregar documento",
@@ -92,7 +97,7 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                       colorTexto: Colors.white,
                       onPressed: () async {},
                     ),
-                    SizedBox(width: Dimensiones.screenWidth * 0.02),
+                    SizedBox(width: Dimensiones.screenWidth * 0.1),
                     Button(
                       texto: "Enviar",
                       color: const Color.fromRGBO(91, 59, 183, 1),
@@ -119,7 +124,8 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                                     icon: Icon(Icons.gpp_good_outlined),
                                     duration: Duration(seconds: 5),
                                     backgroundColor: Colors.greenAccent,
-                                  ))
+                                  )),
+                                  Get.to(() => const Registrar()),
                                 })
                             .catchError((e) {
                           Get.showSnackbar(const GetSnackBar(

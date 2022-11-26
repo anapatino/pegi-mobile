@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 import 'package:pegi/ui/widgets/Header.dart';
@@ -7,7 +8,12 @@ import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 class CalificarPropuesta extends StatefulWidget {
-  const CalificarPropuesta({super.key});
+  final Propuesta propuesta;
+
+  const CalificarPropuesta({
+    super.key,
+    required this.propuesta,
+  });
 
   @override
   State<CalificarPropuesta> createState() => _CalificarPropuestaState();
@@ -31,10 +37,14 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                     icon: Icons.arrow_back_rounded,
                     texto: 'Calificar Propuesta'),
                 MostrarTodo(
-                    texto: 'Harina base de \ninsectos.',
-                    colorBoton: const Color.fromRGBO(91, 59, 183, 1),
+                    texto: widget.propuesta.titulo,
+                    colorBoton:
+                        widget.propuesta.estado.toString().toLowerCase() ==
+                                'pendiente'
+                            ? const Color.fromRGBO(91, 59, 183, 1)
+                            : const Color.fromRGBO(18, 180, 122, 1),
                     estado: true,
-                    tipo: 'pendiente',
+                    tipo: widget.propuesta.estado,
                     onPressed: () {},
                     color: Colors.black,
                     fijarIcon: false,

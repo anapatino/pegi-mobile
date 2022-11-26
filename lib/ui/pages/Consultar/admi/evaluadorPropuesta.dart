@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/data/services/peticionesPropuesta.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/pages/Consultar/admi/mostrarPropuesta.dart';
 import 'package:pegi/ui/pages/calificar/asignarEvaluador.dart';
@@ -21,6 +22,8 @@ class EvaluadorPropuesta extends StatefulWidget {
 
 class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
   PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
+  ControlPropuesta controlp = Get.find();
+
   ControlUsuario controlu = Get.find();
 
   late Future<List<Propuesta>> listaPropuesta =
@@ -52,23 +55,30 @@ class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
 
   Widget mostrarLista() {
     return ListView.builder(
-      itemCount: 1,
+      itemCount: controlp.getTodasPropuesta?.isEmpty == true
+          ? 0
+          : controlp.getTodasPropuesta?.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Propuesta>>(
           future: listaPropuesta,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
+          builder: (context, posicion) {
+            if (posicion.hasData) {
               return Mostrar(
-                  texto: snapshot.data![index].areaTematica.toString(),
-                  tipo: 'pendiente',
-                  colorTipo: const Color.fromRGBO(91, 59, 183, 1),
+                  texto: posicion.data![index].titulo.toString(),
+                  tipo: posicion.data![index].estado.toString(),
+                  colorTipo:
+                      posicion.data![index].estado.toString().toLowerCase() ==
+                              'pendiente'
+                          ? const Color.fromRGBO(91, 59, 183, 1)
+                          : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
                   onPressed: () {
-                    Get.to(() => const MostrarPropuesta());
+                    /*Get.to(() =>
+                        MostrarPropuesta(propuesta: posicion.data![index]));*/
                   });
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
+            } else if (posicion.hasError) {
+              return Text('${posicion.error}');
             }
             return const CircularProgressIndicator();
           },

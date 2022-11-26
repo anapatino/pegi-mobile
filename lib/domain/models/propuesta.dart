@@ -2,6 +2,7 @@ class Propuesta {
   var titulo;
   var estado;
   var idPropuesta;
+  var idDocente;
   var nombre;
   var apellido;
   var identificacion;
@@ -31,6 +32,7 @@ class Propuesta {
       {required this.titulo,
       required this.estado,
       required this.idPropuesta,
+      required this.idDocente,
       required this.lineaInvestigacion,
       required this.sublineaInvestigacion,
       required this.areaTematica,

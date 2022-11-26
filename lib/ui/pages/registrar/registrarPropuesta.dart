@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -11,6 +11,7 @@ import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/data/services/peticionesIndex.dart';
 import 'package:pegi/domain/Controllers/controlPropuesta.dart';
+import 'package:pegi/ui/pages/registrar/registrar.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 
 import '../../../data/services/peticionesPropuesta.dart';
@@ -254,7 +255,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const Color.fromARGB(255, 221, 221, 221)),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const SizedBox(),
                       SizedBox(width: Dimensiones.screenWidth * 0.02),
@@ -314,9 +315,10 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                         const EdgeInsets.only(bottom: 8),
                         const Color.fromRGBO(30, 30, 30, 1),
                         const Color.fromARGB(255, 221, 221, 221)),
+                    SizedBox(height: Dimensiones.screenHeight * 0.022),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Button(
                           texto: "Atras",
@@ -326,7 +328,6 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                             setState(() => _activeCurrentStep -= 1);
                           },
                         ),
-                        SizedBox(width: Dimensiones.screenWidth * 0.02),
                         Button(
                           texto: "Siguiente",
                           color: const Color.fromRGBO(91, 59, 183, 1),
@@ -365,8 +366,8 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Button(
                           texto: "Atras",
@@ -376,7 +377,6 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                             setState(() => _activeCurrentStep -= 1);
                           },
                         ),
-                        SizedBox(width: Dimensiones.screenWidth * 0.02),
                         Button(
                           texto: "Siguiente",
                           color: const Color.fromRGBO(91, 59, 183, 1),
@@ -415,8 +415,8 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                       const Color.fromRGBO(30, 30, 30, 1),
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Button(
                           texto: "Atras",
@@ -426,7 +426,6 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                             setState(() => _activeCurrentStep -= 1);
                           },
                         ),
-                        SizedBox(width: Dimensiones.screenWidth * 0.02),
                         Button(
                           texto: "Siguiente",
                           color: const Color.fromRGBO(91, 59, 183, 1),
@@ -471,8 +470,8 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                             selectFile();
                           }),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Button(
                           texto: "Atras",
@@ -482,7 +481,6 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                             setState(() => _activeCurrentStep -= 1);
                           },
                         ),
-                        SizedBox(width: Dimensiones.screenWidth * 0.02),
                         Button(
                           texto: "Enviar",
                           color: const Color.fromRGBO(91, 59, 183, 1),
@@ -538,7 +536,8 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                           icon: Icon(Icons.gpp_good_outlined),
                                           duration: Duration(seconds: 5),
                                           backgroundColor: Colors.greenAccent,
-                                        ))
+                                        )),
+                                        Get.to(() => const Registrar()),
                                       })
                                   .catchError((e) {
                                 Get.showSnackbar(const GetSnackBar(

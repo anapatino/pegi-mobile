@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
@@ -10,7 +11,11 @@ import '../../../widgets/Input.dart';
 import '../../Calificar/asignarEvaluador.dart';
 
 class MostrarPropuesta extends StatefulWidget {
-  const MostrarPropuesta({super.key});
+  final Propuesta propuesta;
+  const MostrarPropuesta({
+    super.key,
+    required this.propuesta,
+  });
 
   @override
   State<MostrarPropuesta> createState() => _MostrarPropuestaState();

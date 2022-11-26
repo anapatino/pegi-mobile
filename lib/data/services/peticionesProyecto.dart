@@ -73,4 +73,26 @@ class PeticionesProyecto {
 
     return lista;
   }
+
+  static Future<List<Proyecto>> consultarProyectoDocente(id) async {
+    List<Proyecto> lista = [];
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] == id) {
+          lista.add(Proyecto(
+            titulo: doc.data()['titulo'],
+            idEstudiante: doc.data()['idEstudiante'],
+            anexos: doc.data()['anexos'],
+            estado: doc.data()['estado'],
+            calificacion: doc.data()['calificacion'],
+            idDocente: doc.data()['idDocente'],
+            idProyecto: doc.data()['idProyecto'],
+            retroalimentacion: doc.data()['retroalimentacion'],
+          ));
+        }
+      }
+    });
+
+    return lista;
+  }
 }

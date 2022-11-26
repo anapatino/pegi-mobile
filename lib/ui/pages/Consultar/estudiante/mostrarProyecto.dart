@@ -38,9 +38,7 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
                   : const Color.fromRGBO(18, 180, 122, 1),
               estado: true,
               tipo: widget.proyecto.estado,
-              onPressed: () {
-                Get.to(() => const CalificarProyecto());
-              },
+              onPressed: () {},
               color: Colors.black,
               fijarIcon: false,
               icon: Icons.mode_edit_outline_rounded,

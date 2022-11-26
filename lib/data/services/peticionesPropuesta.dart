@@ -108,6 +108,44 @@ class PeticionesPropuesta {
 
   //   return lista;
   // }
+  static Future<List<Propuesta>> consultarTodasPropuestas() async {
+    List<Propuesta> lista = [];
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        lista.add(Propuesta(
+          titulo: doc.data()['titulo'],
+          estado: doc.data()['estado'],
+          anexos: doc.data()['anexos'],
+          apellido: doc.data()['apellido'],
+          apellido2: doc.data()['apellido2'],
+          areaTematica: doc.data()['areaTematica'],
+          bibliografia: doc.data()['bibliografia'],
+          celular: doc.data()['celular'],
+          celular2: doc.data()['celular2'],
+          correo: doc.data()['correo'],
+          correo2: doc.data()['correo2'],
+          especificos: doc.data()['especificos'],
+          general: doc.data()['general'],
+          grupoInvestigacion: doc.data()['grupoInvestigacion'],
+          idPropuesta: doc.data()['idPropuesta'],
+          idDocente: doc.data()['idDocente'],
+          identificacion: doc.data()['identificacion'],
+          identificacion2: doc.data()['identificacion2'],
+          justificacion: doc.data()['justificacion'],
+          lineaInvestigacion: doc.data()['lineaInvestigacion'],
+          nombre: doc.data()['nombre'],
+          nombre2: doc.data()['nombre2'],
+          numero: doc.data()['numero'],
+          numero2: doc.data()['numero2'],
+          planteamiento: doc.data()['plantamiento'],
+          programa: doc.data()['programa'],
+          programa2: doc.data()['programa2'],
+          sublineaInvestigacion: doc.data()['sublineaInvestigacion'],
+        ));
+      }
+    });
+    return lista;
+  }
 
   static Future<List<Propuesta>> consultarPropuestas(email) async {
     List<Propuesta> lista = [];
@@ -131,6 +169,49 @@ class PeticionesPropuesta {
             general: doc.data()['general'],
             grupoInvestigacion: doc.data()['grupoInvestigacion'],
             idPropuesta: doc.data()['idPropuesta'],
+            idDocente: doc.data()['idDocente'],
+            identificacion: doc.data()['identificacion'],
+            identificacion2: doc.data()['identificacion2'],
+            justificacion: doc.data()['justificacion'],
+            lineaInvestigacion: doc.data()['lineaInvestigacion'],
+            nombre: doc.data()['nombre'],
+            nombre2: doc.data()['nombre2'],
+            numero: doc.data()['numero'],
+            numero2: doc.data()['numero2'],
+            planteamiento: doc.data()['plantamiento'],
+            programa: doc.data()['programa'],
+            programa2: doc.data()['programa2'],
+            sublineaInvestigacion: doc.data()['sublineaInvestigacion'],
+          ));
+        }
+      }
+    });
+    return lista;
+  }
+
+  static Future<List<Propuesta>> consultarPropuestaDocente(docente) async {
+    List<Propuesta> lista = [];
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] == docente) {
+          log(doc.data()['idEstudiante']);
+          lista.add(Propuesta(
+            titulo: doc.data()['titulo'],
+            estado: doc.data()['estado'],
+            anexos: doc.data()['anexos'],
+            apellido: doc.data()['apellido'],
+            apellido2: doc.data()['apellido2'],
+            areaTematica: doc.data()['areaTematica'],
+            bibliografia: doc.data()['bibliografia'],
+            celular: doc.data()['celular'],
+            celular2: doc.data()['celular2'],
+            correo: doc.data()['correo'],
+            correo2: doc.data()['correo2'],
+            especificos: doc.data()['especificos'],
+            general: doc.data()['general'],
+            grupoInvestigacion: doc.data()['grupoInvestigacion'],
+            idPropuesta: doc.data()['idPropuesta'],
+            idDocente: doc.data()['idDocente'],
             identificacion: doc.data()['identificacion'],
             identificacion2: doc.data()['identificacion2'],
             justificacion: doc.data()['justificacion'],

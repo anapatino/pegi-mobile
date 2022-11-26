@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/models/proyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 import 'package:pegi/ui/widgets/Header.dart';
@@ -7,7 +8,11 @@ import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 class CalificarProyecto extends StatefulWidget {
-  const CalificarProyecto({super.key});
+  final Proyecto proyecto;
+  const CalificarProyecto({
+    super.key,
+    required this.proyecto,
+  });
 
   @override
   State<CalificarProyecto> createState() => _CalificarProyectoState();
@@ -31,10 +36,14 @@ class _CalificarProyectoState extends State<CalificarProyecto> {
                     icon: Icons.arrow_back_rounded,
                     texto: 'Calificar Proyectos'),
                 MostrarTodo(
-                    texto: 'Arroz de coco',
-                    colorBoton: const Color.fromRGBO(18, 180, 122, 1),
+                    texto: widget.proyecto.titulo,
+                    colorBoton:
+                        widget.proyecto.estado.toString().toLowerCase() ==
+                                'pendiente'
+                            ? const Color.fromRGBO(91, 59, 183, 1)
+                            : const Color.fromRGBO(18, 180, 122, 1),
                     estado: true,
-                    tipo: 'Calificado',
+                    tipo: widget.proyecto.estado,
                     onPressed: () {},
                     color: Colors.black,
                     fijarIcon: false,

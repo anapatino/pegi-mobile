@@ -47,7 +47,8 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                           icon: Icons.arrow_back_rounded,
                           texto: 'Consultar Propuestas'),
                       Padding(
-                        padding: EdgeInsets.only(bottom: Dimensiones.height2),
+                        padding: EdgeInsets.only(
+                            bottom: Dimensiones.screenHeight * 0.00000001),
                         child: Container(
                           height: Dimensiones.height5,
                           width: Dimensiones.width90,
@@ -63,7 +64,6 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 5),
                 mostrarLista()
               ],
             ),
@@ -73,9 +73,9 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
 
   Widget mostrarLista() {
     return ListView.builder(
-      itemCount: controlp.getproyectosGral?.isEmpty == true
+      itemCount: controlp.getPropuestaEstudiante?.isEmpty == true
           ? 0
-          : controlp.getproyectosGral?.length,
+          : controlp.getPropuestaEstudiante?.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Propuesta>>(
