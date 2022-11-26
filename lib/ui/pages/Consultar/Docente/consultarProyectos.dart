@@ -19,13 +19,12 @@ class ConsultarProyectoDocente extends StatefulWidget {
 }
 
 class _ConsultarProyectoDocenteState extends State<ConsultarProyectoDocente> {
-  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
   ControlProyecto controlp = Get.find();
 
   ControlUsuario controlu = Get.find();
 
   late Future<List<Proyecto>> listaProyecto =
-      PeticionesProyecto.consultarProyectos(controlu.emailf);
+      PeticionesProyecto.consultarProyectoDocente(controlu.emailf);
   TextEditingController controlador = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class _ConsultarProyectoDocenteState extends State<ConsultarProyectoDocente> {
     return ListView.builder(
       itemCount: controlp.getproyectosDocentes?.isEmpty == true
           ? 0
-          : controlp.getproyectosDocentes?.length,
+          : controlp.getproyectosDocentes!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Proyecto>>(

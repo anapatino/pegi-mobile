@@ -4,7 +4,7 @@ import 'package:pegi/data/services/peticionesPropuesta.dart';
 import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/Controllers/controladorUsuario.dart';
 import 'package:pegi/domain/models/propuesta.dart';
-import 'package:pegi/ui/pages/calificar/calificarPropuesta.dart';
+import 'package:pegi/ui/pages/Calificar/calificarPropuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 import '../../../widgets/Filter.dart';
@@ -20,14 +20,12 @@ class ConsultarPropuestaDocente extends StatefulWidget {
 
 class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
   TextEditingController controlador = TextEditingController();
-  PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
   ControlPropuesta controlp = Get.find();
   late Future<List<Propuesta>> listaPropuesta =
-      PeticionesPropuesta.consultarPropuestas(controlu.emailf);
+      PeticionesPropuesta.consultarPropuestaDocente(controlu.emailf);
   ControlUsuario controlu = Get.find();
   @override
   Widget build(BuildContext context) {
-    controlp.consultarPropuestasDocente(controlu.emailf).then((value) => null);
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
@@ -55,7 +53,7 @@ class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
     return ListView.builder(
       itemCount: controlp.getPropuestaDocente?.isEmpty == true
           ? 0
-          : controlp.getPropuestaDocente?.length,
+          : controlp.getPropuestaDocente!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Propuesta>>(
@@ -64,17 +62,15 @@ class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
             if (posicion.hasData) {
               return MostrarTodo(
                 texto: posicion.data![index].titulo.toString(),
+                tipo: posicion.data![index].estado.toString(),
                 colorBoton:
                     posicion.data![index].estado.toString().toLowerCase() ==
                             'pendiente'
                         ? const Color.fromRGBO(91, 59, 183, 1)
                         : const Color.fromRGBO(18, 180, 122, 1),
-                estado: true,
-                tipo: posicion.data![index].estado.toString(),
                 onPressed: () {
                   Get.to(() =>
                       CalificarPropuesta(propuesta: posicion.data![index]));
-                  ;
                 },
                 color: const Color.fromRGBO(30, 30, 30, 1),
                 fijarIcon: true,

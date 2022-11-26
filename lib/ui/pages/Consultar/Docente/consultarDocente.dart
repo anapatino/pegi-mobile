@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/ui/pages/consultar/Docente/ConsultarPropuestas.dart';
 import 'package:pegi/ui/pages/consultar/Docente/consultarProyectos.dart';
 
 import 'package:pegi/ui/utils/Dimensiones.dart';
+import '../../../../domain/Controllers/controlPropuesta.dart';
+import '../../../../domain/Controllers/controlProyecto.dart';
+import '../../../../domain/Controllers/controladorUsuario.dart';
 import '../../../widgets/Consulta.dart';
 
 class ConsultarDocente extends StatefulWidget {
@@ -16,6 +21,9 @@ class ConsultarDocente extends StatefulWidget {
 class _ConsultarDocenteState extends State<ConsultarDocente> {
   @override
   Widget build(BuildContext context) {
+    ControlProyecto controlp = Get.find();
+    ControlUsuario controlu = Get.find();
+    ControlPropuesta controlpropues = Get.find();
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -51,7 +59,11 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
                 icon: Icons.folder,
                 texto: 'Consultar \nPropuesta',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
-                onPressed: () {
+                onPressed: () async {
+                  await controlpropues
+                      .consultarPropuestasDocente(controlu.emailf)
+                      .then((value) => log("consulta Docente"));
+
                   Get.to(() => const ConsultarPropuestaDocente());
                 }),
             const SizedBox(height: 30),
@@ -59,7 +71,10 @@ class _ConsultarDocenteState extends State<ConsultarDocente> {
                 icon: Icons.folder,
                 texto: 'Consultar \nProyecto',
                 colorBoton: const Color.fromRGBO(33, 153, 245, 1),
-                onPressed: () {
+                onPressed: () async {
+                  await controlp
+                      .consultarProyectosDocentes(controlu.emailf)
+                      .then((value) => log("consulta Docente"));
                   Get.to(() => const ConsultarProyectoDocente());
                 }),
           ],

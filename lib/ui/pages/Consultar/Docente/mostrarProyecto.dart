@@ -11,10 +11,9 @@ import '../../../../domain/Controllers/controladorUsuario.dart';
 import '../../Calificar/calificarProyecto.dart';
 
 class MostrarProyecto extends StatefulWidget {
-  final String titulo;
-  final String estado;
-  const MostrarProyecto(
-      {super.key, required this.titulo, required this.estado});
+  final Proyecto proyecto;
+
+  const MostrarProyecto({super.key, required this.proyecto});
 
   @override
   State<MostrarProyecto> createState() => _MostrarProyectoState();
@@ -38,14 +37,16 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
             Widget>[
           Header(icon: Icons.arrow_back_rounded, texto: 'Consultar Proyecto'),
           MostrarTodo(
-              texto: widget.titulo,
-              colorBoton: widget.estado.toLowerCase() == 'pendiente'
+              texto: widget.proyecto.titulo,
+              colorBoton: widget.proyecto.estado.toLowerCase() == 'pendiente'
                   ? const Color.fromRGBO(91, 59, 183, 1)
                   : const Color.fromRGBO(18, 180, 122, 1),
               estado: true,
-              tipo: widget.estado,
+              tipo: widget.proyecto.estado,
               onPressed: () {
-                Get.to(() => const CalificarProyecto());
+                Get.to(() => CalificarProyecto(
+                      proyecto: widget.proyecto,
+                    ));
               },
               color: Colors.black,
               fijarIcon: false,

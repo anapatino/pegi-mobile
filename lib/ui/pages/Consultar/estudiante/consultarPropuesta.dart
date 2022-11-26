@@ -75,7 +75,7 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
     return ListView.builder(
       itemCount: controlp.getPropuestaEstudiante?.isEmpty == true
           ? 0
-          : controlp.getPropuestaEstudiante?.length,
+          : controlp.getPropuestaEstudiante!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return FutureBuilder<List<Propuesta>>(

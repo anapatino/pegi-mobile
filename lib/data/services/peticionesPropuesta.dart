@@ -194,7 +194,7 @@ class PeticionesPropuesta {
     await _db.collection("Propuesta").get().then((respuesta) {
       for (var doc in respuesta.docs) {
         if (doc.data()['idDocente'] == docente) {
-          log(doc.data()['idEstudiante']);
+          log(doc.data()['idDocente']);
           lista.add(Propuesta(
             titulo: doc.data()['titulo'],
             estado: doc.data()['estado'],
