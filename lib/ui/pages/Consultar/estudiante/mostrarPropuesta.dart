@@ -432,104 +432,111 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(
-              top: Dimensiones.height5,
-              right: Dimensiones.width5,
-              left: Dimensiones.width5),
-          child: Column(
-            children: <Widget>[
-              Header(
-                  icon: Icons.arrow_back_rounded, texto: 'Consultar Propuesta'),
-              MostrarTodo(
-                texto: widget.propuesta.titulo,
-                colorBoton: widget.propuesta.estado.toLowerCase() == 'pendiente'
-                    ? const Color.fromRGBO(91, 59, 183, 1)
-                    : const Color.fromRGBO(18, 180, 122, 1),
-                estado: true,
-                tipo: widget.propuesta.estado,
-                onPressed: () {},
-                color: Colors.black,
-                fijarIcon: false,
-                icon: Icons.mode_edit_outline_rounded,
-                padding: EdgeInsets.zero,
-              ),
-              Container(
-                margin: EdgeInsets.zero,
-                padding: EdgeInsets.zero,
-                height: Dimensiones.screenHeight * 0.55,
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: Dimensiones.screenWidth * 0.01),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text('General',
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12.0,
-                                    color: const Color.fromARGB(
-                                        255, 221, 221, 221))),
-                            Text('Especif',
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12.0,
-                                    color: const Color.fromARGB(
-                                        255, 221, 221, 221))),
-                            Text('Probem',
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12.0,
-                                    color: const Color.fromARGB(
-                                        255, 221, 221, 221))),
-                            Text('Objetivo',
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12.0,
-                                    color: const Color.fromARGB(
-                                        255, 221, 221, 221))),
-                            Text('anexos',
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12.0,
-                                    color: const Color.fromARGB(
-                                        255, 221, 221, 221))),
-                          ]),
-                    ),
-                    Expanded(
-                      child: Theme(
-                        data: ThemeData(
-                            scrollbarTheme: ScrollbarThemeData(
-                              interactive: true,
-                              crossAxisMargin: Dimensiones.screenWidth * 0.02,
-                              mainAxisMargin: Dimensiones.screenWidth * 0.05,
-                              radius: const Radius.circular(14),
-                              thumbColor:
-                                  MaterialStateProperty.all((Colors.grey[500])),
-                            ),
-                            canvasColor: Colors.transparent,
-                            shadowColor: Colors.transparent),
-                        child: Stepper(
-                          controlsBuilder: (context, controller) {
-                            return const SizedBox.shrink();
-                          },
-                          physics: const ScrollPhysics(),
-                          margin: EdgeInsets.zero,
-                          type: StepperType.horizontal,
-                          currentStep: _activeCurrentStep,
-                          steps: stepList(),
-                          onStepTapped: (int index) {
-                            setState(() => _activeCurrentStep = index);
-                          },
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.screenHeight * 0.0001,
+              horizontal: Dimensiones.screenWidth * 0.03),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
+            child: Column(
+              children: <Widget>[
+                Header(
+                    icon: Icons.arrow_back_rounded,
+                    texto: 'Consultar Propuesta'),
+                MostrarTodo(
+                  texto: widget.propuesta.titulo,
+                  colorBoton:
+                      widget.propuesta.estado.toLowerCase() == 'pendiente'
+                          ? const Color.fromRGBO(91, 59, 183, 1)
+                          : const Color.fromRGBO(18, 180, 122, 1),
+                  estado: true,
+                  tipo: widget.propuesta.estado,
+                  onPressed: () {},
+                  color: Colors.black,
+                  fijarIcon: false,
+                  icon: Icons.mode_edit_outline_rounded,
+                  padding: EdgeInsets.symmetric(
+                      vertical: Dimensiones.screenHeight * 0.0001,
+                      horizontal: Dimensiones.screenWidth * 0.03),
+                ),
+                Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
+                  height: Dimensiones.screenHeight * 0.53,
+                  width: Dimensiones.screenWidth * 0.89,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Dimensiones.screenWidth * 0.01),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text('General',
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 12.0,
+                                      color: const Color.fromARGB(
+                                          255, 221, 221, 221))),
+                              Text('Especif',
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 12.0,
+                                      color: const Color.fromARGB(
+                                          255, 221, 221, 221))),
+                              Text('Probem',
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 12.0,
+                                      color: const Color.fromARGB(
+                                          255, 221, 221, 221))),
+                              Text('Objetivo',
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 12.0,
+                                      color: const Color.fromARGB(
+                                          255, 221, 221, 221))),
+                              Text('anexos',
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 12.0,
+                                      color: const Color.fromARGB(
+                                          255, 221, 221, 221))),
+                            ]),
+                      ),
+                      Expanded(
+                        child: Theme(
+                          data: ThemeData(
+                              scrollbarTheme: ScrollbarThemeData(
+                                interactive: true,
+                                crossAxisMargin: Dimensiones.screenWidth * 0.02,
+                                mainAxisMargin: Dimensiones.screenWidth * 0.05,
+                                radius: const Radius.circular(14),
+                                thumbColor: MaterialStateProperty.all(
+                                    (Colors.grey[500])),
+                              ),
+                              canvasColor: Colors.transparent,
+                              shadowColor: Colors.transparent),
+                          child: Stepper(
+                            controlsBuilder: (context, controller) {
+                              return const SizedBox.shrink();
+                            },
+                            physics: const ScrollPhysics(),
+                            margin: EdgeInsets.zero,
+                            type: StepperType.horizontal,
+                            currentStep: _activeCurrentStep,
+                            steps: stepList(),
+                            onStepTapped: (int index) {
+                              setState(() => _activeCurrentStep = index);
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
