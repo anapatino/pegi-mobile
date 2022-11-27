@@ -8,7 +8,7 @@ import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../widgets/Button.dart';
 import '../../../widgets/Input.dart';
-import '../../Calificar/asignarEvaluador.dart';
+import '../../Calificar/asignarEvaluadorPropuesta.dart';
 
 class MostrarPropuesta extends StatefulWidget {
   final Propuesta propuesta;
@@ -459,7 +459,8 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
       backgroundColor: Colors.black,
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
+            vertical: Dimensiones.screenHeight * 0.06,
+            horizontal: Dimensiones.screenWidth * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -471,7 +472,7 @@ class _MostrarPropuestaState extends State<MostrarPropuesta> {
                 estado: true,
                 tipo: 'Pendiente',
                 onPressed: () {
-                  Get.to(() => const AsignarEvaluador());
+                  /*Get.to(() => const AsignarEvaluador());*/
                 },
                 color: Colors.black,
                 fijarIcon: true,

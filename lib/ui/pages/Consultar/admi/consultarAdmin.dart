@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
+import 'package:pegi/domain/Controllers/controlProyecto.dart';
+import 'package:pegi/domain/Controllers/controladorUsuario.dart';
 import 'package:pegi/ui/pages/consultar/admi/evaluadorPropuesta.dart';
 import 'package:pegi/ui/pages/consultar/admi/evaluadorProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
@@ -11,6 +16,9 @@ class ConsultarAdmin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ControlProyecto controlp = Get.find();
+    ControlUsuario controlu = Get.find();
+    ControlPropuesta controlpropues = Get.find();
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -45,7 +53,11 @@ class ConsultarAdmin extends StatelessWidget {
                 icon: Icons.folder_shared_rounded,
                 texto: 'Propuesta \nEvaluadores',
                 colorBoton: const Color.fromRGBO(18, 180, 122, 1),
-                onPressed: () {
+                onPressed: () async {
+                  await controlpropues
+                      .consultarTodasPropuestas()
+                      .then((value) => log("consulta todas prop admi"));
+
                   Get.to(() => const EvaluadorPropuesta());
                 }),
             SizedBox(height: Dimensiones.height5),
@@ -53,7 +65,10 @@ class ConsultarAdmin extends StatelessWidget {
                 icon: Icons.folder_shared_rounded,
                 texto: 'Proyecto \nEvaluadores',
                 colorBoton: const Color.fromRGBO(33, 153, 245, 1),
-                onPressed: () {
+                onPressed: () async {
+                  await controlp
+                      .consultarTodosProyectos()
+                      .then((value) => log("consulta todas proy admi"));
                   Get.to(
                     () => const EvaluadorProyecto(),
                   );

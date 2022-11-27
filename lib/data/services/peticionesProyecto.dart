@@ -74,6 +74,17 @@ class PeticionesProyecto {
     return lista;
   }
 
+  static Future<List<Proyecto>> consultarTodosProyectos() async {
+    List<Proyecto> lista = [];
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        lista.add(Proyecto.desdeDoc(doc.data()));
+      }
+    });
+
+    return lista;
+  }
+
   static Future<List<Proyecto>> consultarProyectoDocente(id) async {
     List<Proyecto> lista = [];
     await _db.collection("Proyectos").get().then((respuesta) {

@@ -57,4 +57,37 @@ class Propuesta {
       required this.programa2,
       required this.correo2,
       required this.celular2});
+
+  factory Propuesta.desdeDoc(Map<String, dynamic> data) {
+    return Propuesta(
+      titulo: data['titulo'] ?? '',
+      estado: data['estado'] ?? '',
+      anexos: data['anexos'] ?? '',
+      apellido: data['apellido'] ?? '',
+      apellido2: data['apellido2'] ?? '',
+      areaTematica: data['areaTematica'] ?? '',
+      bibliografia: data['bibliografia'] ?? '',
+      celular: data['celular'] ?? '',
+      celular2: data['celular2'] ?? '',
+      correo: data['correo'] ?? '',
+      correo2: data['correo2'] ?? '',
+      especificos: data['especificos'] ?? '',
+      general: data['general'] ?? '',
+      grupoInvestigacion: data['grupoInvestigacion'] ?? '',
+      idPropuesta: data['idPropuesta'] ?? '',
+      idDocente: data['idDocente'] ?? '',
+      identificacion: data['identificacion'] ?? '',
+      identificacion2: data['identificacion2'] ?? '',
+      justificacion: data['justificacion'] ?? '',
+      lineaInvestigacion: data['lineaInvestigacion'] ?? '',
+      nombre: data['nombre'] ?? '',
+      nombre2: data['nombre2'] ?? '',
+      numero: data['numero'] ?? '',
+      numero2: data['numero2'] ?? '',
+      planteamiento: data['plantamiento'] ?? '',
+      programa: data['programa'] ?? '',
+      programa2: data['programa2'] ?? '',
+      sublineaInvestigacion: data['sublineaInvestigacion'] ?? '',
+    );
+  }
 }

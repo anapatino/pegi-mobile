@@ -17,4 +17,17 @@ class Proyecto {
       required this.idProyecto,
       required this.idDocente,
       required this.retroalimentacion});
+
+  factory Proyecto.desdeDoc(Map<String, dynamic> data) {
+    return Proyecto(
+      titulo: data['titulo'] ?? '',
+      idEstudiante: data['idEstudiante'] ?? '',
+      anexos: data['anexos'] ?? '',
+      estado: data['estado'] ?? '',
+      calificacion: data['calificacion'] ?? '',
+      idDocente: data['idDocente'] ?? '',
+      idProyecto: data['idProyecto'] ?? '',
+      retroalimentacion: data['retroalimentacion'] ?? '',
+    );
+  }
 }

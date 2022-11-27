@@ -8,14 +8,12 @@ import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../../data/services/peticionesProyecto.dart';
 import '../../../../domain/Controllers/controladorUsuario.dart';
-import '../../Calificar/asignarEvaluador.dart';
+import '../../Calificar/asignarEvaluadorPropuesta.dart';
 import '../../Calificar/calificarProyecto.dart';
 
 class MostrarProyecto extends StatefulWidget {
-  final String titulo;
-  final String estado;
-  const MostrarProyecto(
-      {super.key, required this.titulo, required this.estado});
+  final Proyecto proyecto;
+  const MostrarProyecto({super.key, required this.proyecto});
 
   @override
   State<MostrarProyecto> createState() => _MostrarProyectoState();
@@ -39,25 +37,25 @@ class _MostrarProyectoState extends State<MostrarProyecto> {
             Widget>[
           Header(icon: Icons.arrow_back_rounded, texto: 'Consultar Proyecto'),
           MostrarTodo(
-              texto: widget.titulo,
-              colorBoton: widget.estado.toLowerCase() == 'pendiente'
+              texto: widget.proyecto.titulo,
+              colorBoton: widget.proyecto.estado.toLowerCase() == 'pendiente'
                   ? const Color.fromRGBO(91, 59, 183, 1)
                   : const Color.fromRGBO(18, 180, 122, 1),
               estado: true,
-              tipo: widget.estado,
+              tipo: widget.proyecto.estado,
               onPressed: () {
-                Get.to(() => const AsignarEvaluador());
+                /*Get.to(() => const AsignarEvaluador());*/
               },
               color: Colors.black,
               fijarIcon: true,
               icon: Icons.person_add_alt_rounded,
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensiones.screenWidth * 0.06,
-                  vertical: Dimensiones.height2)),
+                  vertical: Dimensiones.screenHeight * 0.02)),
           Padding(
             padding: EdgeInsets.only(bottom: Dimensiones.screenHeight * 0.0001),
             child: Container(
-              height: Dimensiones.screenHeight * 0.0001,
+              height: 0.001,
               width: Dimensiones.width90,
               decoration: const BoxDecoration(
                 border: Border(
