@@ -106,7 +106,7 @@ class _CalificarProyectoState extends State<CalificarProyecto> {
                       'idDocente': widget.proyecto.idDocente,
                     };
                     controlp
-                        .calificarProyecto(Proyecto)
+                        .modificarProyecto(Proyecto)
                         .then((value) => {
                               Get.showSnackbar(const GetSnackBar(
                                 title: 'Regristrar Calificacion',

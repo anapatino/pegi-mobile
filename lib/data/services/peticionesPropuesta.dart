@@ -124,38 +124,7 @@ class PeticionesPropuesta {
     await _db.collection("Propuesta").get().then((respuesta) {
       for (var doc in respuesta.docs) {
         if (doc.data()['idEstudiante'] == email) {
-          log(doc.data()['idEstudiante']);
-          lista.add(Propuesta(
-            idEstudiante: doc.data()['idEstudiante'],
-            titulo: doc.data()['titulo'],
-            estado: doc.data()['estado'],
-            anexos: doc.data()['anexos'],
-            apellido: doc.data()['apellido'],
-            apellido2: doc.data()['apellido2'],
-            areaTematica: doc.data()['areaTematica'],
-            bibliografia: doc.data()['bibliografia'],
-            celular: doc.data()['celular'],
-            celular2: doc.data()['celular2'],
-            correo: doc.data()['correo'],
-            correo2: doc.data()['correo2'],
-            especificos: doc.data()['especificos'],
-            general: doc.data()['general'],
-            grupoInvestigacion: doc.data()['grupoInvestigacion'],
-            idPropuesta: doc.data()['idPropuesta'],
-            idDocente: doc.data()['idDocente'],
-            identificacion: doc.data()['identificacion'],
-            identificacion2: doc.data()['identificacion2'],
-            justificacion: doc.data()['justificacion'],
-            lineaInvestigacion: doc.data()['lineaInvestigacion'],
-            nombre: doc.data()['nombre'],
-            nombre2: doc.data()['nombre2'],
-            numero: doc.data()['numero'],
-            numero2: doc.data()['numero2'],
-            planteamiento: doc.data()['plantamiento'],
-            programa: doc.data()['programa'],
-            programa2: doc.data()['programa2'],
-            sublineaInvestigacion: doc.data()['sublineaInvestigacion'],
-          ));
+          lista.add(Propuesta.desdeDoc(doc.data()));
         }
       }
     });
@@ -167,45 +136,31 @@ class PeticionesPropuesta {
     await _db.collection("Propuesta").get().then((respuesta) {
       for (var doc in respuesta.docs) {
         if (doc.data()['idDocente'] == docente) {
-          log(doc.data()['idDocente']);
-          lista.add(Propuesta(
-            idEstudiante: doc.data()['idEstudiante'],
-            titulo: doc.data()['titulo'],
-            estado: doc.data()['estado'],
-            anexos: doc.data()['anexos'],
-            apellido: doc.data()['apellido'],
-            apellido2: doc.data()['apellido2'],
-            areaTematica: doc.data()['areaTematica'],
-            bibliografia: doc.data()['bibliografia'],
-            celular: doc.data()['celular'],
-            celular2: doc.data()['celular2'],
-            correo: doc.data()['correo'],
-            correo2: doc.data()['correo2'],
-            especificos: doc.data()['especificos'],
-            general: doc.data()['general'],
-            grupoInvestigacion: doc.data()['grupoInvestigacion'],
-            idPropuesta: doc.data()['idPropuesta'],
-            idDocente: doc.data()['idDocente'],
-            identificacion: doc.data()['identificacion'],
-            identificacion2: doc.data()['identificacion2'],
-            justificacion: doc.data()['justificacion'],
-            lineaInvestigacion: doc.data()['lineaInvestigacion'],
-            nombre: doc.data()['nombre'],
-            nombre2: doc.data()['nombre2'],
-            numero: doc.data()['numero'],
-            numero2: doc.data()['numero2'],
-            planteamiento: doc.data()['plantamiento'],
-            programa: doc.data()['programa'],
-            programa2: doc.data()['programa2'],
-            sublineaInvestigacion: doc.data()['sublineaInvestigacion'],
-          ));
+          lista.add(Propuesta.desdeDoc(doc.data()));
         }
       }
     });
     return lista;
   }
 
-  static Future<void> calificarPropuesta(Map<String, dynamic> propuesta) async {
+  static Future<void> modificarPropuesta(Map<String, dynamic> propuesta) async {
+    await _db.collection("Propuesta").get().then((respuesta) async {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idPropuesta'] == propuesta['idPropuesta']) {
+          await _db
+              .collection('Propuesta')
+              .doc(doc.id)
+              .update(propuesta)
+              .catchError((e) {
+            log(e);
+          });
+        }
+      }
+    });
+  }
+
+  static Future<void> asignarEvaluadorPropuesta(
+      Map<String, dynamic> propuesta) async {
     await _db.collection("Propuesta").get().then((respuesta) async {
       for (var doc in respuesta.docs) {
         if (doc.data()['idPropuesta'] == propuesta['idPropuesta']) {

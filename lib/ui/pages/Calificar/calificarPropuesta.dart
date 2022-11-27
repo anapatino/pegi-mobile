@@ -129,7 +129,7 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                       'idDocente': widget.propuesta.idDocente
                     };
                     controlp
-                        .calificarPropuesta(Propuesta)
+                        .modificarPropuesta(Propuesta)
                         .then((value) => {
                               Get.showSnackbar(const GetSnackBar(
                                 title: 'Regristrar Calificacion',

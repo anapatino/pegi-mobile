@@ -22,8 +22,8 @@ class ControlPropuesta extends GetxController {
         await PeticionesPropuesta.consultarTodasPropuestas();
   }
 
-  Future<void> calificarPropuesta(propuesta) async {
-    await PeticionesPropuesta.calificarPropuesta(propuesta);
+  Future<void> modificarPropuesta(propuesta) async {
+    await PeticionesPropuesta.modificarPropuesta(propuesta);
   }
 
   Future<void> consultarPropuestasDocente(id) async {

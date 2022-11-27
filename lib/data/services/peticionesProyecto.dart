@@ -107,7 +107,7 @@ class PeticionesProyecto {
     return lista;
   }
 
-  static Future<void> calificarProyecto(Map<String, dynamic> proyecto) async {
+  static Future<void> modificarProyecto(Map<String, dynamic> proyecto) async {
     await _db.collection("Proyectos").get().then((respuesta) async {
       for (var doc in respuesta.docs) {
         if (doc.data()['idProyecto'] == proyecto['idProyecto']) {

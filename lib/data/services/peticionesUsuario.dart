@@ -56,6 +56,19 @@ class PeticionesUsuario {
     return response;
   }
 
+  static Future<List<UsuarioFirebase>> obtenerDocentes() async {
+    List<UsuarioFirebase> docentes = [];
+
+    await _db.collection("Usuarios").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['rol'] == 'docente') {
+          docentes.add(UsuarioFirebase.desdeDoc(doc.data()));
+        }
+      }
+    });
+    return docentes;
+  }
+
   static Future<bool> verificacionUser(user) async {
     bool correoCheck = false;
     await _db.collection("Usuarios").get().then((respuesta) {

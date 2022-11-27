@@ -31,8 +31,8 @@ class ControlProyecto extends GetxController {
   List<Proyecto>? get getproyectosDocentes => _proyectoDocenteFirestore.value;
   List<Proyecto>? get getTodosproyectos => _todosProyectos.value;
 
-  Future<void> calificarProyecto(proyecto) async {
-    await PeticionesProyecto.calificarProyecto(proyecto);
+  Future<void> modificarProyecto(proyecto) async {
+    await PeticionesProyecto.modificarProyecto(proyecto);
   }
 
   Future<void> registrarProyecto(Map<String, dynamic> proyecto,

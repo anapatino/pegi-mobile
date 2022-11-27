@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/Controllers/controlProyecto.dart';
 import 'package:pegi/domain/models/proyecto.dart';
+import 'package:pegi/ui/pages/Consultar/admi/evaluadorProyecto.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 
@@ -20,6 +22,7 @@ class AsignarEvaluadorProyecto extends StatefulWidget {
 
 class _AsignarEvaluadorProyectoState extends State<AsignarEvaluadorProyecto> {
   String dropdownValue = list.first;
+  ControlProyecto controlp = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +121,41 @@ class _AsignarEvaluadorProyectoState extends State<AsignarEvaluadorProyecto> {
                       texto: "Confirmar",
                       color: const Color.fromRGBO(91, 59, 183, 1),
                       colorTexto: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        var Proyecto = <String, dynamic>{
+                          'titulo': widget.proyecto.titulo,
+                          'idEstudiante': widget.proyecto.idEstudiante,
+                          'anexos': widget.proyecto.anexos,
+                          'estado': widget.proyecto.estado,
+                          'calificacion': widget.proyecto.calificacion,
+                          'idProyecto': widget.proyecto.idProyecto,
+                          'retroalimentacion':
+                              widget.proyecto.retroalimentacion,
+                          'idDocente': dropdownValue
+                        };
+                        controlp
+                            .modificarProyecto(Proyecto)
+                            .then((value) => {
+                                  Get.showSnackbar(const GetSnackBar(
+                                    title: 'Asignacion de evaluador Exitosa',
+                                    message:
+                                        'El docente fue asignado al proyecto',
+                                    icon: Icon(Icons.gpp_good_outlined),
+                                    duration: Duration(seconds: 5),
+                                    backgroundColor: Colors.greenAccent,
+                                  )),
+                                  Get.to(() => const EvaluadorProyecto()),
+                                })
+                            .catchError((e) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: 'Asignacion de evaluador Erronea',
+                            message: 'Error al asignar docente',
+                            icon: Icon(Icons.warning),
+                            duration: Duration(seconds: 5),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
+                      },
                     ),
                   ],
                 )),

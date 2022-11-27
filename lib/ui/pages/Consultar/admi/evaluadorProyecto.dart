@@ -66,24 +66,24 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
             if (posicion.hasData) {
               return MostrarTodo(
                   texto: posicion.data![index].titulo.toString(),
-                  tipo: posicion.data![index].estado.toString(),
+                  tipo: posicion.data![index].idDocente == ''
+                      ? 'Pendiente'
+                      : 'Asignado',
                   estado: true,
-                  colorBoton:
-                      posicion.data![index].estado.toString().toLowerCase() ==
-                              'pendiente'
-                          ? const Color.fromRGBO(91, 59, 183, 1)
-                          : const Color.fromRGBO(18, 180, 122, 1),
+                  colorBoton: posicion.data![index].idDocente == ''
+                      ? const Color.fromRGBO(91, 59, 183, 1)
+                      : const Color.fromRGBO(18, 180, 122, 1),
                   color: const Color.fromRGBO(30, 30, 30, 1),
                   fijarIcon: true,
-                  icon: posicion.data![index].estado.toString().toLowerCase() ==
-                          'pendiente'
+                  icon: posicion.data![index].idDocente == ''
                       ? Icons.person_add_alt_rounded
                       : Icons.person_remove_rounded,
                   padding: EdgeInsets.only(
                       left: Dimensiones.screenWidth * 0.05,
                       right: Dimensiones.screenWidth * 0.05,
                       top: Dimensiones.screenHeight * 0.03),
-                  onPressed: () {
+                  onPressed: () async {
+                    await controlu.consultarListaDocentes();
                     Get.to(() => AsignarEvaluadorProyecto(
                         proyecto: posicion.data![index]));
                   });

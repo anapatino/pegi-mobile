@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/models/propuesta.dart';
+import 'package:pegi/ui/pages/Consultar/admi/evaluadorPropuesta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Mostrar.dart';
 
-const List<String> list = <String>['Alex vacca', 'Amilkar', 'Roberto'];
+const List<String> list = <String>['Alex Vacca', 'Amilkar', 'Roberto'];
 
 class AsignarEvaluadorPropuesta extends StatefulWidget {
   final Propuesta propuesta;
@@ -20,6 +22,7 @@ class AsignarEvaluadorPropuesta extends StatefulWidget {
 
 class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
   String dropdownValue = list.first;
+  ControlPropuesta controlp = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +121,66 @@ class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
                       texto: "Confirmar",
                       color: const Color.fromRGBO(91, 59, 183, 1),
                       colorTexto: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        var Propuesta = <String, dynamic>{
+                          'titulo': widget.propuesta.titulo,
+                          'idEstudiante': widget.propuesta.idEstudiante,
+                          'idPropuesta': widget.propuesta.idPropuesta,
+                          'nombre': widget.propuesta.nombre,
+                          'apellido': widget.propuesta.apellido,
+                          'identificacion': widget.propuesta.identificacion,
+                          'numero': widget.propuesta.numero,
+                          'programa': widget.propuesta.programa,
+                          'correo': widget.propuesta.correo,
+                          'celular': widget.propuesta.celular,
+                          'nombre2': widget.propuesta.nombre2,
+                          'apellido2': widget.propuesta.apellido2,
+                          'identificacion2': widget.propuesta.identificacion2,
+                          'numero2': widget.propuesta.numero2,
+                          'programa2': widget.propuesta.programa2,
+                          'correo2': widget.propuesta.correo2,
+                          'celular2': widget.propuesta.celular2,
+                          'lineaInvestigacion': widget.propuesta.titulo,
+                          'sublineaInvestigacion':
+                              widget.propuesta.sublineaInvestigacion,
+                          'areaTematica': widget.propuesta.areaTematica,
+                          'grupoInvestigacion':
+                              widget.propuesta.grupoInvestigacion,
+                          'planteamiento': widget.propuesta.planteamiento,
+                          'justificacion': widget.propuesta.justificacion,
+                          'general': widget.propuesta.general,
+                          'especificos': widget.propuesta.especificos,
+                          'bibliografia': widget.propuesta.bibliografia,
+                          'anexos': widget.propuesta.anexos,
+                          'estado': widget.propuesta.estado,
+                          'retroalimentacion':
+                              widget.propuesta.retroalimentacion,
+                          'calificacion': widget.propuesta.calificacion.text,
+                          'idDocente': dropdownValue
+                        };
+                        controlp
+                            .modificarPropuesta(Propuesta)
+                            .then((value) => {
+                                  Get.showSnackbar(const GetSnackBar(
+                                    title: 'Asignacion de evaluador Exitosa',
+                                    message:
+                                        'El docente fue asignado a la propuesta',
+                                    icon: Icon(Icons.gpp_good_outlined),
+                                    duration: Duration(seconds: 5),
+                                    backgroundColor: Colors.greenAccent,
+                                  )),
+                                  Get.to(() => const EvaluadorPropuesta()),
+                                })
+                            .catchError((e) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: 'Asignacion de evaluador Erronea',
+                            message: 'Error al asignar docente',
+                            icon: Icon(Icons.warning),
+                            duration: Duration(seconds: 5),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
+                      },
                     ),
                   ],
                 )),

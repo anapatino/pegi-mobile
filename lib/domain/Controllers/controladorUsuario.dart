@@ -9,12 +9,15 @@ class ControlUsuario extends GetxController {
   final Rx<dynamic> _usuarior = "Sin Registro".obs;
   static final Rx<dynamic> _uid = "".obs;
   static final Rx<dynamic> _rol = "".obs;
+  final Rxn<List<UsuarioFirebase>> _listaDocentes =
+      Rxn<List<UsuarioFirebase>>();
 
   static final Rx<dynamic> _mensajes = "".obs;
 
   String get emailf => _usuarior.value;
   String get uid => _uid.value;
   String get rol => _rol.value;
+  List<UsuarioFirebase>? get getListaDocentes => _listaDocentes.value;
 
   Future<void> enviarDatos(String user, String contrasena) async {
     try {
@@ -50,5 +53,9 @@ class ControlUsuario extends GetxController {
         return Future.error('The account already exists for that email.');
       }
     }
+  }
+
+  Future<void> consultarListaDocentes() async {
+    _listaDocentes.value = await PeticionesUsuario.obtenerDocentes();
   }
 }

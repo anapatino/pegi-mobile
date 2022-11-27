@@ -24,23 +24,22 @@ class Usuario {
   }
 }
 
-List<Usuario> listaUsuario = [
-  Usuario(
-      id: '111',
-      nombre: 'ana',
-      usuario: 'anapatino',
-      contrasena: '123',
-      rol: 'estudiante'),
-  Usuario(
-      id: '222',
-      nombre: 'jeison',
-      usuario: 'jeison2001',
-      contrasena: '123',
-      rol: 'docente'),
-  Usuario(
-      id: '333',
-      nombre: 'santi',
-      usuario: 'santiago2003',
-      contrasena: '123',
-      rol: 'admi'),
-];
+class UsuarioFirebase {
+  final String nombre;
+  final String rol;
+  final String correo;
+
+  UsuarioFirebase({
+    required this.nombre,
+    required this.correo,
+    required this.rol,
+  });
+
+  factory UsuarioFirebase.desdeDoc(Map<String, dynamic> data) {
+    return UsuarioFirebase(
+      nombre: data['nombre'] ?? '',
+      correo: data['correo'] ?? '',
+      rol: data['rol'] ?? '',
+    );
+  }
+}

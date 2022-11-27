@@ -28,6 +28,8 @@ class Propuesta {
   var especificos;
   var bibliografia;
   var anexos;
+  var retroalimentacion;
+  var calificacion;
 
   Propuesta(
       {required this.titulo,
@@ -58,7 +60,9 @@ class Propuesta {
       required this.programa2,
       required this.correo2,
       required this.celular2,
-      required this.idEstudiante});
+      required this.idEstudiante,
+      this.retroalimentacion,
+      this.calificacion});
 
   factory Propuesta.desdeDoc(Map<String, dynamic> data) {
     return Propuesta(
@@ -70,6 +74,7 @@ class Propuesta {
       apellido2: data['apellido2'] ?? '',
       areaTematica: data['areaTematica'] ?? '',
       bibliografia: data['bibliografia'] ?? '',
+      calificacion: data['calificacion'] ?? '',
       celular: data['celular'] ?? '',
       celular2: data['celular2'] ?? '',
       correo: data['correo'] ?? '',
@@ -87,6 +92,7 @@ class Propuesta {
       nombre2: data['nombre2'] ?? '',
       numero: data['numero'] ?? '',
       numero2: data['numero2'] ?? '',
+      retroalimentacion: data['retroalimentacion'] ?? '',
       planteamiento: data['plantamiento'] ?? '',
       programa: data['programa'] ?? '',
       programa2: data['programa2'] ?? '',
