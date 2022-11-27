@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+
+import '../Consultar/Docente/consultarDocente.dart';
 
 class CalificarPropuesta extends StatefulWidget {
   final Propuesta propuesta;
@@ -22,6 +27,8 @@ class CalificarPropuesta extends StatefulWidget {
 class _CalificarPropuestaState extends State<CalificarPropuesta> {
   TextEditingController controlCalificacion = TextEditingController();
   TextEditingController controlRetroalimentacion = TextEditingController();
+  ControlPropuesta controlp = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +91,63 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                   texto: "Enviar",
                   color: const Color.fromRGBO(91, 59, 183, 1),
                   colorTexto: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    var Propuesta = <String, dynamic>{
+                      'titulo': widget.propuesta.titulo,
+                      'idEstudiante': widget.propuesta.idEstudiante,
+                      'idPropuesta': widget.propuesta.idPropuesta,
+                      'nombre': widget.propuesta.nombre,
+                      'apellido': widget.propuesta.apellido,
+                      'identificacion': widget.propuesta.identificacion,
+                      'numero': widget.propuesta.numero,
+                      'programa': widget.propuesta.programa,
+                      'correo': widget.propuesta.correo,
+                      'celular': widget.propuesta.celular,
+                      'nombre2': widget.propuesta.nombre2,
+                      'apellido2': widget.propuesta.apellido2,
+                      'identificacion2': widget.propuesta.identificacion2,
+                      'numero2': widget.propuesta.numero2,
+                      'programa2': widget.propuesta.programa2,
+                      'correo2': widget.propuesta.correo2,
+                      'celular2': widget.propuesta.celular2,
+                      'lineaInvestigacion': widget.propuesta.titulo,
+                      'sublineaInvestigacion':
+                          widget.propuesta.sublineaInvestigacion,
+                      'areaTematica': widget.propuesta.areaTematica,
+                      'grupoInvestigacion': widget.propuesta.grupoInvestigacion,
+                      'planteamiento': widget.propuesta.planteamiento,
+                      'justificacion': widget.propuesta.justificacion,
+                      'general': widget.propuesta.general,
+                      'especificos': widget.propuesta.especificos,
+                      'bibliografia': widget.propuesta.bibliografia,
+                      'anexos': widget.propuesta.anexos,
+                      'estado': "Calificado",
+                      'retroalimentacion': controlRetroalimentacion.text,
+                      'calificacion': controlCalificacion.text,
+                      'idDocente': widget.propuesta.idDocente
+                    };
+                    controlp
+                        .calificarPropuesta(Propuesta)
+                        .then((value) => {
+                              Get.showSnackbar(const GetSnackBar(
+                                title: 'Regristrar Calificacion',
+                                message: 'Datos registrados Correctamente',
+                                icon: Icon(Icons.gpp_good_outlined),
+                                duration: Duration(seconds: 5),
+                                backgroundColor: Colors.greenAccent,
+                              )),
+                              Get.to(() => const ConsultarDocente()),
+                            })
+                        .catchError((e) {
+                      Get.showSnackbar(const GetSnackBar(
+                        title: 'Regristrar Calificacion',
+                        message: 'Error al registrar calificacion',
+                        icon: Icon(Icons.warning),
+                        duration: Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                      ));
+                    });
+                  },
                 ),
               ],
             ),

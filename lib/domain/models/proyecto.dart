@@ -1,13 +1,15 @@
+import 'dart:convert';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Proyecto {
-  var titulo;
-  var idEstudiante;
-  var anexos;
-  var estado;
-  var calificacion;
-  var idProyecto;
-  var idDocente;
-  var retroalimentacion;
+  String titulo;
+  String idEstudiante;
+  String anexos;
+  String estado;
+  String calificacion;
+  String idProyecto;
+  String idDocente;
+  String retroalimentacion;
   Proyecto(
       {required this.titulo,
       required this.idEstudiante,
@@ -17,4 +19,35 @@ class Proyecto {
       required this.idProyecto,
       required this.idDocente,
       required this.retroalimentacion});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'titulo': titulo,
+      'idEstudiante': idEstudiante,
+      'anexos': anexos,
+      'estado': estado,
+      'calificacion': calificacion,
+      'idProyecto': idProyecto,
+      'idDocente': idDocente,
+      'retroalimentacion': retroalimentacion,
+    };
+  }
+
+  factory Proyecto.fromMap(Map<String, dynamic> map) {
+    return Proyecto(
+      titulo: map['titulo'] as String,
+      idEstudiante: map['idEstudiante'] as String,
+      anexos: map['anexos'] as String,
+      estado: map['estado'] as String,
+      calificacion: map['calificacion'] as String,
+      idProyecto: map['idProyecto'] as String,
+      idDocente: map['idDocente'] as String,
+      retroalimentacion: map['retroalimentacion'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Proyecto.fromJson(String source) =>
+      Proyecto.fromMap(json.decode(source) as Map<String, dynamic>);
 }

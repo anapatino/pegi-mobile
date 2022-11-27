@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:pegi/domain/models/index.dart';
 import 'package:pegi/domain/models/propuesta.dart';
+import 'package:pegi/ui/pages/Calificar/calificarPropuesta.dart';
 
 class PeticionesPropuesta {
   static final fs.FirebaseStorage storage = fs.FirebaseStorage.instance;
@@ -113,6 +114,7 @@ class PeticionesPropuesta {
     await _db.collection("Propuesta").get().then((respuesta) {
       for (var doc in respuesta.docs) {
         lista.add(Propuesta(
+          idEstudiante: doc.data()['idEstudiante'],
           titulo: doc.data()['titulo'],
           estado: doc.data()['estado'],
           anexos: doc.data()['anexos'],
@@ -154,6 +156,7 @@ class PeticionesPropuesta {
         if (doc.data()['idEstudiante'] == email) {
           log(doc.data()['idEstudiante']);
           lista.add(Propuesta(
+            idEstudiante: doc.data()['idEstudiante'],
             titulo: doc.data()['titulo'],
             estado: doc.data()['estado'],
             anexos: doc.data()['anexos'],
@@ -196,6 +199,7 @@ class PeticionesPropuesta {
         if (doc.data()['idDocente'] == docente) {
           log(doc.data()['idDocente']);
           lista.add(Propuesta(
+            idEstudiante: doc.data()['idEstudiante'],
             titulo: doc.data()['titulo'],
             estado: doc.data()['estado'],
             anexos: doc.data()['anexos'],
@@ -229,5 +233,21 @@ class PeticionesPropuesta {
       }
     });
     return lista;
+  }
+
+  static Future<void> calificarPropuesta(Map<String, dynamic> propuesta) async {
+    await _db.collection("Propuesta").get().then((respuesta) async {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idPropuesta'] == propuesta['idPropuesta']) {
+          await _db
+              .collection('Propuesta')
+              .doc(doc.id)
+              .update(propuesta)
+              .catchError((e) {
+            log(e);
+          });
+        }
+      }
+    });
   }
 }

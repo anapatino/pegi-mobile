@@ -25,6 +25,10 @@ class ControlProyecto extends GetxController {
   List<Proyecto>? get getproyectosGral => _proyectoFirestore.value;
   List<Proyecto>? get getproyectosDocentes => _proyectoDocenteFirestore.value;
 
+  Future<void> calificarProyecto(proyecto) async {
+    await PeticionesProyecto.calificarProyecto(proyecto);
+  }
+
   Future<void> registrarProyecto(Map<String, dynamic> proyecto,
       String? pickedFilePath, String? pickedFileextencion) async {
     try {
