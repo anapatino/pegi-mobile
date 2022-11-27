@@ -13,27 +13,32 @@ import 'package:pegi/ui/widgets/Mostrar.dart';
 import '../../../../domain/Controllers/controlProyecto.dart';
 import '../../../../domain/models/proyecto.dart';
 
-class ConsultarProyecto extends StatelessWidget {
-  const ConsultarProyecto({Key? key}) : super(key: key);
+class ConsultarProyecto extends StatefulWidget {
+  const ConsultarProyecto({super.key});
 
   @override
+  State<ConsultarProyecto> createState() => _ConsultarProyectoState();
+}
+
+class _ConsultarProyectoState extends State<ConsultarProyecto> {
+  PeticionesProyecto peticionesPropuesta = PeticionesProyecto();
+  ControlProyecto controlp = Get.find();
+
+  ControlUsuario controlu = Get.find();
+
+  late Future<List<Proyecto>> listaProyecto =
+      PeticionesProyecto.consultarProyectos(controlu.emailf);
+  TextEditingController controlador = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    // TextEditingController controlador = TextEditingController();
-    // PeticionesProyecto peticionesProyecto = PeticionesProyecto();
-
-    // late List<Proyecto> listaProyecto;
-
-    // consulta() async {
-    //   final x = await PeticionesProyecto.consultarProyectos(controlu.emailf);
-    //   listaProyecto = x;
-    // }
-    ControlProyecto controlp = Get.find();
+    controlp.consultarProyectos(controlu.emailf).then((value) => null);
     return Scaffold(
         backgroundColor: Colors.black,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-          child: SingleChildScrollView(
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: Dimensiones.screenHeight * 0.02,
+                horizontal: Dimensiones.screenWidth * 0.02),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -58,49 +63,53 @@ class ConsultarProyecto extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Container(
+                        margin: EdgeInsets.zero,
+                        padding: EdgeInsets.zero,
+                        height: Dimensiones.screenHeight * 0.65,
+                        width: Dimensiones.screenWidth * 0.89,
+                        child: mostrarLista(),
+                      )
                     ],
                   ),
                 ),
-                Column(children: [
-                  Obx(
-                    () => controlp.getproyectosGral?.isEmpty == false
-                        ? ListView.builder(
-                            itemCount:
-                                controlp.getproyectosGral?.isEmpty == true
-                                    ? 0
-                                    : controlp.getproyectosGral!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, posicion) {
-                              return Mostrar(
-                                  texto: controlp
-                                      .getproyectosGral![posicion].titulo
-                                      .toString(),
-                                  tipo: controlp
-                                      .getproyectosGral![posicion].estado
-                                      .toString(),
-                                  colorTipo: controlp
-                                              .getproyectosGral![posicion]
-                                              .estado
-                                              .toString()
-                                              .toLowerCase() ==
-                                          'pendiente'
-                                      ? const Color.fromRGBO(91, 59, 183, 1)
-                                      : const Color.fromRGBO(18, 180, 122, 1),
-                                  colorBoton:
-                                      const Color.fromRGBO(30, 30, 30, 1),
-                                  onPressed: () {
-                                    Get.to(() => MostrarProyecto(
-                                        proyecto: controlp
-                                            .getproyectosGral![posicion]));
-                                  });
-                            },
-                          )
-                        : const Icon(Icons.abc),
-                  )
-                ])
               ],
             ),
           ),
         ));
+  }
+
+  Widget mostrarLista() {
+    return ListView.builder(
+      itemCount: controlp.getproyectosGral?.isEmpty == true
+          ? 0
+          : controlp.getproyectosGral!.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return FutureBuilder<List<Proyecto>>(
+          future: listaProyecto,
+          builder: (context, posicion) {
+            if (posicion.hasData) {
+              return Mostrar(
+                  texto: posicion.data![index].titulo.toString(),
+                  tipo: posicion.data![index].estado.toString(),
+                  colorTipo:
+                      posicion.data![index].estado.toString().toLowerCase() ==
+                              'pendiente'
+                          ? const Color.fromRGBO(91, 59, 183, 1)
+                          : const Color.fromRGBO(18, 180, 122, 1),
+                  colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                  onPressed: () {
+                    Get.to(
+                        () => MostrarProyecto(proyecto: posicion.data![index]));
+                  });
+            } else if (posicion.hasError) {
+              return Text('${posicion.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        );
+      },
+    );
   }
 }

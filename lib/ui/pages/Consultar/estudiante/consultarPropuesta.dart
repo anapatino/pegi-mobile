@@ -33,10 +33,11 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
 
     return Scaffold(
         backgroundColor: Colors.black,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-          child: SingleChildScrollView(
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: Dimensiones.screenHeight * 0.02,
+                horizontal: Dimensiones.screenWidth * 0.02),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -64,7 +65,13 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                     ],
                   ),
                 ),
-                mostrarLista()
+                Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
+                  height: Dimensiones.screenHeight * 0.65,
+                  width: Dimensiones.screenWidth * 0.89,
+                  child: mostrarLista(),
+                )
               ],
             ),
           ),
