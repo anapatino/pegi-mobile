@@ -123,5 +123,17 @@ class PeticionesProyecto {
     });
   }
 
+  static Future contadorProyecto(String estado) async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['estado'].toLowerCase() == estado) {
+          contador += 1;
+        }
+      }
+    });
+    return contador;
+  }
+
   static Future<void> actualizarIndex(Map<String, dynamic> propuesta) async {}
 }
