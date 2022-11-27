@@ -32,10 +32,11 @@ class _ConsultarProyectoDocenteState extends State<ConsultarProyectoDocente> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-          child: SingleChildScrollView(
+      body: SafeArea(
+        child: Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: Dimensiones.screenHeight * 0.02,
+                horizontal: Dimensiones.screenWidth * 0.02),
             child: Column(
               children: <Widget>[
                 Column(
@@ -46,97 +47,61 @@ class _ConsultarProyectoDocenteState extends State<ConsultarProyectoDocente> {
                     Filter(controlador: controlador, texto: 'Filtrar'),
                   ],
                 ),
-                Column(children: [
-                  Obx(
-                    () => controlp.getproyectosDocentes?.isEmpty == false
-                        ? ListView.builder(
-                            itemCount:
-                                controlp.getproyectosDocentes?.isEmpty == true
-                                    ? 0
-                                    : controlp.getproyectosDocentes!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, posicion) {
-                              return MostrarTodo(
-                                texto: controlp
-                                    .getproyectosDocentes![posicion].titulo
-                                    .toString(),
-                                colorBoton: controlp
-                                            .getproyectosDocentes![posicion]
-                                            .estado
-                                            .toString()
-                                            .toLowerCase() ==
-                                        'pendiente'
-                                    ? const Color.fromRGBO(91, 59, 183, 1)
-                                    : const Color.fromRGBO(18, 180, 122, 1),
-                                estado: true,
-                                tipo: controlp
-                                    .getproyectosDocentes![posicion].estado
-                                    .toString(),
-                                onPressed: () async {
-                                  await controlp
-                                      .consultarProyectosDocentes(
-                                          controlu.emailf)
-                                      .then((value) =>
-                                          log("consulta Proyecto Docente"));
-                                  Get.to(() => CalificarProyecto(
-                                      proyecto: controlp
-                                          .getproyectosDocentes![posicion]));
-                                },
-                                color: const Color.fromRGBO(30, 30, 30, 1),
-                                fijarIcon: true,
-                                icon: Icons.edit_outlined,
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 20),
-                              );
-                            },
-                          )
-                        : const Icon(Icons.abc),
-                  )
-                ])
+                Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
+                  height: Dimensiones.screenHeight * 0.55,
+                  width: Dimensiones.screenWidth * 0.89,
+                  child: mostrarLista(),
+                )
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 
-  // Widget mostrarLista() {
-  //   return ListView.builder(
-  //     itemCount: controlp.getproyectosDocentes?.isEmpty == true
-  //         ? 0
-  //         : controlp.getproyectosDocentes!.length,
-  //     shrinkWrap: true,
-  //     itemBuilder: (context, index) {
-  //       return FutureBuilder<List<Proyecto>>(
-  //         future: listaProyecto,
-  //         builder: (context, posicion) {
-  //           if (posicion.hasData) {
-  //             return MostrarTodo(
-  //               texto: controlp.getproyectosDocentes![posicion].titulo.toString(),
-  //               colorBoton:
-  //                   controlp.getproyectosDocentes![posicion].estado.toString().toLowerCase() ==
-  //                           'pendiente'
-  //                       ? const Color.fromRGBO(91, 59, 183, 1)
-  //                       : const Color.fromRGBO(18, 180, 122, 1),
-  //               estado: true,
-  //               tipo: controlp.getproyectosDocentes![posicion].estado.toString(),
-  //               onPressed: () {
-  //                 log("Consultar proyecto");
-  //                 Get.to(
-  //                     () => CalificarProyecto(proyecto: controlp.getproyectosDocentes![posicion]));
-  //               },
-  //               color: const Color.fromRGBO(30, 30, 30, 1),
-  //               fijarIcon: true,
-  //               icon: Icons.edit_outlined,
-  //               padding:
-  //                   const EdgeInsets.only(left: 25.0, right: 25.0, top: 20),
-  //             );
-  //           } else if (posicion.hasError) {
-  //             return Text('${posicion.error}');
-  //           }
-  //           return const CircularProgressIndicator();
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
+  Widget mostrarLista() {
+    return ListView.builder(
+      itemCount: controlp.getproyectosDocentes?.isEmpty == true
+          ? 0
+          : controlp.getproyectosDocentes!.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return FutureBuilder<List<Proyecto>>(
+          future: listaProyecto,
+          builder: (context, posicion) {
+            if (posicion.hasData) {
+              return MostrarTodo(
+                texto: posicion.data![index].titulo.toString(),
+                tipo: posicion.data![index].estado.toString(),
+                estado: true,
+                colorBoton:
+                    posicion.data![index].estado.toString().toLowerCase() ==
+                            'pendiente'
+                        ? const Color.fromRGBO(91, 59, 183, 1)
+                        : const Color.fromRGBO(18, 180, 122, 1),
+                onPressed: () async {
+                  await controlp
+                      .consultarProyectosDocentes(controlu.emailf)
+                      .then((value) => log("consulta Proyecto Docente"));
+                  Get.to(
+                      () => CalificarProyecto(proyecto: posicion.data![index]));
+                },
+                color: const Color.fromRGBO(30, 30, 30, 1),
+                fijarIcon: true,
+                icon: Icons.edit_outlined,
+                padding: EdgeInsets.only(
+                    left: Dimensiones.screenWidth * 0.05,
+                    right: Dimensiones.screenWidth * 0.05,
+                    top: Dimensiones.screenHeight * 0.03),
+              );
+            } else if (posicion.hasError) {
+              return Text('${posicion.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        );
+      },
+    );
+  }
 }

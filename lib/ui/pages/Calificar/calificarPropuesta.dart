@@ -55,8 +55,10 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                     onPressed: () {},
                     color: Colors.black,
                     fijarIcon: false,
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 25.0, top: 20)),
+                    padding: EdgeInsets.only(
+                        left: Dimensiones.screenWidth * 0.05,
+                        right: Dimensiones.screenWidth * 0.05,
+                        top: Dimensiones.screenHeight * 0.03)),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Container(

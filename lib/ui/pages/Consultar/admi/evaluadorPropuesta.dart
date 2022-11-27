@@ -4,7 +4,6 @@ import 'package:pegi/data/services/peticionesPropuesta.dart';
 import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/models/propuesta.dart';
 import 'package:pegi/ui/pages/Calificar/asignarEvaluadorPropuesta.dart';
-import 'package:pegi/ui/pages/calificar/asignarEvaluador.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Filter.dart';
 import 'package:pegi/ui/widgets/Header.dart';

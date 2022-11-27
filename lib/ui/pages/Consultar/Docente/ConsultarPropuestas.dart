@@ -28,10 +28,11 @@ class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-          child: SingleChildScrollView(
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: Dimensiones.screenHeight * 0.02,
+                horizontal: Dimensiones.screenWidth * 0.02),
             child: Column(
               children: <Widget>[
                 Column(
@@ -42,7 +43,13 @@ class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
                     Filter(controlador: controlador, texto: 'Filtrar'),
                   ],
                 ),
-                mostrarLista(),
+                Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
+                  height: Dimensiones.screenHeight * 0.55,
+                  width: Dimensiones.screenWidth * 0.89,
+                  child: mostrarLista(),
+                )
               ],
             ),
           ),
@@ -63,6 +70,7 @@ class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
               return MostrarTodo(
                 texto: posicion.data![index].titulo.toString(),
                 tipo: posicion.data![index].estado.toString(),
+                estado: true,
                 colorBoton:
                     posicion.data![index].estado.toString().toLowerCase() ==
                             'pendiente'
@@ -75,8 +83,10 @@ class _ConsultarPropuestaDocenteState extends State<ConsultarPropuestaDocente> {
                 color: const Color.fromRGBO(30, 30, 30, 1),
                 fijarIcon: true,
                 icon: Icons.edit_outlined,
-                padding:
-                    const EdgeInsets.only(left: 25.0, right: 25.0, top: 20),
+                padding: EdgeInsets.only(
+                    left: Dimensiones.screenWidth * 0.05,
+                    right: Dimensiones.screenWidth * 0.05,
+                    top: Dimensiones.screenHeight * 0.03),
               );
             } else if (posicion.hasError) {
               return Text('${posicion.error}');
