@@ -1,4 +1,5 @@
 class Propuesta {
+  var idEstudiante;
   var titulo;
   var estado;
   var idPropuesta;
@@ -56,10 +57,12 @@ class Propuesta {
       required this.numero2,
       required this.programa2,
       required this.correo2,
-      required this.celular2});
+      required this.celular2,
+      required this.idEstudiante});
 
   factory Propuesta.desdeDoc(Map<String, dynamic> data) {
     return Propuesta(
+      idEstudiante: data['idEstudiante'] ?? '',
       titulo: data['titulo'] ?? '',
       estado: data['estado'] ?? '',
       anexos: data['anexos'] ?? '',

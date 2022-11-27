@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pegi/domain/models/proyecto.dart';
+import 'package:pegi/ui/pages/Consultar/Docente/consultarDocente.dart';
+import 'package:pegi/ui/pages/Consultar/Docente/consultarProyectos.dart';
+import 'package:pegi/ui/pages/Consultar/estudiante/consultarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
+
+import '../../../domain/Controllers/controlProyecto.dart';
 
 class CalificarProyecto extends StatefulWidget {
   final Proyecto proyecto;
@@ -21,6 +28,8 @@ class CalificarProyecto extends StatefulWidget {
 class _CalificarProyectoState extends State<CalificarProyecto> {
   TextEditingController controlCalificacion = TextEditingController();
   TextEditingController controlRetroalimentacion = TextEditingController();
+  ControlProyecto controlp = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +92,39 @@ class _CalificarProyectoState extends State<CalificarProyecto> {
                   texto: "Enviar",
                   color: const Color.fromRGBO(91, 59, 183, 1),
                   colorTexto: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    var Proyecto = <String, dynamic>{
+                      'idProyecto': widget.proyecto.idProyecto,
+                      'titulo': widget.proyecto.titulo,
+                      'anexos': widget.proyecto.anexos,
+                      'idEstudiante': widget.proyecto.idEstudiante,
+                      'estado': "Calificado",
+                      'retroalimentacion': controlRetroalimentacion.text,
+                      'calificacion': controlCalificacion.text,
+                      'idDocente': widget.proyecto.idDocente,
+                    };
+                    controlp
+                        .calificarProyecto(Proyecto)
+                        .then((value) => {
+                              Get.showSnackbar(const GetSnackBar(
+                                title: 'Regristrar Calificacion',
+                                message: 'Datos registrados Correctamente',
+                                icon: Icon(Icons.gpp_good_outlined),
+                                duration: Duration(seconds: 5),
+                                backgroundColor: Colors.greenAccent,
+                              )),
+                              Get.to(() => const ConsultarDocente()),
+                            })
+                        .catchError((e) {
+                      Get.showSnackbar(const GetSnackBar(
+                        title: 'Regristrar Calificacion',
+                        message: 'Error al registrar calificacion',
+                        icon: Icon(Icons.warning),
+                        duration: Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                      ));
+                    });
+                  },
                 ),
               ],
             ),
