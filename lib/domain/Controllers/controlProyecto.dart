@@ -49,14 +49,4 @@ class ControlProyecto extends GetxController {
       // }
     }
   }
-
-  final _proyecto = 0.obs;
-  int get cantidad => _proyecto.value;
-  void proyectoCalifica() {
-    _proyecto.value = _proyecto.value + 1;
-  }
-
-  void proyectoPendiente() {
-    _proyecto.value = _proyecto.value - 1;
-  }
 }
