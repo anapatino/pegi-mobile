@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Calendar.dart';
 import 'package:pegi/ui/widgets/Navbar.dart';
 import 'package:pegi/ui/widgets/ProgressAvatar.dart';
+
+import '../../../data/services/peticionesPropuesta.dart';
+import '../../../data/services/peticionesProyecto.dart';
+import '../../../domain/Controllers/controlProyecto.dart';
+import '../../../domain/Controllers/controladorUsuario.dart';
 
 class DashboardAdmin extends StatefulWidget {
   const DashboardAdmin({super.key});
@@ -12,6 +18,57 @@ class DashboardAdmin extends StatefulWidget {
 }
 
 class _DashboardAdminState extends State<DashboardAdmin> {
+  @override
+  void initState() {
+    super.initState();
+    func();
+    func2();
+    func3();
+    func4();
+  }
+
+  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
+
+  var calificadosProy = 0;
+  var totalProy = 0;
+  var calificadosProp = 0;
+  var totalProp = 0;
+  ControlProyecto controlp = Get.find();
+  ControlUsuario controlu = Get.find();
+
+  void func() {
+    peticionesProyecto.contadorProyec().then((value) {
+      setState(() {
+        calificadosProy = value;
+      });
+    });
+  }
+
+  void func2() {
+    peticionesProyecto.contadorProy().then((value) {
+      setState(() {
+        totalProy = value;
+      });
+    });
+  }
+
+  void func3() {
+    peticionesPropuesta.contadorPropAdmin().then((value) {
+      setState(() {
+        calificadosProp = value;
+      });
+    });
+  }
+
+  void func4() {
+    peticionesPropuesta.contadorPropAdm().then((value) {
+      setState(() {
+        totalProp = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,19 +81,21 @@ class _DashboardAdminState extends State<DashboardAdmin> {
             Navbar("Administrador", Icons.space_dashboard),
             const Calendar(),
             ProgressAvatar(
-              porcentaje: 0.5,
+              porcentaje: (calificadosProp / totalProp),
               color: const Color.fromRGBO(91, 59, 183, 1),
-              label: '50%',
+              label: ((calificadosProp / totalProp) * 100).toString(),
               texto: 'Propuestas \ncalificadas',
-              seguimiento: '8/16 revisiones',
+              seguimiento:
+                  '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
             ),
             const SizedBox(height: 30),
             ProgressAvatar(
-              porcentaje: 0.3,
-              color: const Color.fromRGBO(33, 150, 243, 1),
-              label: '30%',
+              porcentaje: (calificadosProy / totalProy),
+              color: const Color.fromRGBO(91, 59, 183, 1),
+              label: ((calificadosProy / totalProy) * 100).toString(),
               texto: 'Proyectos \ncalificadas',
-              seguimiento: '8/16 revisiones',
+              seguimiento:
+                  '${calificadosProy.toString()}/${totalProy.toString()} revisiones',
             ),
           ],
         ),

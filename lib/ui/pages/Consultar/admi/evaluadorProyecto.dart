@@ -66,8 +66,8 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
             if (posicion.hasData) {
               return MostrarTodo(
                   texto: posicion.data![index].titulo.toString(),
-                  tipo: posicion.data![index].idDocente == ''
-                      ? 'Pendiente'
+                  tipo: posicion.data![index].idDocente == 'Pendiente'
+                      ? 'Asignado'
                       : 'Asignado',
                   estado: true,
                   colorBoton: posicion.data![index].idDocente == ''

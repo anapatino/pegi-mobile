@@ -201,4 +201,27 @@ class PeticionesPropuesta {
     });
     return contador;
   }
+
+  Future contadorPropAdmin() async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['estado'] == 'Calificado') {
+          contador += 1;
+        }
+      }
+    });
+    return contador;
+  }
+
+//if (doc.data()['idDocente'] != ''){no han sido asignadas}
+  Future contadorPropAdm() async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        contador += 1;
+      }
+    });
+    return contador;
+  }
 }

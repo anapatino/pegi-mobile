@@ -68,7 +68,10 @@ class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
             if (posicion.hasData) {
               return MostrarTodo(
                   texto: posicion.data![index].titulo.toString(),
-                  tipo: posicion.data![index].idDocente == ''
+                  tipo: posicion.data![index].idDocente
+                              .toString()
+                              .toLowerCase() ==
+                          'Pendiente'
                       ? 'Pendiente'
                       : 'Asignado',
                   estado: true,

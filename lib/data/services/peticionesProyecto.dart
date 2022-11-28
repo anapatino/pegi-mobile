@@ -149,5 +149,27 @@ class PeticionesProyecto {
     return contador;
   }
 
+  Future contadorProyec() async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['estado'] == 'Calificado') {
+          contador += 1;
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future contadorProy() async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        contador += 1;
+      }
+    });
+    return contador;
+  }
+
   static Future<void> actualizarIndex(Map<String, dynamic> propuesta) async {}
 }
