@@ -199,5 +199,6 @@ class PeticionesPropuesta {
         }
       }
     });
+    return contador;
   }
 }

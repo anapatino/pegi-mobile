@@ -146,6 +146,7 @@ class PeticionesProyecto {
         }
       }
     });
+    return contador;
   }
 
   static Future<void> actualizarIndex(Map<String, dynamic> propuesta) async {}
