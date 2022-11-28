@@ -123,5 +123,30 @@ class PeticionesProyecto {
     });
   }
 
+  Future contadorProyecto(id, String estado) async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] == id) {
+          if (doc.data()['estado'].toLowerCase() == estado.toLowerCase()) {
+            contador += 1;
+          }
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future contadorPro(id) async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] == id) {
+          contador += 1;
+        }
+      }
+    });
+  }
+
   static Future<void> actualizarIndex(Map<String, dynamic> propuesta) async {}
 }

@@ -175,4 +175,29 @@ class PeticionesPropuesta {
       }
     });
   }
+
+  Future contadorPropuesta(id, String estado) async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] == id) {
+          if (doc.data()['estado'].toLowerCase() == estado.toLowerCase()) {
+            contador += 1;
+          }
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future contadorProp(id) async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] == id) {
+          contador += 1;
+        }
+      }
+    });
+  }
 }
