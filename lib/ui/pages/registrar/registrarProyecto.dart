@@ -125,7 +125,6 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                                     duration: Duration(seconds: 5),
                                     backgroundColor: Colors.greenAccent,
                                   )),
-                                  Get.to(() => const Registrar()),
                                 })
                             .catchError((e) {
                           Get.showSnackbar(const GetSnackBar(

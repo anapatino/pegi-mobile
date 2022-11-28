@@ -29,10 +29,8 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
             children: <Widget>[
               Navbar("Estudiante", Icons.space_dashboard),
               ProgressAvatar(
-                tieneFecha: true,
-                fecha: '2 abril',
+                tieneFecha: false,
                 porcentaje: 0.3,
-                color: const Color.fromRGBO(33, 150, 243, 1),
                 label: '30%',
                 texto: 'Proyectos \ncalificadas',
                 seguimiento: '8/16 revisiones',
