@@ -97,7 +97,7 @@ class _DashboardState extends State<Dashboard> {
               porcentaje: (calificadosProy / totalProy),
               color: const Color.fromRGBO(91, 59, 183, 1),
               label: ((calificadosProy / totalProy) * 100).toString(),
-              texto: 'Propuestas \ncalificadas',
+              texto: 'Proyectos \ncalificadas',
               seguimiento:
                   '${calificadosProy.toString()}/${totalProy.toString()} revisiones',
             ),

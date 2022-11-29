@@ -171,5 +171,45 @@ class PeticionesProyecto {
     return contador;
   }
 
+  Future coProyeEst(email) async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] != '') {
+          if (doc.data()['idEstudiante'] == email) {
+            contador += 1;
+          }
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future conProyeEst(email) async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idEstudiante'] == email) {
+          contador += 1;
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future conProyecEst(email, String estado) async {
+    var contador = 0;
+    await _db.collection("Proyectos").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idEstudiante'] == email) {
+          if (doc.data()['estado'].toLowerCase() == estado.toLowerCase()) {
+            contador += 1;
+          }
+        }
+      }
+    });
+    return contador;
+  }
+
   static Future<void> actualizarIndex(Map<String, dynamic> propuesta) async {}
 }

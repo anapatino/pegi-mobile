@@ -7,7 +7,7 @@ class ProgressAvatar extends StatelessWidget {
   String label;
   String seguimiento;
   double porcentaje; //
-  Color? color;
+  Color color;
   String texto;
   bool? tieneFecha;
   String? fecha;
@@ -19,7 +19,7 @@ class ProgressAvatar extends StatelessWidget {
       required this.seguimiento,
       required this.label,
       required this.porcentaje,
-      this.color});
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
