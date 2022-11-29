@@ -77,31 +77,38 @@ class _DashboardState extends State<Dashboard> {
     controlp.consultarProyectos(controlu.emailf).then((value) => null);
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-        child: Column(
-          children: <Widget>[
-            Navbar("Docente", Icons.space_dashboard),
-            const Calendar(),
-            ProgressAvatar(
-              porcentaje: (calificadosProp / totalProp),
-              color: const Color.fromRGBO(91, 59, 183, 1),
-              label: ((calificadosProp / totalProp) * 100).toString(),
-              texto: 'Propuestas \ncalificadas',
-              seguimiento:
-                  '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
-            ),
-            SizedBox(height: Dimensiones.height5),
-            ProgressAvatar(
-              porcentaje: (calificadosProy / totalProy),
-              color: const Color.fromRGBO(91, 59, 183, 1),
-              label: ((calificadosProy / totalProy) * 100).toString(),
-              texto: 'Proyectos \ncalificadas',
-              seguimiento:
-                  '${calificadosProy.toString()}/${totalProy.toString()} revisiones',
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.screenHeight * 0.02,
+              horizontal: Dimensiones.width5),
+          child: Column(
+            children: <Widget>[
+              Navbar("Docente", Icons.space_dashboard),
+              const Calendar(),
+              ProgressAvatar(
+                porcentaje: (calificadosProp / totalProp),
+                color: const Color.fromRGBO(91, 59, 183, 1),
+                label: ((calificadosProp / totalProp) * 100).toString() == 'NaN'
+                    ? '-'
+                    : ((calificadosProy / totalProy) * 100).round().toString(),
+                texto: 'Propuestas \ncalificadas',
+                seguimiento:
+                    '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
+              ),
+              SizedBox(height: Dimensiones.height5),
+              ProgressAvatar(
+                porcentaje: (calificadosProy / totalProy),
+                color: const Color.fromRGBO(91, 59, 183, 1),
+                label: ((calificadosProy / totalProy) * 100).toString() == 'NaN'
+                    ? '-'
+                    : ((calificadosProy / totalProy) * 100).round().toString(),
+                texto: 'Proyectos \ncalificadas',
+                seguimiento:
+                    '${calificadosProy.toString()}/${totalProy.toString()} revisiones',
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -88,24 +88,6 @@ class _RegistrarState extends State<Registrar> {
                 children: [
                   Input(
                     false,
-                    controlNombre,
-                    "Nombre",
-                    const EdgeInsets.all(0),
-                    const EdgeInsets.only(top: 10, bottom: 20),
-                    const Color.fromARGB(255, 197, 197, 197),
-                    Colors.grey.shade700,
-                  ),
-                  Input(
-                    false,
-                    controlApellido,
-                    "Apellido",
-                    const EdgeInsets.all(0),
-                    const EdgeInsets.only(top: 10, bottom: 20),
-                    const Color.fromARGB(255, 197, 197, 197),
-                    Colors.grey.shade700,
-                  ),
-                  Input(
-                    false,
                     controlCorreo,
                     "Correo",
                     const EdgeInsets.all(0),

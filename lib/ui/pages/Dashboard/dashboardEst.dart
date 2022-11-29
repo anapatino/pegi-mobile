@@ -87,17 +87,18 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
     controlp.consultarProyectos(controlu.emailf).then((value) => null);
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: Dimensiones.height5, horizontal: Dimensiones.width5),
-        child: SingleChildScrollView(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensiones.screenHeight * 0.02,
+              horizontal: Dimensiones.width5),
           child: Column(
             children: <Widget>[
               Navbar("Estudiante", Icons.space_dashboard),
               ProgressAvatar(
                 porcentaje: (calificadosProp / totalProp),
                 color: const Color.fromRGBO(91, 59, 183, 1),
-                label: ((calificadosProp / totalProp) * 100).toString(),
+                label: "${((calificadosProp / totalProp) * 100)}%",
                 texto: 'Propuestas \ncalificadas',
                 seguimiento:
                     '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
@@ -154,7 +155,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                               255, 221, 221, 221)),
                                     ),
                                     SizedBox(
-                                      height: Dimensiones.screenHeight * 0.05,
+                                      height: Dimensiones.screenHeight * 0.03,
                                     ),
                                     LinearPercentIndicator(
                                       lineHeight: 9,
@@ -184,16 +185,16 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                             style: GoogleFonts.montserrat(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 10.0,
-                                                color: Color.fromARGB(
+                                                color: const Color.fromARGB(
                                                     255, 221, 221, 221)),
                                           ),
                                           Text(
-                                            '${((asignadosProp / totalProp) * 100)}%',
+                                            '${((asignadosProp / totalProp) * 100).round()}%',
                                             textAlign: TextAlign.start,
                                             style: GoogleFonts.montserrat(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 10.0,
-                                                color: Color.fromARGB(
+                                                color: const Color.fromARGB(
                                                     255, 221, 221, 221)),
                                           ),
                                         ],
@@ -236,7 +237,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold,
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 221, 221, 221)),
                                       ),
                                       SizedBox(
@@ -274,7 +275,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                                       255, 221, 221, 221)),
                                             ),
                                             Text(
-                                              '${((asignadosProy / totalProy) * 100)}%',
+                                              '${((asignadosProy / totalProy) * 100).round()}%',
                                               textAlign: TextAlign.start,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
@@ -342,7 +343,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                 DateFormat.EEEE('en_US')
                                     .format(today)
                                     .toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 13.0,
                                     color: Color.fromARGB(255, 221, 221, 221)),
                               )
