@@ -55,7 +55,6 @@ class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
   }
 
   Widget mostrarLista() {
-    List<String> lista = [];
     return ListView.builder(
       itemCount: controlp.getTodasPropuesta?.isEmpty == true
           ? 0
@@ -89,12 +88,10 @@ class _EvaluadorPropuestaState extends State<EvaluadorPropuesta> {
                       top: Dimensiones.screenHeight * 0.03),
                   onPressed: () async {
                     await controlu.consultarListaDocentes();
-                    controlu.getListaDocentes
-                        ?.map((user) => lista.add(user.nombre))
-                        .toList();
-                    lista.map((e) => log(e));
+                    await controlu.consultarNombresDocentes();
                     Get.to(() => AsignarEvaluadorPropuesta(
                           propuesta: posicion.data![index],
+                          user: controlu.getListaDocentes!,
                         ));
                   });
             } else if (posicion.hasError) {

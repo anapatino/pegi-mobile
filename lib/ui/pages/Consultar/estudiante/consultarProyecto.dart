@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/data/services/peticionesProyecto.dart';
 import 'package:pegi/domain/Controllers/controladorUsuario.dart';
+import 'package:pegi/ui/pages/Consultar/estudiante/consultarEstudiante.dart';
+import 'package:pegi/ui/pages/Consultar/estudiante/consultarPropuesta.dart';
 import 'package:pegi/ui/pages/Consultar/estudiante/mostrarProyecto.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
@@ -12,6 +14,7 @@ import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../../domain/Controllers/controlProyecto.dart';
 import '../../../../domain/models/proyecto.dart';
+import '../../home.dart';
 
 class ConsultarProyecto extends StatefulWidget {
   const ConsultarProyecto({super.key});
@@ -99,6 +102,9 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
                           ? const Color.fromRGBO(91, 59, 183, 1)
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                  onLongPress: () {
+                    _eliminarProyecto(context, posicion.data![index], controlp);
+                  },
                   onPressed: () {
                     Get.to(
                         () => MostrarProyecto(proyecto: posicion.data![index]));
@@ -111,5 +117,35 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
         );
       },
     );
+  }
+
+  _eliminarProyecto(context, propuestaActual, controlp) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              backgroundColor: const Color.fromRGBO(30, 30, 30, 1),
+              title: const Text('Eliminar Proyecto'),
+              content:
+                  Text('Desea Realmente Eliminar a ${propuestaActual.titulo}'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      controlp.eliminarPropuesta(propuestaActual.idPropuesta);
+                      Get.offAll(() => HomePage(rol: "estudiante"));
+                    },
+                    child: const Text(
+                      'Eliminar',
+                      style: TextStyle(color: Colors.red),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Cancelar',
+                      style: TextStyle(color: Color.fromRGBO(33, 150, 243, 1)),
+                    ))
+              ],
+            ));
   }
 }

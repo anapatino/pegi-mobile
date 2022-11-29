@@ -109,7 +109,7 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                           'titulo': controlTitulo.text,
                           'anexos': "",
                           'idEstudiante': controlu.emailf,
-                          'estado': "pendiente",
+                          'estado': "Pendiente",
                           'retroalimentacion': '',
                           'calificacion': '',
                           'idDocente': '',

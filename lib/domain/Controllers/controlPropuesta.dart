@@ -26,6 +26,10 @@ class ControlPropuesta extends GetxController {
     await PeticionesPropuesta.modificarPropuesta(propuesta);
   }
 
+  Future<void> eliminarPropuesta(propuesta) async {
+    await PeticionesPropuesta.eliminarPropuesta(propuesta);
+  }
+
   Future<void> consultarPropuestasDocente(id) async {
     _propuestaIdDocente.value =
         await PeticionesPropuesta.consultarPropuestaDocente(id);

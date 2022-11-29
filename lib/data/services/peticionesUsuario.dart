@@ -62,7 +62,22 @@ class PeticionesUsuario {
     await _db.collection("Usuarios").get().then((respuesta) {
       for (var doc in respuesta.docs) {
         if (doc.data()['rol'] == 'docente') {
+          log(doc.data()["nombre"]);
           docentes.add(UsuarioFirebase.desdeDoc(doc.data()));
+        }
+      }
+    });
+    return docentes;
+  }
+
+  static Future<List<String>> obtenerNombresDocentes() async {
+    List<String> docentes = [];
+
+    await _db.collection("Usuarios").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['rol'] == 'docente') {
+          log(doc.data()["nombre"]);
+          docentes.add(doc.data()["nombre"]);
         }
       }
     });

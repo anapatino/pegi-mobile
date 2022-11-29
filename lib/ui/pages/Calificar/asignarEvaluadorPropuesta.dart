@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/domain/Controllers/controlPropuesta.dart';
@@ -6,14 +8,22 @@ import 'package:pegi/ui/pages/Consultar/admi/evaluadorPropuesta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 
+import '../../../domain/Controllers/controladorUsuario.dart';
+import '../../../domain/models/usuario.dart';
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Mostrar.dart';
+import '../home.dart';
 
-const List<String> list = <String>['Alex Vacca', 'Amilkar', 'Roberto'];
+ControlUsuario controlu = Get.find();
+
+List<String>? list = controlu.getNombresDocentes;
 
 class AsignarEvaluadorPropuesta extends StatefulWidget {
   final Propuesta propuesta;
-  const AsignarEvaluadorPropuesta({super.key, required this.propuesta});
+  final List<UsuarioFirebase> user;
+
+  const AsignarEvaluadorPropuesta(
+      {super.key, required this.propuesta, required this.user});
 
   @override
   State<AsignarEvaluadorPropuesta> createState() =>
@@ -21,7 +31,7 @@ class AsignarEvaluadorPropuesta extends StatefulWidget {
 }
 
 class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
-  String dropdownValue = list.first;
+  String dropdownValue = list!.first;
   ControlPropuesta controlp = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -92,7 +102,7 @@ class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
                       dropdownValue = value!;
                     });
                   },
-                  items: list.map<DropdownMenuItem<String>>((String value) {
+                  items: list!.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -122,6 +132,11 @@ class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
                       color: const Color.fromRGBO(91, 59, 183, 1),
                       colorTexto: Colors.white,
                       onPressed: () {
+                        for (var doc in widget.user) {
+                          if (doc.nombre == dropdownValue) {
+                            dropdownValue = doc.correo;
+                          }
+                        }
                         var Propuesta = <String, dynamic>{
                           'titulo': widget.propuesta.titulo,
                           'idEstudiante': widget.propuesta.idEstudiante,
@@ -155,7 +170,7 @@ class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
                           'estado': widget.propuesta.estado,
                           'retroalimentacion':
                               widget.propuesta.retroalimentacion,
-                          'calificacion': widget.propuesta.calificacion.text,
+                          'calificacion': widget.propuesta.calificacion,
                           'idDocente': dropdownValue
                         };
                         controlp
@@ -169,7 +184,7 @@ class _AsignarEvaluadorPropuestaState extends State<AsignarEvaluadorPropuesta> {
                                     duration: Duration(seconds: 5),
                                     backgroundColor: Colors.greenAccent,
                                   )),
-                                  Get.to(() => const EvaluadorPropuesta()),
+                                  Get.offAll(() => HomePage(rol: "admi"))
                                 })
                             .catchError((e) {
                           Get.showSnackbar(const GetSnackBar(

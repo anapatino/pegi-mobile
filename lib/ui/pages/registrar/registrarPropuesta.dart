@@ -519,7 +519,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                               'especificos': controlEspecifico.text,
                               'bibliografia': controlBibliografia.text,
                               'anexos': controlAnexo.text,
-                              'estado': "pendiente",
+                              'estado': "Pendiente",
                               'retroalimentacion': '',
                               'calificacion': '',
                               'idDocente': ''
@@ -537,7 +537,6 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                           duration: Duration(seconds: 5),
                                           backgroundColor: Colors.greenAccent,
                                         )),
-                                       
                                       })
                                   .catchError((e) {
                                 Get.showSnackbar(const GetSnackBar(

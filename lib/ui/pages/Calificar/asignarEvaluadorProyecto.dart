@@ -1,19 +1,29 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/domain/Controllers/controlProyecto.dart';
+import 'package:pegi/domain/Controllers/controladorUsuario.dart';
 import 'package:pegi/domain/models/proyecto.dart';
+import 'package:pegi/domain/models/usuario.dart';
 import 'package:pegi/ui/pages/Consultar/admi/evaluadorProyecto.dart';
 import 'package:pegi/ui/widgets/Header.dart';
 import 'package:pegi/ui/widgets/Button.dart';
 
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Mostrar.dart';
+import '../home.dart';
 
-const List<String> list = <String>['Alex vacca', 'Amilkar', 'Roberto'];
+ControlUsuario controlu = Get.find();
+
+List<String>? list = controlu.getNombresDocentes;
 
 class AsignarEvaluadorProyecto extends StatefulWidget {
   final Proyecto proyecto;
-  const AsignarEvaluadorProyecto({super.key, required this.proyecto});
+  final List<UsuarioFirebase> user;
+
+  const AsignarEvaluadorProyecto(
+      {super.key, required this.proyecto, required this.user});
 
   @override
   State<AsignarEvaluadorProyecto> createState() =>
@@ -21,8 +31,9 @@ class AsignarEvaluadorProyecto extends StatefulWidget {
 }
 
 class _AsignarEvaluadorProyectoState extends State<AsignarEvaluadorProyecto> {
-  String dropdownValue = list.first;
+  String dropdownValue = list!.first;
   ControlProyecto controlp = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +103,7 @@ class _AsignarEvaluadorProyectoState extends State<AsignarEvaluadorProyecto> {
                       dropdownValue = value!;
                     });
                   },
-                  items: list.map<DropdownMenuItem<String>>((String value) {
+                  items: list!.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -122,6 +133,11 @@ class _AsignarEvaluadorProyectoState extends State<AsignarEvaluadorProyecto> {
                       color: const Color.fromRGBO(91, 59, 183, 1),
                       colorTexto: Colors.white,
                       onPressed: () {
+                        for (var doc in widget.user) {
+                          if (doc.nombre == dropdownValue) {
+                            dropdownValue = doc.correo;
+                          }
+                        }
                         var Proyecto = <String, dynamic>{
                           'titulo': widget.proyecto.titulo,
                           'idEstudiante': widget.proyecto.idEstudiante,
@@ -144,7 +160,7 @@ class _AsignarEvaluadorProyectoState extends State<AsignarEvaluadorProyecto> {
                                     duration: Duration(seconds: 5),
                                     backgroundColor: Colors.greenAccent,
                                   )),
-                                  Get.to(() => const EvaluadorProyecto()),
+                                  Get.offAll(() => HomePage(rol: "admi"))
                                 })
                             .catchError((e) {
                           Get.showSnackbar(const GetSnackBar(

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegi/domain/Controllers/controlPropuesta.dart';
 import 'package:pegi/domain/models/propuesta.dart';
+import 'package:pegi/ui/pages/Consultar/estudiante/consultarEstudiante.dart';
 import 'package:pegi/ui/pages/Consultar/estudiante/mostrarPropuesta.dart';
+import 'package:pegi/ui/pages/home.dart';
 import 'package:pegi/ui/utils/Dimensiones.dart';
 import 'package:pegi/ui/widgets/Consulta.dart';
 import 'package:pegi/ui/widgets/Header.dart';
@@ -98,6 +100,10 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                           ? const Color.fromRGBO(91, 59, 183, 1)
                           : const Color.fromRGBO(18, 180, 122, 1),
                   colorBoton: const Color.fromRGBO(30, 30, 30, 1),
+                  onLongPress: () {
+                    _eliminarPropuesta(
+                        context, posicion.data![index], controlp);
+                  },
                   onPressed: () {
                     Get.to(() =>
                         MostrarPropuesta(propuesta: posicion.data![index]));
@@ -110,5 +116,40 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
         );
       },
     );
+  }
+
+  _eliminarPropuesta(context, propuestaActual, controlp) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              backgroundColor: const Color.fromRGBO(30, 30, 30, 1),
+              title: const Text(
+                'Eliminar Propuesta',
+                style: TextStyle(color: Colors.white),
+              ),
+              content: Text(
+                'Desea Realmente Eliminar a ${propuestaActual!.titulo}',
+                style: const TextStyle(color: Colors.white),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      controlp.eliminarPropuesta(propuestaActual!.idPropuesta);
+                      Get.offAll(() => HomePage(rol: "estudiante"));
+                    },
+                    child: const Text(
+                      'Eliminar',
+                      style: TextStyle(color: Colors.red),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Cancelar',
+                      style: TextStyle(color: Color.fromRGBO(33, 150, 243, 1)),
+                    ))
+              ],
+            ));
   }
 }

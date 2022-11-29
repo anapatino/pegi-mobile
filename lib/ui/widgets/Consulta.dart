@@ -67,13 +67,14 @@ class Mostrar extends StatelessWidget {
   final Color colorTipo;
   final Color colorBoton;
   final VoidCallback onPressed;
-
+  final VoidCallback onLongPress;
   const Mostrar(
       {required this.texto,
       required this.tipo,
       required this.colorTipo,
       required this.colorBoton,
       required this.onPressed,
+      required this.onLongPress,
       super.key});
 
   @override
@@ -87,6 +88,9 @@ class Mostrar extends StatelessWidget {
             color: colorBoton,
             onPressed: () {
               onPressed();
+            },
+            onLongPress: () {
+              onLongPress();
             },
             height: Dimensiones.screenHeight * 0.17,
             minWidth: Dimensiones.screenWidth * 0.90,

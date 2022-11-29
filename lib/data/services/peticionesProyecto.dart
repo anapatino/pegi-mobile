@@ -123,6 +123,22 @@ class PeticionesProyecto {
     });
   }
 
+  static Future<void> eliminarProyecto(String idproyecto) async {
+    await _db.collection("Proyectos").get().then((respuesta) async {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idProyecto'] == idproyecto) {
+          await _db
+              .collection('Proyectos')
+              .doc(doc.id)
+              .delete()
+              .catchError((e) {
+            log(e);
+          });
+        }
+      }
+    });
+  }
+
   Future contadorProyecto(id, String estado) async {
     var contador = 0;
     await _db.collection("Proyectos").get().then((respuesta) {

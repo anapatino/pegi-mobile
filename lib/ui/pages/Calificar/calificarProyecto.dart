@@ -13,6 +13,7 @@ import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../../../domain/Controllers/controlProyecto.dart';
+import '../home.dart';
 
 class CalificarProyecto extends StatefulWidget {
   final Proyecto proyecto;
@@ -95,12 +96,17 @@ class _CalificarProyectoState extends State<CalificarProyecto> {
                   color: const Color.fromRGBO(91, 59, 183, 1),
                   colorTexto: Colors.white,
                   onPressed: () {
+                    var estado = "Calificado";
+                    if (controlCalificacion.text.isEmpty &&
+                        controlRetroalimentacion.text.isEmpty) {
+                      estado = "Pendiente";
+                    }
                     var Proyecto = <String, dynamic>{
                       'idProyecto': widget.proyecto.idProyecto,
                       'titulo': widget.proyecto.titulo,
                       'anexos': widget.proyecto.anexos,
                       'idEstudiante': widget.proyecto.idEstudiante,
-                      'estado': "Calificado",
+                      'estado': estado,
                       'retroalimentacion': controlRetroalimentacion.text,
                       'calificacion': controlCalificacion.text,
                       'idDocente': widget.proyecto.idDocente,
@@ -115,7 +121,7 @@ class _CalificarProyectoState extends State<CalificarProyecto> {
                                 duration: Duration(seconds: 5),
                                 backgroundColor: Colors.greenAccent,
                               )),
-                              Get.to(() => const ConsultarDocente()),
+                              Get.offAll(() => HomePage(rol: "docente"))
                             })
                         .catchError((e) {
                       Get.showSnackbar(const GetSnackBar(

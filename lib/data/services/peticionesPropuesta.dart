@@ -224,4 +224,20 @@ class PeticionesPropuesta {
     });
     return contador;
   }
+
+  static Future<void> eliminarPropuesta(String idPropuesta) async {
+    await _db.collection("Propuesta").get().then((respuesta) async {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idPropuesta'] == idPropuesta) {
+          await _db
+              .collection('Propuesta')
+              .doc(doc.id)
+              .delete()
+              .catchError((e) {
+            log(e);
+          });
+        }
+      }
+    });
+  }
 }

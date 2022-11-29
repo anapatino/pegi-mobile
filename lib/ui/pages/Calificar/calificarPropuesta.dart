@@ -11,6 +11,7 @@ import 'package:pegi/ui/widgets/Input.dart';
 import 'package:pegi/ui/widgets/Mostrar.dart';
 
 import '../Consultar/Docente/consultarDocente.dart';
+import '../home.dart';
 
 class CalificarPropuesta extends StatefulWidget {
   final Propuesta propuesta;
@@ -94,6 +95,11 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                   color: const Color.fromRGBO(91, 59, 183, 1),
                   colorTexto: Colors.white,
                   onPressed: () {
+                    var estado = "Calificado";
+                    if (controlCalificacion.text.isEmpty &&
+                        controlRetroalimentacion.text.isEmpty) {
+                      estado = "Pendiente";
+                    }
                     var Propuesta = <String, dynamic>{
                       'titulo': widget.propuesta.titulo,
                       'idEstudiante': widget.propuesta.idEstudiante,
@@ -123,7 +129,7 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                       'especificos': widget.propuesta.especificos,
                       'bibliografia': widget.propuesta.bibliografia,
                       'anexos': widget.propuesta.anexos,
-                      'estado': "Calificado",
+                      'estado': estado,
                       'retroalimentacion': controlRetroalimentacion.text,
                       'calificacion': controlCalificacion.text,
                       'idDocente': widget.propuesta.idDocente
@@ -138,7 +144,7 @@ class _CalificarPropuestaState extends State<CalificarPropuesta> {
                                 duration: Duration(seconds: 5),
                                 backgroundColor: Colors.greenAccent,
                               )),
-                              Get.to(() => const ConsultarDocente()),
+                              Get.offAll(() => HomePage(rol: "docente"))
                             })
                         .catchError((e) {
                       Get.showSnackbar(const GetSnackBar(

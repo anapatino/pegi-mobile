@@ -11,6 +11,7 @@ class ControlUsuario extends GetxController {
   static final Rx<dynamic> _rol = "".obs;
   final Rxn<List<UsuarioFirebase>> _listaDocentes =
       Rxn<List<UsuarioFirebase>>();
+  final Rxn<List<String>> _nombresDocentes = Rxn<List<String>>();
 
   static final Rx<dynamic> _mensajes = "".obs;
 
@@ -18,6 +19,7 @@ class ControlUsuario extends GetxController {
   String get uid => _uid.value;
   String get rol => _rol.value;
   List<UsuarioFirebase>? get getListaDocentes => _listaDocentes.value;
+  List<String>? get getNombresDocentes => _nombresDocentes.value;
 
   Future<void> enviarDatos(String user, String contrasena) async {
     try {
@@ -57,5 +59,9 @@ class ControlUsuario extends GetxController {
 
   Future<void> consultarListaDocentes() async {
     _listaDocentes.value = await PeticionesUsuario.obtenerDocentes();
+  }
+
+  Future<void> consultarNombresDocentes() async {
+    _nombresDocentes.value = await PeticionesUsuario.obtenerNombresDocentes();
   }
 }

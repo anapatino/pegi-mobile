@@ -84,8 +84,10 @@ class _EvaluadorProyectoState extends State<EvaluadorProyecto> {
                       top: Dimensiones.screenHeight * 0.03),
                   onPressed: () async {
                     await controlu.consultarListaDocentes();
+                    await controlu.consultarNombresDocentes();
                     Get.to(() => AsignarEvaluadorProyecto(
-                        proyecto: posicion.data![index]));
+                        proyecto: posicion.data![index],
+                        user: controlu.getListaDocentes!));
                   });
             } else if (posicion.hasError) {
               return Text('${posicion.error}');

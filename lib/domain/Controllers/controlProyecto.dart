@@ -27,6 +27,10 @@ class ControlProyecto extends GetxController {
         await PeticionesProyecto.consultarProyectoDocente(id);
   }
 
+  Future<void> eliminarProyecto(proyecto) async {
+    await PeticionesProyecto.eliminarProyecto(proyecto);
+  }
+
   List<Proyecto>? get getproyectosGral => _proyectoFirestore.value;
   List<Proyecto>? get getproyectosDocentes => _proyectoDocenteFirestore.value;
   List<Proyecto>? get getTodosproyectos => _todosProyectos.value;
