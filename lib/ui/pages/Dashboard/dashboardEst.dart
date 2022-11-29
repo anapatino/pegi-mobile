@@ -5,6 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:pegi/ui/widgets/ProgressAvatar.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../../data/services/peticionesPropuesta.dart';
+import '../../../data/services/peticionesProyecto.dart';
+import '../../../domain/Controllers/controlProyecto.dart';
+import '../../../domain/Controllers/controladorUsuario.dart';
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Navbar.dart';
 
@@ -18,7 +22,69 @@ class DashboardEstudiante extends StatefulWidget {
 class _DashboardEstudianteState extends State<DashboardEstudiante> {
   final today = DateTime.now();
   @override
+  void initState() {
+    super.initState();
+    func();
+    func2();
+    func3();
+    func4();
+    func5();
+  }
+
+  PeticionesProyecto peticionesProyecto = PeticionesProyecto();
+  PeticionesPropuesta peticionesPropuesta = PeticionesPropuesta();
+  var calificadosProp = 0;
+  var totalProp = 0;
+  var asignadosProy = 0;
+  var totalProy = 0;
+  var asignadosProp = 0;
+  ControlProyecto controlp = Get.find();
+  ControlUsuario controlu = Get.find();
+  void func() {
+    peticionesPropuesta
+        .conPropuEst(controlu.emailf, 'calificado')
+        .then((value) {
+      setState(() {
+        calificadosProp = value;
+      });
+    });
+  }
+
+  void func2() {
+    peticionesPropuesta.conPropE(controlu.emailf).then((value) {
+      setState(() {
+        totalProp = value;
+      });
+    });
+  }
+
+  void func3() {
+    peticionesProyecto.coProyeEst(controlu.emailf).then((value) {
+      setState(() {
+        asignadosProy = value;
+      });
+    });
+  }
+
+  void func4() {
+    peticionesProyecto.conProyeEst(controlu.emailf).then((value) {
+      setState(() {
+        totalProy = value;
+      });
+    });
+  }
+
+  void func5() {
+    peticionesPropuesta.coPropEst(controlu.emailf).then((value) {
+      setState(() {
+        asignadosProp = value;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    controlp.consultarProyectos(controlu.emailf).then((value) => null);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -29,11 +95,12 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
             children: <Widget>[
               Navbar("Estudiante", Icons.space_dashboard),
               ProgressAvatar(
-                tieneFecha: false,
-                porcentaje: 0.3,
-                label: '30%',
-                texto: 'Proyectos \ncalificadas',
-                seguimiento: '8/16 revisiones',
+                porcentaje: (calificadosProp / totalProp),
+                color: const Color.fromRGBO(91, 59, 183, 1),
+                label: ((calificadosProp / totalProp) * 100).toString(),
+                texto: 'Propuestas \ncalificadas',
+                seguimiento:
+                    '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -68,7 +135,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                         height:
                                             Dimensiones.screenHeight * 0.015),
                                     Text(
-                                      "Editar Propuesta",
+                                      "Propuestas \nAsignadas",
                                       textAlign: TextAlign.start,
                                       style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.bold,
@@ -80,7 +147,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                         height:
                                             Dimensiones.screenHeight * 0.015),
                                     Text(
-                                      "Recuerda que si editas tu propuesta en estado de revision  perderas todo el proceso.",
+                                      "Recuerda que si eliminas  tu propuesta y ya ha sido asignado un evaluador perderas la asignacion.",
                                       style: GoogleFonts.montserrat(
                                           fontSize: 12.0,
                                           color: const Color.fromARGB(
@@ -92,7 +159,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                     LinearPercentIndicator(
                                       lineHeight: 9,
                                       animation: true,
-                                      percent: 0.8,
+                                      percent: (asignadosProp / totalProp),
                                       barRadius: const Radius.circular(4.0),
                                       progressColor:
                                           const Color.fromRGBO(33, 150, 243, 1),
@@ -112,7 +179,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "En progreso",
+                                            'en progreso',
                                             textAlign: TextAlign.start,
                                             style: GoogleFonts.montserrat(
                                                 fontWeight: FontWeight.bold,
@@ -121,7 +188,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                                     255, 221, 221, 221)),
                                           ),
                                           Text(
-                                            "80%",
+                                            '${((asignadosProp / totalProp) * 100)}%',
                                             textAlign: TextAlign.start,
                                             style: GoogleFonts.montserrat(
                                                 fontWeight: FontWeight.bold,
@@ -165,7 +232,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                             255, 255, 255, 255),
                                       ),
                                       Text(
-                                        "Estado del proyecto",
+                                        "Proyectos \nAsignados",
                                         style: GoogleFonts.montserrat(
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold,
@@ -178,7 +245,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                       LinearPercentIndicator(
                                         lineHeight: 9,
                                         animation: true,
-                                        percent: 0.8,
+                                        percent: (asignadosProy / totalProy),
                                         barRadius: const Radius.circular(4.0),
                                         progressColor: const Color.fromRGBO(
                                             33, 150, 243, 1),
@@ -196,8 +263,8 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
-                                          children: const [
-                                            Text(
+                                          children: [
+                                            const Text(
                                               "progreso",
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
@@ -207,9 +274,9 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                                       255, 221, 221, 221)),
                                             ),
                                             Text(
-                                              "80%",
+                                              '${((asignadosProy / totalProy) * 100)}%',
                                               textAlign: TextAlign.start,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 10.0,
                                                   color: Color.fromARGB(

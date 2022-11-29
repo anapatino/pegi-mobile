@@ -214,7 +214,6 @@ class PeticionesPropuesta {
     return contador;
   }
 
-//if (doc.data()['idDocente'] != ''){no han sido asignadas}
   Future contadorPropAdm() async {
     var contador = 0;
     await _db.collection("Propuesta").get().then((respuesta) {
@@ -239,5 +238,45 @@ class PeticionesPropuesta {
         }
       }
     });
+  }
+
+  Future coPropEst(email) async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idDocente'] != '') {
+          if (doc.data()['idEstudiante'] == email) {
+            contador += 1;
+          }
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future conPropE(email) async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idEstudiante'] == email) {
+          contador += 1;
+        }
+      }
+    });
+    return contador;
+  }
+
+  Future conPropuEst(email, String estado) async {
+    var contador = 0;
+    await _db.collection("Propuesta").get().then((respuesta) {
+      for (var doc in respuesta.docs) {
+        if (doc.data()['idEstudiante'] == email) {
+          if (doc.data()['estado'].toLowerCase() == estado.toLowerCase()) {
+            contador += 1;
+          }
+        }
+      }
+    });
+    return contador;
   }
 }
