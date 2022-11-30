@@ -17,6 +17,7 @@ import '../../utils/Dimensiones.dart';
 import '../../widgets/Button.dart';
 import '../../widgets/Filter.dart';
 import '../../widgets/Header.dart';
+import '../home.dart';
 
 class RegistrarProyecto extends StatefulWidget {
   const RegistrarProyecto({super.key});
@@ -35,7 +36,7 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
 
   String? pickedFilePath;
   String? pickedFileextencion;
-  static String pickedFileName = "";
+  static String pickedFileName = "Agregar documento";
   Future selectFile() async {
     final fileSelect = await FilePicker.platform.pickFiles();
     if (fileSelect == null) return;
@@ -43,10 +44,12 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
     pickedFileextencion = fileSelect.files.first.extension;
     pickedFileName = fileSelect.files.first.name;
     log('Archivo selecionado: $pickedFileName');
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    var pick = pickedFileName;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -69,22 +72,13 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                 const EdgeInsets.only(bottom: 8),
                 const Color.fromRGBO(30, 30, 30, 1),
                 const Color.fromARGB(255, 221, 221, 221)),
-            if (pickedFileName == "")
-              InputDownload(
-                  texto: "Agregar documento",
-                  icon: Icons.add_to_photos_outlined,
-                  color: const Color.fromRGBO(30, 30, 30, 1),
-                  onPressed: () {
-                    selectFile();
-                  }),
-            if (pickedFileName != "")
-              InputDownload(
-                  texto: pickedFileName,
-                  icon: Icons.add_to_photos_outlined,
-                  color: const Color.fromRGBO(30, 30, 30, 1),
-                  onPressed: () {
-                    selectFile();
-                  }),
+            InputDownload(
+                texto: pickedFileName,
+                icon: Icons.add_to_photos_outlined,
+                color: const Color.fromRGBO(30, 30, 30, 1),
+                onPressed: () async {
+                  await selectFile();
+                }),
             Padding(
                 padding: EdgeInsets.symmetric(vertical: Dimensiones.height2),
                 child: Row(
@@ -125,6 +119,7 @@ class _RegistrarProyectoState extends State<RegistrarProyecto> {
                                     duration: Duration(seconds: 5),
                                     backgroundColor: Colors.greenAccent,
                                   )),
+                                  Get.offAll(() => HomePage(rol: "estudiante")),
                                 })
                             .catchError((e) {
                           Get.showSnackbar(const GetSnackBar(

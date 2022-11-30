@@ -20,6 +20,7 @@ import '../../../domain/Controllers/controladorUsuario.dart';
 import '../../utils/Dimensiones.dart';
 import '../../widgets/Button.dart';
 import '../../widgets/Header.dart';
+import '../home.dart';
 
 class RegistrarPropuesta extends StatefulWidget {
   const RegistrarPropuesta({super.key});
@@ -83,8 +84,8 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
   //   }
   // }
 
-  String? pickedFilePath;
-  String? pickedFileextencion;
+  String? pickedFilePath = "";
+  String? pickedFileextencion = "";
   static String pickedFileName = "";
   Future selectFile() async {
     final fileSelect = await FilePicker.platform.pickFiles();
@@ -93,6 +94,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
     pickedFileextencion = fileSelect.files.first.extension;
     pickedFileName = fileSelect.files.first.name;
     log('Archivo selecionado: $pickedFileName');
+    setState(() {});
   }
 
   int _activeCurrentStep = 0;
@@ -482,49 +484,48 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                           },
                         ),
                         Button(
-                          texto: "Enviar",
-                          color: const Color.fromRGBO(91, 59, 183, 1),
-                          colorTexto: Colors.white,
-                          onPressed: () async {
-                            String index = await controlI.consultarIndex();
+                            texto: "Enviar",
+                            color: const Color.fromRGBO(91, 59, 183, 1),
+                            colorTexto: Colors.white,
+                            onPressed: () async {
+                              String index = await controlI.consultarIndex();
 
-                            var Propuesta = <String, dynamic>{
-                              'titulo': controlTitulo.text,
-                              'idEstudiante': controlu.emailf,
-                              'idPropuesta': index,
-                              'nombre': controlNombre.text,
-                              'apellido': controlApellido.text,
-                              'identificacion': controlIdentificacion.text,
-                              'numero': controlNumero.text,
-                              'programa': controlPrograma.text,
-                              'correo': controlCorreo.text,
-                              'celular': controlCelular.text,
-                              'nombre2': controlNombre2.text,
-                              'apellido2': controlApellido2.text,
-                              'identificacion2': controlIdentificacion2.text,
-                              'numero2': controlNumero2.text,
-                              'programa2': controlPrograma2.text,
-                              'correo2': controlCorreo2.text,
-                              'celular2': controlCelular2.text,
-                              'lineaInvestigacion':
-                                  controlLineaInvestigacion.text,
-                              'sublineaInvestigacion':
-                                  controlSublineaInvestigacion.text,
-                              'areaTematica': controlAreaTematica.text,
-                              'grupoInvestigacion':
-                                  controlGrupoInvestigacion.text,
-                              'planteamiento': controlPlanteamiento.text,
-                              'justificacion': controlJustificacion.text,
-                              'general': controlGeneral.text,
-                              'especificos': controlEspecifico.text,
-                              'bibliografia': controlBibliografia.text,
-                              'anexos': controlAnexo.text,
-                              'estado': "Pendiente",
-                              'retroalimentacion': '',
-                              'calificacion': '',
-                              'idDocente': ''
-                            };
-                            if (pickedFileName != "") {
+                              var Propuesta = <String, dynamic>{
+                                'titulo': controlTitulo.text,
+                                'idEstudiante': controlu.emailf,
+                                'idPropuesta': index,
+                                'nombre': controlNombre.text,
+                                'apellido': controlApellido.text,
+                                'identificacion': controlIdentificacion.text,
+                                'numero': controlNumero.text,
+                                'programa': controlPrograma.text,
+                                'correo': controlCorreo.text,
+                                'celular': controlCelular.text,
+                                'nombre2': controlNombre2.text,
+                                'apellido2': controlApellido2.text,
+                                'identificacion2': controlIdentificacion2.text,
+                                'numero2': controlNumero2.text,
+                                'programa2': controlPrograma2.text,
+                                'correo2': controlCorreo2.text,
+                                'celular2': controlCelular2.text,
+                                'lineaInvestigacion':
+                                    controlLineaInvestigacion.text,
+                                'sublineaInvestigacion':
+                                    controlSublineaInvestigacion.text,
+                                'areaTematica': controlAreaTematica.text,
+                                'grupoInvestigacion':
+                                    controlGrupoInvestigacion.text,
+                                'planteamiento': controlPlanteamiento.text,
+                                'justificacion': controlJustificacion.text,
+                                'general': controlGeneral.text,
+                                'especificos': controlEspecifico.text,
+                                'bibliografia': controlBibliografia.text,
+                                'anexos': controlAnexo.text,
+                                'estado': "Pendiente",
+                                'retroalimentacion': '',
+                                'calificacion': '',
+                                'idDocente': ''
+                              };
                               controlp
                                   .registrarPropuesta(Propuesta, pickedFilePath,
                                       pickedFileextencion)
@@ -537,6 +538,8 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                           duration: Duration(seconds: 5),
                                           backgroundColor: Colors.greenAccent,
                                         )),
+                                        Get.offAll(
+                                            () => HomePage(rol: "estudiante")),
                                       })
                                   .catchError((e) {
                                 Get.showSnackbar(const GetSnackBar(
@@ -547,9 +550,7 @@ class _RegistrarPropuestaState extends State<RegistrarPropuesta> {
                                   backgroundColor: Colors.red,
                                 ));
                               });
-                            }
-                          },
-                        ),
+                            }),
                       ],
                     ),
                   ])),

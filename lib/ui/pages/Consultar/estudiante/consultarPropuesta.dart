@@ -128,7 +128,7 @@ class _ConsultarPropuestasState extends State<ConsultarPropuestas> {
                 style: TextStyle(color: Colors.white),
               ),
               content: Text(
-                'Desea Realmente Eliminar a ${propuestaActual!.titulo}',
+                'Desea Realmente Eliminar a "${propuestaActual!.titulo}"',
                 style: const TextStyle(color: Colors.white),
               ),
               actions: [
