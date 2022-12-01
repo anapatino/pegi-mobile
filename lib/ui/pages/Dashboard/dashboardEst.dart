@@ -99,7 +99,9 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
               ProgressAvatar(
                 porcentaje: (calificadosProp / totalProp),
                 color: const Color.fromRGBO(91, 59, 183, 1),
-                label: "${((calificadosProp / totalProp) * 100).toString()}%",
+                label: ((calificadosProp / totalProp) * 100).toString() == 'NaN'
+                    ? '-'
+                    : ((calificadosProp / totalProp) * 100).round().toString(),
                 texto: 'Propuestas \ncalificadas',
                 seguimiento:
                     '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
@@ -190,7 +192,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                                     255, 221, 221, 221)),
                                           ),
                                           Text(
-                                            '${((asignadosProp / totalProp) * 100).round()}%',
+                                            '${((asignadosProp / totalProp) * 100).toString() == 'NaN' ? '-' : ((asignadosProp / totalProp) * 100).round().toString()}%',
                                             textAlign: TextAlign.start,
                                             style: GoogleFonts.montserrat(
                                                 fontWeight: FontWeight.bold,
@@ -276,7 +278,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
                                                       255, 221, 221, 221)),
                                             ),
                                             Text(
-                                              '${((asignadosProy / totalProy) * 100).round()}%',
+                                              '${((asignadosProy / totalProy) * 100).toString() == 'NaN' ? '-' : ((asignadosProy / totalProy) * 100).round().toString()}%',
                                               textAlign: TextAlign.start,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
