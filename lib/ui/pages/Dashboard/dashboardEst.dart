@@ -29,7 +29,6 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
     func3();
     func4();
     func5();
-    var porcentaje = calificadosProp / totalProp;
   }
 
   PeticionesProyecto peticionesProyecto = PeticionesProyecto();
