@@ -91,7 +91,7 @@ class _DashboardState extends State<Dashboard> {
                 color: const Color.fromRGBO(91, 59, 183, 1),
                 label: ((calificadosProp / totalProp) * 100).toString() == 'NaN'
                     ? '-'
-                    : ((calificadosProy / totalProy) * 100).round().toString(),
+                    : ((calificadosProp / totalProp) * 100).round().toString(),
                 texto: 'Propuestas \ncalificadas',
                 seguimiento:
                     '${calificadosProp.toString()}/${totalProp.toString()} revisiones',

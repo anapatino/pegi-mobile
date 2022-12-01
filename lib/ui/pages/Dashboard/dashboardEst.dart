@@ -29,6 +29,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
     func3();
     func4();
     func5();
+    var porcentaje = calificadosProp / totalProp;
   }
 
   PeticionesProyecto peticionesProyecto = PeticionesProyecto();
@@ -38,6 +39,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
   var asignadosProy = 0;
   var totalProy = 0;
   var asignadosProp = 0;
+
   ControlProyecto controlp = Get.find();
   ControlUsuario controlu = Get.find();
   void func() {
@@ -98,7 +100,7 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
               ProgressAvatar(
                 porcentaje: (calificadosProp / totalProp),
                 color: const Color.fromRGBO(91, 59, 183, 1),
-                label: "${((calificadosProp / totalProp) * 100)}%",
+                label: "${((calificadosProp / totalProp) * 100).toString()}%",
                 texto: 'Propuestas \ncalificadas',
                 seguimiento:
                     '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
