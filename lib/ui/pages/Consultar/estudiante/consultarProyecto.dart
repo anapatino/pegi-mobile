@@ -124,13 +124,18 @@ class _ConsultarProyectoState extends State<ConsultarProyecto> {
         context: context,
         builder: (_) => AlertDialog(
               backgroundColor: const Color.fromRGBO(30, 30, 30, 1),
-              title: const Text('Eliminar Proyecto'),
-              content:
-                  Text('Desea Realmente Eliminar a ${propuestaActual.titulo}'),
+              title: const Text(
+                'Eliminar Proyecto',
+                style: TextStyle(color: Colors.white),
+              ),
+              content: Text(
+                'Desea Realmente Eliminar a "${propuestaActual.titulo}"',
+                style: TextStyle(color: Colors.white),
+              ),
               actions: [
                 TextButton(
                     onPressed: () {
-                      controlp.eliminarPropuesta(propuestaActual.idPropuesta);
+                      controlp.eliminarProyecto(propuestaActual.idProyecto);
                       Get.offAll(() => HomePage(rol: "estudiante"));
                     },
                     child: const Text(
