@@ -99,9 +99,8 @@ class _DashboardEstudianteState extends State<DashboardEstudiante> {
               ProgressAvatar(
                 porcentaje: (calificadosProp / totalProp),
                 color: const Color.fromRGBO(91, 59, 183, 1),
-                label: ((calificadosProp / totalProp) * 100).toString() == 'NaN'
-                    ? '-'
-                    : ((calificadosProp / totalProp) * 100).round().toString(),
+                label:
+                    '${((calificadosProp / totalProp) * 100).toString() == 'NaN' ? '-' : ((calificadosProp / totalProp) * 100).round().toString()}%',
                 texto: 'Propuestas \ncalificadas',
                 seguimiento:
                     '${calificadosProp.toString()}/${totalProp.toString()} revisiones',
